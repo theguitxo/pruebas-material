@@ -13,4 +13,13 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
   </table>
+  <app-simple-paginator
+    [currentPage]="currentPage"
+    [disablePrevious]="disablePreviousPage"
+    [disableNext]="disableNextPage"
+    [showFirstLastPage]="true"
+    [lastPage]="lastPage"
+    (goPage)="goPage($event)"
+    (changePageSize)="changePageSize($event)"
+  ></app-simple-paginator>
 </div>

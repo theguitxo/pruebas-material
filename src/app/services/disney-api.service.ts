@@ -1,6 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 export interface ResponseInfo {
   totalPages?: number;
@@ -45,23 +45,29 @@ export class DisneyAPIService {
 
   private readonly baseURL = 'https://api.disneyapi.dev';
 
-  private _pageSize = 5;
+  pageSize = 5;
+  currentPage = 1;
+
+  private _allCharacters: BehaviorSubject<ResponseCharacterList | undefined> =
+    new BehaviorSubject<ResponseCharacterList | undefined>(undefined);
+
+  get allCharacters(): Observable<ResponseCharacterList | undefined> {
+    return this._allCharacters.asObservable();
+  }
 
   constructor() {
     this.httpClient = inject(HttpClient);
   }
 
-  get pageSize(): number {
-    return this._pageSize;
-  }
+  getAllCharacters(): void {
+    const params = new HttpParams()
+      .append('pageSize', this.pageSize)
+      .append('page', this.currentPage);
 
-  set pageSize(value: number) {
-    this._pageSize = value;
-  }
-
-  getAllCharacters(): Observable<ResponseCharacterList> {
-    return this.httpClient.get<ResponseCharacterList>(
-      `${this.baseURL}/character?pageSize=${this._pageSize}`
-    );
+    this.httpClient
+      .get<ResponseCharacterList>(`${this.baseURL}/character`, {
+        params,
+      })
+      .subscribe((data) => this._allCharacters.next(data));
   }
 }
