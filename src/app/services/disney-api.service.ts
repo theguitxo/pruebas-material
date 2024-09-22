@@ -15,7 +15,7 @@ export interface ResponseData {
   shortFilms: string[];
   tvShows: string[];
   videoGames: string[];
-  parkAttractions: ['Celebrate the Magic', 'Jingle Bell, Jingle BAM!'];
+  parkAttractions: string[];
   allies: [];
   enemies: [];
   sourceUrl?: string;
@@ -45,13 +45,23 @@ export class DisneyAPIService {
 
   private readonly baseURL = 'https://api.disneyapi.dev';
 
+  private _pageSize = 5;
+
   constructor() {
     this.httpClient = inject(HttpClient);
   }
 
+  get pageSize(): number {
+    return this._pageSize;
+  }
+
+  set pageSize(value: number) {
+    this._pageSize = value;
+  }
+
   getAllCharacters(): Observable<ResponseCharacterList> {
     return this.httpClient.get<ResponseCharacterList>(
-      `${this.baseURL}/character`
+      `${this.baseURL}/character?pageSize=${this._pageSize}`
     );
   }
 }
