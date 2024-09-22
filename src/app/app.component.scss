@@ -1,0 +1,16 @@
+mat-drawer-container {
+  height: 100%;
+}
+
+.drawer {
+  &__container {
+    width: auto;
+    min-width: 15%;
+    padding: 1rem 1.5rem;
+  }
+
+  &__item-title {
+    display: flex;
+    gap: 0.5rem;
+  }
+}

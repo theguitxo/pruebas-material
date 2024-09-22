@@ -1,0 +1,4 @@
+<div class="page__layout">
+  <h5>Disney API</h5>
+  <div *ngIf="characters()">{{ characters()?.data | json }}</div>
+</div>
