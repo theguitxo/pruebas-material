@@ -6,17 +6,20 @@ import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { routes } from './app.routes';
 import { cacheInterceptor } from './interceptors/cache.interceptor';
+import { loadingInterceptor } from './interceptors/loading.interceptor';
 import { CacheService } from './services/cache.service';
 import { DisneyAPIService } from './services/disney-api.service';
+import { LoadingService } from './services/loading.service';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
     provideAnimationsAsync(),
-    provideHttpClient(withInterceptors([cacheInterceptor])),
+    provideHttpClient(withInterceptors([cacheInterceptor, loadingInterceptor])),
     DisneyAPIService,
     CacheService,
+    LoadingService,
     {
       provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
       useValue: {

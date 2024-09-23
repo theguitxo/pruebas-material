@@ -1,25 +1,27 @@
 <div class="page__layout">
   <h5>Disney API</h5>
-  <table *ngIf="dataSource.length" mat-table [dataSource]="dataSource">
-    <ng-container matColumnDef="_id">
-      <th mat-header-cell *matHeaderCellDef>ID</th>
-      <td mat-cell *matCellDef="let element">{{ element._id }}</td>
-    </ng-container>
-    <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef>Name</th>
-      <td mat-cell *matCellDef="let element">{{ element.name }}</td>
-    </ng-container>
+  <ng-container *ngIf="dataSource.length">
+    <table mat-table [dataSource]="dataSource">
+      <ng-container matColumnDef="_id">
+        <th mat-header-cell *matHeaderCellDef>ID</th>
+        <td mat-cell *matCellDef="let element">{{ element._id }}</td>
+      </ng-container>
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Name</th>
+        <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+      </ng-container>
 
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-  </table>
-  <app-simple-paginator
-    [currentPage]="currentPage"
-    [disablePrevious]="disablePreviousPage"
-    [disableNext]="disableNextPage"
-    [showFirstLastPage]="true"
-    [lastPage]="lastPage"
-    (goPage)="goPage($event)"
-    (changePageSize)="changePageSize($event)"
-  ></app-simple-paginator>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+    <app-simple-paginator
+      [currentPage]="currentPage"
+      [disablePrevious]="disablePreviousPage"
+      [disableNext]="disableNextPage"
+      [showFirstLastPage]="true"
+      [lastPage]="lastPage"
+      (goPage)="goPage($event)"
+      (changePageSize)="changePageSize($event)"
+    ></app-simple-paginator>
+  </ng-container>
 </div>

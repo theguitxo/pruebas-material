@@ -30,7 +30,7 @@ export interface MenuItem {
 export class AppComponent {
   @ViewChild('drawer') drawerRef!: MatDrawer;
 
-  router!: Router;
+  private readonly router!: Router;
 
   menuItems: MenuItem[] = [
     {
@@ -48,7 +48,6 @@ export class AppComponent {
   constructor() {
     this.router = inject(Router);
   }
-
   toggleDrawer(): void {
     this.drawerRef.toggle();
   }
