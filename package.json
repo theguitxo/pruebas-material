@@ -4,8 +4,9 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "copy-not-found": "copyfiles -f ./src/404.html ./dist/pruebas-material/browser",
     "build": "ng build",
-    "build:prod": "ng build --base-href=/pruebas-material/",
+    "build:prod": "ng build --base-href=/pruebas-material/ && npm run copy-not-found",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
@@ -30,6 +31,7 @@
     "@angular/cli": "^18.0.7",
     "@angular/compiler-cli": "^18.0.0",
     "@types/jasmine": "~5.1.0",
+    "copyfiles": "^2.4.1",
     "jasmine-core": "~5.1.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",
