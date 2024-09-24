@@ -15,6 +15,7 @@ export interface MenuItem {
 @Component({
   selector: 'app-drawer-menu',
   templateUrl: './drawer-menu.component.html',
+  styleUrl: './drawer-menu.component.scss',
   standalone: true,
   imports: [NgFor, MatListModule, MatButtonModule, MatIconModule],
 })
