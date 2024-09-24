@@ -1,3 +1,10 @@
+import {
+  animate,
+  state,
+  style,
+  transition,
+  trigger,
+} from '@angular/animations';
 import { JsonPipe, NgIf } from '@angular/common';
 import {
   Component,
@@ -8,18 +15,43 @@ import {
   Signal,
 } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
 import { SimplePaginatorComponent } from '../../components/simple-paginator/simple-paginator.component';
 import {
   DisneyAPIService,
   ResponseCharacterList,
+  ResponseData,
 } from '../../services/disney-api.service';
 
 @Component({
   selector: 'app-disney-api',
   standalone: true,
-  imports: [JsonPipe, NgIf, MatTableModule, SimplePaginatorComponent],
+  imports: [
+    JsonPipe,
+    NgIf,
+    MatTableModule,
+    MatIconModule,
+    MatButtonModule,
+    SimplePaginatorComponent,
+    MatCardModule,
+    MatChipsModule,
+  ],
   templateUrl: './disney-api.component.html',
+  styleUrl: './disney-api.component.scss',
+  animations: [
+    trigger('detailExpand', [
+      state('collapsed,void', style({ height: '0px', minHeight: '0' })),
+      state('expanded', style({ height: '*' })),
+      transition(
+        'expanded <=> collapsed',
+        animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')
+      ),
+    ]),
+  ],
 })
 export class DisneyAPIComponent implements OnInit {
   private readonly disneyAPIService!: DisneyAPIService;
@@ -32,14 +64,43 @@ export class DisneyAPIComponent implements OnInit {
     this.disneyAPIService = inject(DisneyAPIService);
   }
 
-  dataSource: { _id: number; name: string }[] = [];
+  dataSource: ResponseData[] = [];
   displayedColumns = ['_id', 'name'];
+  displayedColumnsWithExpand = [...this.displayedColumns, 'expand'];
+  expandedElement: any | null;
 
   currentPage = 1;
   pageSize = 5;
   disablePreviousPage!: boolean;
   disableNextPage!: boolean;
   lastPage!: number;
+
+  itemsExpandedInfo: { title: string; field: string }[] = [
+    {
+      title: 'Enemies',
+      field: 'enemies',
+    },
+    {
+      title: 'Films',
+      field: 'films',
+    },
+    {
+      title: 'Park Attractions',
+      field: 'parkAttractions',
+    },
+    {
+      title: 'Short Films',
+      field: 'shortFilms',
+    },
+    {
+      title: 'TV Shows',
+      field: 'tvShows',
+    },
+    {
+      title: 'VideoGames',
+      field: 'videoGames',
+    },
+  ];
 
   ngOnInit(): void {
     this.initEffects();
@@ -57,11 +118,7 @@ export class DisneyAPIComponent implements OnInit {
   private initEffects(): void {
     effect(
       () => {
-        this.dataSource =
-          this.characters()?.data.map((item) => ({
-            _id: item._id,
-            name: item.name,
-          })) || [];
+        this.dataSource = this.characters()?.data || [];
 
         this.lastPage = this.characters()?.info.totalPages ?? 1;
         this.disableNextPage = !this.characters()?.info.nextPage;
