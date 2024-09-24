@@ -16,6 +16,19 @@
         </th>
         <td mat-cell *matCellDef="let element">
           <button mat-button (click)="openSourceUrl($event, element.sourceUrl)">
+            Open
+          </button>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="imageUrl">
+        <th mat-header-cell *matHeaderCellDef>
+          {{ columnsTitles["imageUrl"] }}
+        </th>
+        <td mat-cell *matCellDef="let element">
+          <button
+            mat-button
+            (click)="openImage($event, element.imageUrl, element.name)"
+          >
             View
           </button>
         </td>

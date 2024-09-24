@@ -1,0 +1,8 @@
+<app-modal-wrapper [title]="title">
+  <img
+    class="modal-image-viewer__image"
+    *ngIf="url"
+    [src]="url"
+    alt="{{ description }}"
+  />
+</app-modal-wrapper>

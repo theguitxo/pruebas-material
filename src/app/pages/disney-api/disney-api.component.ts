@@ -18,8 +18,13 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatDialog } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
+import {
+  ModalImageViewerComponent,
+  ModalImageViewerData,
+} from '../../components/modal-image-viewer/modal-image-viewer.component';
 import { SimplePaginatorComponent } from '../../components/simple-paginator/simple-paginator.component';
 import { BreakpointService } from '../../services/breakpoint.service';
 import {
@@ -41,6 +46,7 @@ import { goToExternalLink } from '../../utils/external-link.util';
     SimplePaginatorComponent,
     MatCardModule,
     MatChipsModule,
+    ModalImageViewerComponent,
   ],
   templateUrl: './disney-api.component.html',
   styleUrl: './disney-api.component.scss',
@@ -57,6 +63,8 @@ import { goToExternalLink } from '../../utils/external-link.util';
 })
 export class DisneyAPIComponent implements OnInit {
   private readonly disneyAPIService!: DisneyAPIService;
+  private readonly dialog!: MatDialog;
+
   breakpointService!: BreakpointService;
 
   private injector = inject(Injector);
@@ -66,18 +74,21 @@ export class DisneyAPIComponent implements OnInit {
   constructor() {
     this.disneyAPIService = inject(DisneyAPIService);
     this.breakpointService = inject(BreakpointService);
+    this.dialog = inject(MatDialog);
   }
 
   columnsTitles: { [key: string]: string } = {
     _id: 'ID',
     name: 'Name',
     sourceUrl: 'Information Source',
+    imageUrl: 'Image',
   };
   dataSource: ResponseData[] = [];
   displayedColumns = ['_id', 'name'];
   displayedColumnsWithExpand = [
     ...this.displayedColumns,
     'sourceUrl',
+    'imageUrl',
     'expand',
   ];
   expandedElement: unknown;
@@ -161,5 +172,19 @@ export class DisneyAPIComponent implements OnInit {
   openSourceUrl(event: MouseEvent, link: string): void {
     event.stopPropagation();
     goToExternalLink(link);
+  }
+
+  openImage(event: MouseEvent, url: string, name: string): void {
+    event.stopPropagation();
+
+    const data: ModalImageViewerData = {
+      url,
+      altImage: name,
+      title: name,
+    };
+
+    this.dialog.open(ModalImageViewerComponent, {
+      data,
+    });
   }
 }
