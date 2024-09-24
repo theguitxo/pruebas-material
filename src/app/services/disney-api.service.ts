@@ -48,11 +48,11 @@ export class DisneyAPIService {
   pageSize = 5;
   currentPage = 1;
 
-  private _allCharacters: BehaviorSubject<ResponseCharacterList | undefined> =
+  private _charactersList: BehaviorSubject<ResponseCharacterList | undefined> =
     new BehaviorSubject<ResponseCharacterList | undefined>(undefined);
 
-  get allCharacters(): Observable<ResponseCharacterList | undefined> {
-    return this._allCharacters.asObservable();
+  get charactersList(): Observable<ResponseCharacterList | undefined> {
+    return this._charactersList.asObservable();
   }
 
   constructor() {
@@ -64,10 +64,23 @@ export class DisneyAPIService {
       .append('pageSize', this.pageSize)
       .append('page', this.currentPage);
 
+    this.getHttpRequest(params);
+  }
+
+  filterCharacters(name: string): void {
+    const params = new HttpParams()
+      .append('pageSize', this.pageSize)
+      .append('page', this.currentPage)
+      .append('name', name);
+
+    this.getHttpRequest(params);
+  }
+
+  getHttpRequest(params: HttpParams): void {
     this.httpClient
       .get<ResponseCharacterList>(`${this.baseURL}/character`, {
         params,
       })
-      .subscribe((data) => this._allCharacters.next(data));
+      .subscribe((data) => this._charactersList.next(data));
   }
 }

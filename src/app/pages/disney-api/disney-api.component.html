@@ -1,5 +1,11 @@
 <div class="page__layout">
   <h5>Disney API</h5>
+  <div class="filter__wrapper">
+    <app-search-filter
+      (emitSearch)="search($event)"
+      (emitReset)="resetSearch()"
+    ></app-search-filter>
+  </div>
   <ng-container *ngIf="dataSource.length">
     <div class="table__wrapper">
       <table mat-table [dataSource]="dataSource" multiTemplateDataRows>

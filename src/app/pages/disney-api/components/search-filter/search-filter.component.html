@@ -1,0 +1,23 @@
+<mat-expansion-panel>
+  <mat-expansion-panel-header>Filter</mat-expansion-panel-header>
+  <form *ngIf="form" [formGroup]="form">
+    <mat-form-field>
+      <mat-label>Name</mat-label>
+      <input
+        matInput
+        type="text"
+        placeholder="Type to search"
+        formControlName="name"
+      />
+      @if (form.controls.name.hasError('required')) {
+      <mat-error>Name is <strong>required</strong></mat-error>
+      }
+    </mat-form-field>
+  </form>
+  <mat-action-row>
+    <button mat-button [disabled]="!form.dirty" (click)="reset()">Reset</button>
+    <button mat-button [disabled]="!form.valid" (click)="search()">
+      Search
+    </button>
+  </mat-action-row>
+</mat-expansion-panel>

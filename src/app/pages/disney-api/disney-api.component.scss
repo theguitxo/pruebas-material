@@ -1,29 +1,37 @@
-.table__wrapper {
-  min-height: 20rem;
-  max-height: 40rem;
-  overflow: auto;
-  width: calc(100vw - 3rem);
-  padding-bottom: 1rem;
-
-  & .mat-column-_id {
-    width: 2rem !important;
+.filter {
+  &__wrapper {
+    padding-bottom: 1rem;
   }
+}
 
-  & .mat-column-name {
-    width: auto !important;
-  }
+.table {
+  &__wrapper {
+    min-height: 20rem;
+    max-height: 40rem;
+    overflow: auto;
+    width: calc(100vw - 3rem);
+    padding-bottom: 1rem;
 
-  & .mat-column-sourceUrl,
-  & .mat-column-imageUrl {
-    width: 10rem !important;
-    max-width: 10rem !important;
-    min-width: 10rem !important;
-  }
+    & .mat-column-_id {
+      width: 2rem !important;
+    }
 
-  & .mat-column-expand {
-    width: 5rem !important;
-    max-width: 5rem !important;
-    min-width: 5rem !important;
+    & .mat-column-name {
+      width: auto !important;
+    }
+
+    & .mat-column-sourceUrl,
+    & .mat-column-imageUrl {
+      width: 10rem !important;
+      max-width: 10rem !important;
+      min-width: 10rem !important;
+    }
+
+    & .mat-column-expand {
+      width: 5rem !important;
+      max-width: 5rem !important;
+      min-width: 5rem !important;
+    }
   }
 }
 

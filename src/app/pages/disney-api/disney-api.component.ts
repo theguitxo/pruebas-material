@@ -33,6 +33,7 @@ import {
   ResponseData,
 } from '../../services/disney-api.service';
 import { goToExternalLink } from '../../utils/external-link.util';
+import { SearchFilterComponent } from './components/search-filter/search-filter.component';
 
 @Component({
   selector: 'app-disney-api',
@@ -47,6 +48,7 @@ import { goToExternalLink } from '../../utils/external-link.util';
     MatCardModule,
     MatChipsModule,
     ModalImageViewerComponent,
+    SearchFilterComponent,
   ],
   templateUrl: './disney-api.component.html',
   styleUrl: './disney-api.component.scss',
@@ -98,6 +100,7 @@ export class DisneyAPIComponent implements OnInit {
   disablePreviousPage!: boolean;
   disableNextPage!: boolean;
   lastPage!: number;
+  filterSearch!: string | undefined;
 
   itemsExpandedInfo: { title: string; field: string }[] = [
     {
@@ -133,7 +136,7 @@ export class DisneyAPIComponent implements OnInit {
   }
 
   private initSignals(): void {
-    this.characters = toSignal(this.disneyAPIService.allCharacters, {
+    this.characters = toSignal(this.disneyAPIService.charactersList, {
       requireSync: true,
       injector: this.injector,
     });
@@ -155,7 +158,21 @@ export class DisneyAPIComponent implements OnInit {
   private loadData(): void {
     this.disneyAPIService.currentPage = this.currentPage;
     this.disneyAPIService.pageSize = this.pageSize;
-    this.disneyAPIService.getAllCharacters();
+    if (this.filterSearch) {
+      this.disneyAPIService.filterCharacters(this.filterSearch);
+    } else {
+      this.disneyAPIService.getAllCharacters();
+    }
+  }
+
+  search(name: string): void {
+    this.filterSearch = name;
+    this.loadData();
+  }
+
+  resetSearch(): void {
+    this.filterSearch = undefined;
+    this.loadData();
   }
 
   goPage(value: number): void {
