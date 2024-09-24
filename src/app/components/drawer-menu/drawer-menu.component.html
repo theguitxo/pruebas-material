@@ -1,0 +1,10 @@
+<mat-action-list>
+  @for(item of menuItems; track item) {
+  <button mat-list-item (click)="navigate(item.path)">
+    <span class="drawer-menu__item-title">
+      <mat-icon>{{ item.icon }}</mat-icon>
+      {{ item.title }}
+    </span>
+  </button>
+  }
+</mat-action-list>

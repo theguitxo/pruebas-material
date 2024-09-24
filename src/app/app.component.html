@@ -1,21 +1,12 @@
 <mat-drawer #drawer mode="side" class="drawer__container">
-  <mat-action-list>
-    @for(item of menuItems; track item) {
-    <button mat-list-item (click)="navigate(item.path)">
-      <span class="drawer__item-title">
-        <mat-icon>{{ item.icon }}</mat-icon>
-        {{ item.title }}
-      </span>
-    </button>
-    }
-  </mat-action-list>
+  <app-drawer-menu [drawerRef]="drawerRef"></app-drawer-menu>
 </mat-drawer>
 <mat-drawer-container>
   <mat-toolbar>
     <button mat-icon-button aria-label="Menu button" (click)="toggleDrawer()">
       <mat-icon>menu</mat-icon>
     </button>
-    <span>My App</span>
+    <span>Angular Material</span>
   </mat-toolbar>
   <router-outlet />
 </mat-drawer-container>

@@ -5,16 +5,19 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class CacheService {
-  private data: Map<string, HttpResponse<unknown>> = new Map<
-    string,
-    HttpResponse<unknown>
-  >();
+  private data: Map<string, { req: HttpResponse<unknown>; time: number }> =
+    new Map<string, { req: HttpResponse<unknown>; time: number }>();
 
-  setCache(key: string, data: HttpResponse<unknown>): void {
+  setCache(
+    key: string,
+    data: { req: HttpResponse<unknown>; time: number }
+  ): void {
     this.data.set(key, data);
   }
 
-  getCache(key: string): HttpResponse<unknown> | undefined {
+  getCache(
+    key: string
+  ): { req: HttpResponse<unknown>; time: number } | undefined {
     return this.data.get(key);
   }
 

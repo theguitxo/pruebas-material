@@ -1,28 +1,21 @@
-import { NgFor } from '@angular/common';
-import { Component, inject, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { MatListModule } from '@angular/material/list';
 import { MatDrawer, MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { Router, RouterOutlet } from '@angular/router';
+import { RouterOutlet } from '@angular/router';
+import { DrawerMenuComponent } from './components/drawer-menu/drawer-menu.component';
 
-export interface MenuItem {
-  title: string;
-  path: string;
-  icon: string;
-}
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [
     RouterOutlet,
+    MatToolbarModule,
     MatIconModule,
     MatButtonModule,
-    MatToolbarModule,
     MatSidenavModule,
-    MatListModule,
-    NgFor,
+    DrawerMenuComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -30,31 +23,7 @@ export interface MenuItem {
 export class AppComponent {
   @ViewChild('drawer') drawerRef!: MatDrawer;
 
-  private readonly router!: Router;
-
-  menuItems: MenuItem[] = [
-    {
-      title: 'Home',
-      path: 'home',
-      icon: 'home',
-    },
-    {
-      title: 'Disney API',
-      path: 'disney-api',
-      icon: 'movie',
-    },
-  ];
-
-  constructor() {
-    this.router = inject(Router);
-  }
-
   toggleDrawer(): void {
     this.drawerRef.toggle();
-  }
-
-  navigate(path: string): void {
-    this.toggleDrawer();
-    this.router.navigate([path]);
   }
 }
