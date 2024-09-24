@@ -1,9 +1,9 @@
 import { HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-Injectable({
+@Injectable({
   providedIn: 'root',
-});
+})
 export class CacheService {
   private data: Map<string, HttpResponse<unknown>> = new Map<
     string,

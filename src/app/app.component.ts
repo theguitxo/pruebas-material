@@ -48,6 +48,7 @@ export class AppComponent {
   constructor() {
     this.router = inject(Router);
   }
+
   toggleDrawer(): void {
     this.drawerRef.toggle();
   }

@@ -5,7 +5,7 @@ import {
   transition,
   trigger,
 } from '@angular/animations';
-import { JsonPipe, NgIf } from '@angular/common';
+import { AsyncPipe, NgIf } from '@angular/common';
 import {
   Component,
   effect,
@@ -21,17 +21,19 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
 import { SimplePaginatorComponent } from '../../components/simple-paginator/simple-paginator.component';
+import { BreakpointService } from '../../services/breakpoint.service';
 import {
   DisneyAPIService,
   ResponseCharacterList,
   ResponseData,
 } from '../../services/disney-api.service';
+import { goToExternalLink } from '../../utils/external-link.util';
 
 @Component({
   selector: 'app-disney-api',
   standalone: true,
   imports: [
-    JsonPipe,
+    AsyncPipe,
     NgIf,
     MatTableModule,
     MatIconModule,
@@ -55,6 +57,7 @@ import {
 })
 export class DisneyAPIComponent implements OnInit {
   private readonly disneyAPIService!: DisneyAPIService;
+  breakpointService!: BreakpointService;
 
   private injector = inject(Injector);
 
@@ -62,12 +65,22 @@ export class DisneyAPIComponent implements OnInit {
 
   constructor() {
     this.disneyAPIService = inject(DisneyAPIService);
+    this.breakpointService = inject(BreakpointService);
   }
 
+  columnsTitles: { [key: string]: string } = {
+    _id: 'ID',
+    name: 'Name',
+    sourceUrl: 'Information Source',
+  };
   dataSource: ResponseData[] = [];
   displayedColumns = ['_id', 'name'];
-  displayedColumnsWithExpand = [...this.displayedColumns, 'expand'];
-  expandedElement: any | null;
+  displayedColumnsWithExpand = [
+    ...this.displayedColumns,
+    'sourceUrl',
+    'expand',
+  ];
+  expandedElement: unknown;
 
   currentPage = 1;
   pageSize = 5;
@@ -143,5 +156,10 @@ export class DisneyAPIComponent implements OnInit {
     this.pageSize = value;
     this.currentPage = 1;
     this.loadData();
+  }
+
+  openSourceUrl(event: MouseEvent, link: string): void {
+    event.stopPropagation();
+    goToExternalLink(link);
   }
 }

@@ -31,6 +31,10 @@ td.expand-button {
     flex: 1 1 auto;
     padding-bottom: 1rem;
 
+    &--portrait {
+      flex-direction: column;
+    }
+
     & .mat-mdc-card-header {
       padding: 0.5rem 0.5rem 0;
     }
