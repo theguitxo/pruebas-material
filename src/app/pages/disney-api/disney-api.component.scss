@@ -1,6 +1,8 @@
 .table__wrapper {
-  height: 20rem;
+  min-height: 20rem;
+  max-height: 40rem;
   overflow: auto;
+  width: calc(100vw - 3rem);
 
   & .mat-column-_id {
     width: 2rem !important;
@@ -11,9 +13,16 @@
   }
 
   & .mat-column-sourceUrl,
-  & .mat-column-imageUrl,
+  & .mat-column-imageUrl {
+    width: 10rem !important;
+    max-width: 10rem !important;
+    min-width: 10rem !important;
+  }
+
   & .mat-column-expand {
-    width: 4rem !important;
+    width: 5rem !important;
+    max-width: 5rem !important;
+    min-width: 5rem !important;
   }
 }
 
@@ -51,6 +60,7 @@ td.expand-button {
 
   &__content {
     display: flex;
+    flex-wrap: wrap;
     gap: 1rem;
     justify-content: start;
     flex: 1 1 auto;
