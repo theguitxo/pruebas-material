@@ -7,6 +7,7 @@ import {
 import { inject } from '@angular/core';
 import { Observable, of, tap } from 'rxjs';
 import { CacheService } from '../services/cache.service';
+import { NO_CACHE } from '../utils/http-context.util';
 
 export function cacheInterceptor(
   req: HttpRequest<unknown>,
@@ -14,7 +15,7 @@ export function cacheInterceptor(
 ): Observable<HttpEvent<unknown>> {
   const cacheService = inject(CacheService);
 
-  if (req.method !== 'GET') {
+  if (req.method !== 'GET' || req.context.get(NO_CACHE)) {
     return next(req);
   }
 
