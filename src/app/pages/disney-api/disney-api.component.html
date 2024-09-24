@@ -101,7 +101,10 @@
           </td>
         </ng-container>
 
-        <tr mat-header-row *matHeaderRowDef="displayedColumnsWithExpand"></tr>
+        <tr
+          mat-header-row
+          *matHeaderRowDef="displayedColumnsWithExpand; sticky: true"
+        ></tr>
         <tr
           mat-row
           *matRowDef="let element; columns: displayedColumnsWithExpand"
