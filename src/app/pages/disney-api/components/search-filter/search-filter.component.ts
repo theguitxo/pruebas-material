@@ -55,7 +55,9 @@ export class SearchFilterComponent implements OnInit {
   }
 
   search(): void {
-    this.emitSearch.emit(this.form.controls.name.value);
+    if (this.form.valid) {
+      this.emitSearch.emit(this.form.controls.name.value);
+    }
   }
 
   reset(): void {

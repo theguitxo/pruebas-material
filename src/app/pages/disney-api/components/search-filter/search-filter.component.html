@@ -8,6 +8,7 @@
         type="text"
         placeholder="Type to search"
         formControlName="name"
+        (keyup.enter)="search()"
       />
       @if (form.controls.name.hasError('required')) {
       <mat-error>Name is <strong>required</strong></mat-error>
