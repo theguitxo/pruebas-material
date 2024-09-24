@@ -1,21 +1,28 @@
-<div class="simple-paginator__container">
-  <button
-    *ngIf="showFirstLastPage"
-    mat-button
-    mat-stroked-button
-    [disabled]="firstPage === currentPage"
-    (click)="goPage.emit(firstPage)"
-  >
-    First
-  </button>
-  <button
-    mat-button
-    mat-stroked-button
-    [disabled]="disablePrevious"
-    (click)="goPage.emit(currentPage - 1)"
-  >
-    Previous
-  </button>
+<div
+  class="simple-paginator__container"
+  [class.simple-paginator__container--portrait]="
+    breakpointService.isHandsetPortrait() | async
+  "
+>
+  <div class="simple-paginator__button-container">
+    <button
+      *ngIf="showFirstLastPage"
+      mat-button
+      mat-stroked-button
+      [disabled]="firstPage === currentPage"
+      (click)="goPage.emit(firstPage)"
+    >
+      First
+    </button>
+    <button
+      mat-button
+      mat-stroked-button
+      [disabled]="disablePrevious"
+      (click)="goPage.emit(currentPage - 1)"
+    >
+      Previous
+    </button>
+  </div>
   <mat-form-field>
     <mat-label>Items per page</mat-label>
     <mat-select
@@ -27,21 +34,23 @@
       }
     </mat-select>
   </mat-form-field>
-  <button
-    mat-button
-    mat-stroked-button
-    [disabled]="disableNext"
-    (click)="goPage.emit(currentPage + 1)"
-  >
-    Next
-  </button>
-  <button
-    *ngIf="showFirstLastPage"
-    mat-button
-    mat-stroked-button
-    [disabled]="lastPage === currentPage"
-    (click)="goPage.emit(lastPage)"
-  >
-    Last
-  </button>
+  <div class="simple-paginator__button-container">
+    <button
+      mat-button
+      mat-stroked-button
+      [disabled]="disableNext"
+      (click)="goPage.emit(currentPage + 1)"
+    >
+      Next
+    </button>
+    <button
+      *ngIf="showFirstLastPage"
+      mat-button
+      mat-stroked-button
+      [disabled]="lastPage === currentPage"
+      (click)="goPage.emit(lastPage)"
+    >
+      Last
+    </button>
+  </div>
 </div>

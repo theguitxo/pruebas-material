@@ -1,18 +1,26 @@
-import { NgFor, NgIf } from '@angular/common';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { AsyncPipe, NgFor, NgIf } from '@angular/common';
+import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import {
   MatFormField,
   MatSelectChange,
   MatSelectModule,
 } from '@angular/material/select';
+import { BreakpointService } from '../../services/breakpoint.service';
 
 @Component({
   selector: 'app-simple-paginator',
   templateUrl: './simple-paginator.component.html',
   styleUrl: './simple-paginator.component.scss',
   standalone: true,
-  imports: [MatSelectModule, NgFor, MatFormField, MatButtonModule, NgIf],
+  imports: [
+    AsyncPipe,
+    MatSelectModule,
+    NgFor,
+    MatFormField,
+    MatButtonModule,
+    NgIf,
+  ],
 })
 export class SimplePaginatorComponent {
   @Input() pageSizeOptions = [5, 10, 15, 25, 50, 100];
@@ -27,7 +35,13 @@ export class SimplePaginatorComponent {
   @Output() goPage: EventEmitter<number> = new EventEmitter<number>();
   @Output() changePageSize: EventEmitter<number> = new EventEmitter<number>();
 
+  breakpointService!: BreakpointService;
+
   handleChangePageSize(data: MatSelectChange): void {
     this.changePageSize.emit(data.value);
+  }
+
+  constructor() {
+    this.breakpointService = inject(BreakpointService);
   }
 }
