@@ -1,3 +1,22 @@
+.table__wrapper {
+  height: 20rem;
+  overflow: auto;
+
+  & .mat-column-_id {
+    width: 2rem !important;
+  }
+
+  & .mat-column-name {
+    width: auto !important;
+  }
+
+  & .mat-column-sourceUrl,
+  & .mat-column-imageUrl,
+  & .mat-column-expand {
+    width: 4rem !important;
+  }
+}
+
 tr.example-detail-row {
   height: 0;
 }
