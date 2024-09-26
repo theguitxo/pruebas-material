@@ -60,20 +60,21 @@ export class DisneyAPIService {
   }
 
   getAllCharacters(): void {
-    const params = new HttpParams()
-      .append('pageSize', this.pageSize)
-      .append('page', this.currentPage);
+    const params = this.setCommonParams();
 
     this.getHttpRequest(params);
   }
 
   filterCharacters(name: string): void {
-    const params = new HttpParams()
-      .append('pageSize', this.pageSize)
-      .append('page', this.currentPage)
-      .append('name', name);
+    const params = this.setCommonParams().append('name', name);
 
     this.getHttpRequest(params);
+  }
+
+  setCommonParams(): HttpParams {
+    return new HttpParams()
+      .append('pageSize', this.pageSize)
+      .append('page', this.currentPage);
   }
 
   getHttpRequest(params: HttpParams): void {

@@ -5,6 +5,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatDrawer } from '@angular/material/sidenav';
 import { Router } from '@angular/router';
+import { ROUTES_PATHS } from '../../constants/routes.constants';
 
 export interface MenuItem {
   title: string;
@@ -31,13 +32,18 @@ export class DrawerMenuComponent {
   menuItems: MenuItem[] = [
     {
       title: 'Home',
-      path: 'home',
+      path: ROUTES_PATHS.HOME,
       icon: 'home',
     },
     {
       title: 'Disney API',
-      path: 'disney-api',
+      path: ROUTES_PATHS.DISNEY_API,
       icon: 'movie',
+    },
+    {
+      title: 'Catalunya population',
+      path: ROUTES_PATHS.CAT_POPULATION,
+      icon: 'public',
     },
   ];
 
