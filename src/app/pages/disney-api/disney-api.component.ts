@@ -51,7 +51,6 @@ import { SearchFilterComponent } from './components/search-filter/search-filter.
     SearchFilterComponent,
   ],
   templateUrl: './disney-api.component.html',
-  styleUrl: './disney-api.component.scss',
   animations: [
     trigger('detailExpand', [
       state('collapsed,void', style({ height: '0px', minHeight: '0' })),
@@ -69,7 +68,7 @@ export class DisneyAPIComponent implements OnInit {
 
   breakpointService!: BreakpointService;
 
-  private injector = inject(Injector);
+  private readonly injector = inject(Injector);
 
   characters!: Signal<ResponseCharacterList | undefined>;
 

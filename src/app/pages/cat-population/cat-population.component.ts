@@ -37,7 +37,7 @@ import { CatPopulationService } from '../../services/app-population.service';
 })
 export class CatPopulationComponent implements OnInit {
   private readonly catPopulationService!: CatPopulationService;
-  private injector = inject(Injector);
+  private readonly injector = inject(Injector);
   private readonly formBuilder!: FormBuilder;
 
   zipCodes!: Signal<ZipCodeItem[] | undefined>;

@@ -48,8 +48,9 @@ export class DisneyAPIService {
   pageSize = 5;
   currentPage = 1;
 
-  private _charactersList: BehaviorSubject<ResponseCharacterList | undefined> =
-    new BehaviorSubject<ResponseCharacterList | undefined>(undefined);
+  private readonly _charactersList: BehaviorSubject<
+    ResponseCharacterList | undefined
+  > = new BehaviorSubject<ResponseCharacterList | undefined>(undefined);
 
   get charactersList(): Observable<ResponseCharacterList | undefined> {
     return this._charactersList.asObservable();
