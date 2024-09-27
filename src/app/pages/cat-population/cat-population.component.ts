@@ -1,5 +1,12 @@
 import { NgFor, NgIf } from '@angular/common';
-import { Component, inject, Injector, OnInit, Signal } from '@angular/core';
+import {
+  Component,
+  inject,
+  Injector,
+  OnInit,
+  Signal,
+  ViewChild,
+} from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import {
   FormBuilder,
@@ -13,7 +20,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-import { MatStepperModule } from '@angular/material/stepper';
+import { MatStepper, MatStepperModule } from '@angular/material/stepper';
 import { FILTER_PROVINCE_OPTIONS } from '../../constants/cat-population/zip-codes.constants';
 import { ZipCodeItem } from '../../models/cat-population/zip-codes.model';
 import { CatPopulationService } from '../../services/app-population.service';
@@ -36,6 +43,8 @@ import { CatPopulationService } from '../../services/app-population.service';
   ],
 })
 export class CatPopulationComponent implements OnInit {
+  @ViewChild('stepper') stepper!: MatStepper;
+
   private readonly catPopulationService!: CatPopulationService;
   private readonly injector = inject(Injector);
   private readonly formBuilder!: FormBuilder;
@@ -77,5 +86,10 @@ export class CatPopulationComponent implements OnInit {
       initialValue: undefined,
       injector: this.injector,
     });
+  }
+
+  loadCities(): void {
+    console.log(this.provinceForm.controls['province'].value);
+    this.stepper.next();
   }
 }

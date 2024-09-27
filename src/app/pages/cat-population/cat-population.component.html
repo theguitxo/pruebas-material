@@ -1,5 +1,5 @@
 <div class="page__layout">
-  <mat-stepper linear #stepper>
+  <mat-stepper #stepper>
     <mat-step [stepControl]="provinceForm">
       <form [formGroup]="provinceForm">
         <ng-template matStepLabel>Select province</ng-template>
@@ -11,25 +11,35 @@
               <mat-option [value]="option.code">{{ option.name }}</mat-option> }
             </mat-select>
           </mat-form-field>
-          <button type="button" mat-flat-button matStepperNext>Next</button>
+          <button
+            mat-flat-button
+            [disabled]="!this.provinceForm.valid"
+            (click)="loadCities()"
+          >
+            Next
+          </button>
         </div>
       </form>
     </mat-step>
     <mat-step [stepControl]="cityForm">
       <form [formGroup]="cityForm">
         <ng-template matStepLabel>cityForm</ng-template>
-        <mat-form-field>
-          <mat-label>prueb</mat-label>
-          <input
-            matInput
-            formControlName="city"
-            placeholder="Last name, First name"
-            required
-          />
-        </mat-form-field>
-        <div class="step-form__button">
-          <button mat-button matStepperPrevious>Back</button>
-          <button mat-button matStepperNext>Next</button>
+        <div class="step-form__wrapper">
+          <mat-form-field>
+            <mat-label>prueb</mat-label>
+            <input
+              matInput
+              formControlName="city"
+              placeholder="Last name, First name"
+              required
+            />
+          </mat-form-field>
+          <div class="step-form__buttons">
+            <button type="button" mat-flat-button matStepperPrevious>
+              Back
+            </button>
+            <button type="button" mat-flat-button matStepperNext>Next</button>
+          </div>
         </div>
       </form>
     </mat-step>

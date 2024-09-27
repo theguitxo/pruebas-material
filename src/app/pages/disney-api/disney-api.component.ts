@@ -51,6 +51,7 @@ import { SearchFilterComponent } from './components/search-filter/search-filter.
     SearchFilterComponent,
   ],
   templateUrl: './disney-api.component.html',
+  styleUrl: './disney-api.component.scss',
   animations: [
     trigger('detailExpand', [
       state('collapsed,void', style({ height: '0px', minHeight: '0' })),
