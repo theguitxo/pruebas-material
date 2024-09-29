@@ -6,15 +6,19 @@
         <div class="step-form__wrapper">
           <mat-form-field>
             <mat-label>Province</mat-label>
-            <mat-select [formControlName]="'province'">
+            <mat-select
+              [formControlName]="'province'"
+              (selectionChange)="handleSelectProvince($event)"
+            >
               @for (option of provinces; track option) {
               <mat-option [value]="option.code">{{ option.name }}</mat-option> }
             </mat-select>
           </mat-form-field>
           <button
+            type="button"
             mat-flat-button
             [disabled]="!this.provinceForm.valid"
-            (click)="loadCities()"
+            matStepperNext
           >
             Next
           </button>
@@ -26,19 +30,38 @@
         <ng-template matStepLabel>cityForm</ng-template>
         <div class="step-form__wrapper">
           <mat-form-field>
-            <mat-label>prueb</mat-label>
+            <mat-label>City</mat-label>
             <input
+              type="text"
               matInput
-              formControlName="city"
-              placeholder="Last name, First name"
-              required
+              [formControlName]="'city'"
+              [matAutocomplete]="auto"
+              placeholder="City"
             />
+            <mat-autocomplete
+              #auto="matAutocomplete"
+              [displayWith]="displayFn"
+              (optionSelected)="handleCitySelected($event)"
+            >
+              @for (option of zipCodesFiltered; track option) {
+              <mat-option [value]="option">{{
+                option.nom_municipi
+              }}</mat-option>
+              }
+            </mat-autocomplete>
           </mat-form-field>
           <div class="step-form__buttons">
             <button type="button" mat-flat-button matStepperPrevious>
               Back
             </button>
-            <button type="button" mat-flat-button matStepperNext>Next</button>
+            <button
+              type="button"
+              mat-flat-button
+              [disabled]="!this.cityForm.valid"
+              matStepperNext
+            >
+              Next
+            </button>
           </div>
         </div>
       </form>

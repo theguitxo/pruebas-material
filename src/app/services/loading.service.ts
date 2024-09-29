@@ -11,6 +11,7 @@ export class LoadingService {
 
   overlayRef!: OverlayRef;
   loadingComponent!: ComponentPortal<LoadingSpinnerComponent>;
+  isLoading = false;
 
   constructor() {
     this.overlay = inject(Overlay);
@@ -28,10 +29,14 @@ export class LoadingService {
   }
 
   startLoading(): void {
-    this.overlayRef.attach(this.loadingComponent);
+    if (!this.isLoading) {
+      this.isLoading = true;
+      this.overlayRef.attach(this.loadingComponent);
+    }
   }
 
   stopLoading(): void {
+    this.isLoading = false;
     this.overlayRef.detach();
   }
 }
