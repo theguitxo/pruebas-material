@@ -12,8 +12,18 @@
     display: flex;
     gap: 0.5rem;
 
+    &--inline {
+      display: inline-flex;
+    }
+
     & * {
       flex: 1 1 auto;
     }
+  }
+}
+
+.data-tabs {
+  &__wrapper {
+    padding: 1rem 0;
   }
 }

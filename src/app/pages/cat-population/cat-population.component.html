@@ -67,11 +67,21 @@
       </form>
     </mat-step>
     <mat-step>
-      <ng-template matStepLabel>Done</ng-template>
-      <p>You are now done.</p>
-      <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button (click)="stepper.reset()">Reset</button>
+      <ng-template matStepLabel>Population data</ng-template>
+      <div class="data-tabs__wrapper">
+        <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
+          @if(populationData()) {
+            @for (data of populationData(); track data) {
+              <mat-tab [label]="data.any">
+                {{ data | json }}
+              </mat-tab>
+            }
+          }
+        </mat-tab-group>
+      </div>
+      <div class="step-form__buttons step-form__buttons--inline">
+        <button mat-flat-button matStepperPrevious>Back</button>
+        <button mat-flat-button (click)="stepper.reset()">Reset</button>
       </div>
     </mat-step>
   </mat-stepper>

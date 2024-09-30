@@ -1,4 +1,4 @@
-import { NgFor, NgIf } from '@angular/common';
+import { JsonPipe, NgFor, NgIf } from '@angular/common';
 import {
   Component,
   DestroyRef,
@@ -39,6 +39,7 @@ import {
 import { PopulationDataResponse } from '../../models/cat-population/population-response.model';
 import { ZipCodeListItem } from '../../models/cat-population/zip-codes.model';
 import { CatPopulationService } from '../../services/app-population.service';
+import { MatTabsModule } from '@angular/material/tabs';
 
 @Component({
   selector: 'app-cat-population',
@@ -46,6 +47,7 @@ import { CatPopulationService } from '../../services/app-population.service';
   styleUrl: './cat-population.component.scss',
   standalone: true,
   imports: [
+    JsonPipe,
     NgIf,
     NgFor,
     MatStepperModule,
@@ -56,6 +58,7 @@ import { CatPopulationService } from '../../services/app-population.service';
     MatButtonModule,
     MatInputModule,
     MatAutocompleteModule,
+    MatTabsModule
   ],
 })
 export class CatPopulationComponent implements OnInit {
