@@ -5,7 +5,10 @@ import { Pipe, PipeTransform } from '@angular/core';
   standalone: true,
 })
 export class JoinPostalCodesPipe implements PipeTransform {
-  transform(value: string[]): string {
-    return value.join(', ');
+  transform(value: string[], itemsToElipsis = 5): string {
+    const itemsToShow = value.slice(0, itemsToElipsis);
+    return `${itemsToShow.join(', ')}${
+      value.length > itemsToElipsis ? ', ...' : ''
+    }`;
   }
 }

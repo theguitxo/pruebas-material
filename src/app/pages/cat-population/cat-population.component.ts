@@ -1,4 +1,4 @@
-import { JsonPipe, NgFor, NgIf } from '@angular/common';
+import { NgFor, NgIf } from '@angular/common';
 import {
   Component,
   DestroyRef,
@@ -49,7 +49,6 @@ import { CatPopulationService } from '../../services/app-population.service';
   styleUrl: './cat-population.component.scss',
   standalone: true,
   imports: [
-    JsonPipe,
     NgIf,
     NgFor,
     MatStepperModule,
@@ -64,6 +63,7 @@ import { CatPopulationService } from '../../services/app-population.service';
     JoinPostalCodesPipe,
     MatGridListModule,
   ],
+  providers: [JoinPostalCodesPipe],
 })
 export class CatPopulationComponent implements OnInit {
   @ViewChild('stepper') stepper!: MatStepper;
@@ -72,6 +72,7 @@ export class CatPopulationComponent implements OnInit {
   private readonly injector = inject(Injector);
   private readonly formBuilder!: FormBuilder;
   private readonly destroyRef!: DestroyRef;
+  private readonly joinPostalCodesPipe!: JoinPostalCodesPipe;
 
   zipCodes!: Signal<ZipCodeListItem[] | undefined>;
   populationData!: Signal<PopulationDataResponse[] | undefined>;
@@ -89,6 +90,7 @@ export class CatPopulationComponent implements OnInit {
     this.catPopulationService = inject(CatPopulationService);
     this.formBuilder = inject(FormBuilder);
     this.destroyRef = inject(DestroyRef);
+    this.joinPostalCodesPipe = inject(JoinPostalCodesPipe);
   }
 
   ngOnInit(): void {
@@ -156,11 +158,13 @@ export class CatPopulationComponent implements OnInit {
     );
   }
 
-  displayFn(option: ZipCodeListItem): string {
+  displayFn = (option: ZipCodeListItem): string => {
     return option
-      ? `(${option.codi_postal.join(', ')}) ${option.nom_municipi}`
+      ? `(${this.joinPostalCodesPipe.transform(option.codi_postal, 3)}) ${
+          option.nom_municipi
+        }`
       : '';
-  }
+  };
 
   private _filter(name: string): ZipCodeListItem[] {
     const filterName = name.toLowerCase();
