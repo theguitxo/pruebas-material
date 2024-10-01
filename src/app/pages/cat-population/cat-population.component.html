@@ -27,7 +27,7 @@
     </mat-step>
     <mat-step [stepControl]="cityForm">
       <form [formGroup]="cityForm">
-        <ng-template matStepLabel>cityForm</ng-template>
+        <ng-template matStepLabel>Select city</ng-template>
         <div class="step-form__wrapper">
           <mat-form-field>
             <mat-label>City</mat-label>
@@ -69,14 +69,70 @@
     <mat-step>
       <ng-template matStepLabel>Population data</ng-template>
       <div class="data-tabs__wrapper">
+        <h4 *ngIf="citySelected">
+          {{ citySelected.nom_municipi }} ({{
+            citySelected.codi_postal | joinPostalCodes
+          }})
+        </h4>
         <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
-          @if(populationData()) {
-            @for (data of populationData(); track data) {
-              <mat-tab [label]="data.any">
-                {{ data | json }}
-              </mat-tab>
-            }
-          }
+          @if(populationData()) { @for (data of populationData(); track data) {
+          <mat-tab [label]="data.any">
+            <mat-grid-list cols="4" rowHeight="2rem" gutterSize="0">
+              <mat-grid-tile>&nbsp;</mat-grid-tile>
+              <mat-grid-tile class="border-bottom"
+                ><span class="data-tabs__grid-title">Men</span></mat-grid-tile
+              >
+              <mat-grid-tile class="border-bottom"
+                ><span class="data-tabs__grid-title">Women</span></mat-grid-tile
+              >
+              <mat-grid-tile class="border-bottom"
+                ><span class="data-tabs__grid-title">All</span></mat-grid-tile
+              >
+              <mat-grid-tile class="border-bottom"
+                ><span class="data-tabs__grid-title"
+                  >From 0 to 14 years</span
+                ></mat-grid-tile
+              >
+              <mat-grid-tile class="border-bottom">{{
+                data.homes_de_0_a_14_anys
+              }}</mat-grid-tile>
+              <mat-grid-tile class="border-bottom">{{
+                data.dones_de_0_a_14_anys
+              }}</mat-grid-tile>
+              <mat-grid-tile class="border-bottom">{{
+                data.total_de_0_a_14_anys
+              }}</mat-grid-tile>
+              <mat-grid-tile class="border-bottom"
+                ><span class="data-tabs__grid-title"
+                  >From 15 to 64 years</span
+                ></mat-grid-tile
+              >
+              <mat-grid-tile class="border-bottom">{{
+                data.homes_de_15_a_64_anys
+              }}</mat-grid-tile>
+              <mat-grid-tile class="border-bottom">{{
+                data.dones_de_15_a_64_anys
+              }}</mat-grid-tile>
+              <mat-grid-tile class="border-bottom">{{
+                data.total_de_15_a_64_anys
+              }}</mat-grid-tile>
+              <mat-grid-tile class="border-bottom"
+                ><span class="data-tabs__grid-title"
+                  >65 years or more</span
+                ></mat-grid-tile
+              >
+              <mat-grid-tile class="border-bottom">{{
+                data.homes_de_65_anys_i_m_s
+              }}</mat-grid-tile>
+              <mat-grid-tile class="border-bottom">{{
+                data.dones_de_65_anys_i_m_s
+              }}</mat-grid-tile>
+              <mat-grid-tile class="border-bottom">{{
+                data.total_de_65_anys_i_m_s
+              }}</mat-grid-tile>
+            </mat-grid-list>
+          </mat-tab>
+          } }
         </mat-tab-group>
       </div>
       <div class="step-form__buttons step-form__buttons--inline">

@@ -28,9 +28,11 @@ import {
 } from '@angular/material/autocomplete';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatGridListModule } from '@angular/material/grid-list';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectChange, MatSelectModule } from '@angular/material/select';
 import { MatStepper, MatStepperModule } from '@angular/material/stepper';
+import { MatTabsModule } from '@angular/material/tabs';
 import { filter, switchMap } from 'rxjs';
 import {
   FILTER_PROVINCE_OPTIONS,
@@ -38,8 +40,8 @@ import {
 } from '../../constants/cat-population/zip-codes.constants';
 import { PopulationDataResponse } from '../../models/cat-population/population-response.model';
 import { ZipCodeListItem } from '../../models/cat-population/zip-codes.model';
+import { JoinPostalCodesPipe } from '../../pipes/join-postal-codes.pipe';
 import { CatPopulationService } from '../../services/app-population.service';
-import { MatTabsModule } from '@angular/material/tabs';
 
 @Component({
   selector: 'app-cat-population',
@@ -58,7 +60,9 @@ import { MatTabsModule } from '@angular/material/tabs';
     MatButtonModule,
     MatInputModule,
     MatAutocompleteModule,
-    MatTabsModule
+    MatTabsModule,
+    JoinPostalCodesPipe,
+    MatGridListModule,
   ],
 })
 export class CatPopulationComponent implements OnInit {
