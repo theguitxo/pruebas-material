@@ -111,7 +111,7 @@ export class CatPopulationComponent implements OnInit {
     });
 
     this.cityForm = this.formBuilder.group({
-      city: new FormControl<string | undefined>('', {
+      city: new FormControl<string | undefined>(undefined, {
         nonNullable: true,
         validators: [Validators.required],
       }),
@@ -122,6 +122,7 @@ export class CatPopulationComponent implements OnInit {
       .subscribe(() => {
         this.cityForm.controls['city']?.reset();
         this.cityForm.controls['city']?.setErrors(null);
+        this.cityForm.controls['city']?.markAsPending();
       });
 
     this.cityForm.controls['city']?.valueChanges
