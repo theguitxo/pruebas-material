@@ -21,7 +21,7 @@ import { DrawerMenuComponent } from './components/drawer-menu/drawer-menu.compon
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  @ViewChild('drawer') drawerRef!: MatDrawer;
+  @ViewChild('drawer', { static: true }) drawerRef!: MatDrawer;
 
   toggleDrawer(): void {
     this.drawerRef.toggle();

@@ -89,47 +89,88 @@
                 ><span class="data-tabs__grid-title">All</span></mat-grid-tile
               >
               <mat-grid-tile class="border-bottom"
-                ><span class="data-tabs__grid-title"
+                ><span class="data-tabs__grid-title data-tabs__grid-title--left"
                   >From 0 to 14 years</span
                 ></mat-grid-tile
               >
-              <mat-grid-tile class="border-bottom">{{
-                data.homes_de_0_a_14_anys
-              }}</mat-grid-tile>
-              <mat-grid-tile class="border-bottom">{{
-                data.dones_de_0_a_14_anys
-              }}</mat-grid-tile>
-              <mat-grid-tile class="border-bottom">{{
-                data.total_de_0_a_14_anys
-              }}</mat-grid-tile>
               <mat-grid-tile class="border-bottom"
-                ><span class="data-tabs__grid-title"
+                ><span class="data-tabs__grid-number">{{
+                  data.homes_de_0_a_14_anys | number : "1.0-0" : "es-ES"
+                }}</span></mat-grid-tile
+              >
+              <mat-grid-tile class="border-bottom"
+                ><span class="data-tabs__grid-number">{{
+                  data.dones_de_0_a_14_anys | number : "1.0-0" : "es-ES"
+                }}</span></mat-grid-tile
+              >
+              <mat-grid-tile class="border-bottom"
+                ><span class="data-tabs__grid-number">{{
+                  data.total_de_0_a_14_anys | number : "1.0-0" : "es-ES"
+                }}</span></mat-grid-tile
+              >
+              <mat-grid-tile class="border-bottom"
+                ><span class="data-tabs__grid-title data-tabs__grid-title--left"
                   >From 15 to 64 years</span
                 ></mat-grid-tile
               >
-              <mat-grid-tile class="border-bottom">{{
-                data.homes_de_15_a_64_anys
-              }}</mat-grid-tile>
-              <mat-grid-tile class="border-bottom">{{
-                data.dones_de_15_a_64_anys
-              }}</mat-grid-tile>
-              <mat-grid-tile class="border-bottom">{{
-                data.total_de_15_a_64_anys
-              }}</mat-grid-tile>
               <mat-grid-tile class="border-bottom"
-                ><span class="data-tabs__grid-title"
+                ><span class="data-tabs__grid-number">{{
+                  data.homes_de_15_a_64_anys | number : "1.0-0" : "es-ES"
+                }}</span></mat-grid-tile
+              >
+              <mat-grid-tile class="border-bottom"
+                ><span class="data-tabs__grid-number">{{
+                  data.dones_de_15_a_64_anys | number : "1.0-0" : "es-ES"
+                }}</span></mat-grid-tile
+              >
+              <mat-grid-tile class="border-bottom"
+                ><span class="data-tabs__grid-number">{{
+                  data.total_de_15_a_64_anys | number : "1.0-0" : "es-ES"
+                }}</span></mat-grid-tile
+              >
+              <mat-grid-tile class="border-bottom"
+                ><span class="data-tabs__grid-title data-tabs__grid-title--left"
                   >65 years or more</span
                 ></mat-grid-tile
               >
-              <mat-grid-tile class="border-bottom">{{
-                data.homes_de_65_anys_i_m_s
-              }}</mat-grid-tile>
-              <mat-grid-tile class="border-bottom">{{
-                data.dones_de_65_anys_i_m_s
-              }}</mat-grid-tile>
-              <mat-grid-tile class="border-bottom">{{
-                data.total_de_65_anys_i_m_s
-              }}</mat-grid-tile>
+              <mat-grid-tile class="border-bottom"
+                ><span class="data-tabs__grid-number">{{
+                  data.homes_de_65_anys_i_m_s | number : "1.0-0" : "es-ES"
+                }}</span></mat-grid-tile
+              >
+              <mat-grid-tile class="border-bottom"
+                ><span class="data-tabs__grid-number">{{
+                  data.dones_de_65_anys_i_m_s | number : "1.0-0" : "es-ES"
+                }}</span></mat-grid-tile
+              >
+              <mat-grid-tile class="border-bottom"
+                ><span class="data-tabs__grid-number">{{
+                  data.total_de_65_anys_i_m_s | number : "1.0-0" : "es-ES"
+                }}</span></mat-grid-tile
+              >
+              <mat-grid-tile
+                ><span class="data-tabs__grid-title data-tabs__grid-title--left"
+                  >Total</span
+                ></mat-grid-tile
+              >
+              <mat-grid-tile>
+                <span class="data-tabs__grid-number">{{
+                  totalsPopulation()[data.any]["men"]
+                    | number : "1.0-0" : "es-ES"
+                }}</span>
+              </mat-grid-tile>
+              <mat-grid-tile>
+                <span class="data-tabs__grid-number">{{
+                  totalsPopulation()[data.any]["women"]
+                    | number : "1.0-0" : "es-ES"
+                }}</span>
+              </mat-grid-tile>
+              <mat-grid-tile>
+                <span class="data-tabs__grid-number">{{
+                  totalsPopulation()[data.any]["total"]
+                    | number : "1.0-0" : "es-ES"
+                }}</span></mat-grid-tile
+              >
             </mat-grid-list>
           </mat-tab>
           } }

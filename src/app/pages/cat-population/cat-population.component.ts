@@ -1,6 +1,7 @@
-import { NgFor, NgIf } from '@angular/common';
+import { DecimalPipe, NgFor, NgIf } from '@angular/common';
 import {
   Component,
+  computed,
   DestroyRef,
   inject,
   Injector,
@@ -51,6 +52,7 @@ import { CatPopulationService } from '../../services/app-population.service';
   imports: [
     NgIf,
     NgFor,
+    DecimalPipe,
     MatStepperModule,
     FormsModule,
     ReactiveFormsModule,
@@ -86,6 +88,8 @@ export class CatPopulationComponent implements OnInit {
   citySelected!: ZipCodeListItem;
   citySearchCode = signal('');
 
+  totalsPopulation!: Signal<{ [key: string]: { [key: string]: number } }>;
+
   constructor() {
     this.catPopulationService = inject(CatPopulationService);
     this.formBuilder = inject(FormBuilder);
@@ -113,6 +117,13 @@ export class CatPopulationComponent implements OnInit {
       }),
     });
 
+    this.provinceForm.controls['province']?.valueChanges
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(() => {
+        this.cityForm.controls['city']?.reset();
+        this.cityForm.controls['city']?.setErrors(null);
+      });
+
     this.cityForm.controls['city']?.valueChanges
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((value) => {
@@ -127,6 +138,30 @@ export class CatPopulationComponent implements OnInit {
     this.zipCodes = toSignal(this.catPopulationService.getZipCodes(), {
       initialValue: undefined,
       injector: this.injector,
+    });
+
+    this.totalsPopulation = computed(() => {
+      let data: { [key: string]: { [key: string]: number } } = {};
+      this.populationData()?.forEach((item: PopulationDataResponse) => {
+        data = {
+          ...data,
+          [item.any]: {
+            men:
+              parseInt(item.homes_de_0_a_14_anys) +
+              parseInt(item.homes_de_15_a_64_anys) +
+              parseInt(item.homes_de_65_anys_i_m_s),
+            women:
+              parseInt(item.dones_de_0_a_14_anys) +
+              parseInt(item.dones_de_15_a_64_anys) +
+              parseInt(item.dones_de_65_anys_i_m_s),
+            total:
+              parseInt(item.total_de_0_a_14_anys) +
+              parseInt(item.total_de_15_a_64_anys) +
+              parseInt(item.total_de_65_anys_i_m_s),
+          },
+        };
+      });
+      return data;
     });
 
     this.populationData = toSignal(

@@ -31,5 +31,15 @@
   &__grid-title {
     font-weight: bold;
     width: 100%;
+    text-align: center;
+  }
+
+  &__grid-title--left {
+    text-align: start;
+  }
+
+  &__grid-number {
+    width: 100%;
+    text-align: end;
   }
 }
