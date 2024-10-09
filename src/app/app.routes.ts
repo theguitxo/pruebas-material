@@ -21,6 +21,10 @@ export const routes: Routes = [
         (c) => c.CatPopulationComponent
       ),
   },
+  {
+    path: ROUTES_PATHS.SPOTIFY_API,
+    loadComponent: () => import('./pages/spotify-api/spotify-api.component').then((c) => c.SpotifyAPIComponent)
+  },
   { path: '', redirectTo: `/${ROUTES_PATHS.HOME}`, pathMatch: 'full' },
   { path: '**', redirectTo: `/${ROUTES_PATHS.HOME}` },
 ];
