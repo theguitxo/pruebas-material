@@ -17,7 +17,6 @@ export class SpotifyAPIComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log('SPOTIFY');
-    this.spotifyService.searchArtists('');
+    this.spotifyService.getToken();
   }
 }
