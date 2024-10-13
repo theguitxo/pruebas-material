@@ -1,0 +1,45 @@
+<form *ngIf="form" [formGroup]="form">
+  <!-- TO SEARCH -->
+  <mat-form-field>
+    <mat-label>Search...</mat-label>
+    <input
+      matInput
+      placeholder="Type to search"
+      [formControl]="form.controls.search"
+    />
+    @if(form.controls.search.hasError('required')) {
+    <mat-error>This field is required</mat-error>
+    }
+  </mat-form-field>
+  <!-- SEARCH TYPE -->
+  <mat-form-field>
+    <mat-label>Search type</mat-label>
+    <mat-select [formControl]="form.controls.type">
+      @for (type of typeOptions; track type) {
+      <mat-option [value]="type.value">{{ type.text }}</mat-option>
+      }
+    </mat-select>
+    @if(form.controls.type.hasError('required')) {
+    <mat-error>This field is required</mat-error>
+    }
+  </mat-form-field>
+  <!-- BUTTONS -->
+  <div class="buttons__wrapper">
+    <button
+      type="button"
+      mat-flat-button
+      [disabled]="!form.valid"
+      (click)="submitForm()"
+    >
+      Search
+    </button>
+    <button
+      type="button"
+      mat-flat-button
+      [disabled]="!form.dirty"
+      (click)="clearForm()"
+    >
+      Clear
+    </button>
+  </div>
+</form>

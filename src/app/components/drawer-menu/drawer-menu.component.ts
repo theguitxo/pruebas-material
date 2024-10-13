@@ -4,7 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatDrawer } from '@angular/material/sidenav';
-import { Router, ROUTES } from '@angular/router';
+import { Router } from '@angular/router';
 import { ROUTES_PATHS } from '../../constants/routes.constants';
 
 export interface MenuItem {
@@ -48,8 +48,8 @@ export class DrawerMenuComponent {
     {
       title: 'Spotify API',
       path: ROUTES_PATHS.SPOTIFY_API,
-      icon: ''
-    }
+      icon: 'music_note',
+    },
   ];
 
   navigate(path: string): void {

@@ -1,0 +1,16 @@
+form {
+  display: flex;
+  gap: 0.5rem;
+
+  & mat-form-field {
+    height: 100%;
+  }
+}
+
+.buttons {
+  &__wrapper {
+    display: flex;
+    gap: 0.5rem;
+    align-items: flex-end;
+  }
+}

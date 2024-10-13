@@ -1,8 +1,8 @@
-import { HttpEvent, HttpHandlerFn, HttpRequest } from "@angular/common/http";
-import { map, Observable, switchMap } from "rxjs";
-import { SPOTIFY_REQUEST } from "../utils/http-context.util";
-import { SpotifyAPIService } from "../services/spotify-api.service";
-import { inject } from "@angular/core";
+import { HttpEvent, HttpHandlerFn, HttpRequest } from '@angular/common/http';
+import { inject } from '@angular/core';
+import { Observable, switchMap } from 'rxjs';
+import { SpotifyAPIService } from '../services/spotify-api.service';
+import { SPOTIFY_REQUEST } from '../utils/http-context.util';
 
 export function tokenInterceptor(
   req: HttpRequest<unknown>,
@@ -14,13 +14,15 @@ export function tokenInterceptor(
     return next(req);
   }
 
-  return spotifyService.getToken().pipe(switchMap((token) => {
-    const wihtHeaders = req.clone({
-      setHeaders:{
-        Authorization: 'Bearer ' + token.access_token
-      }});
+  return spotifyService.getToken().pipe(
+    switchMap((token) => {
+      const wihtHeaders = req.clone({
+        setHeaders: {
+          Authorization: token,
+        },
+      });
 
-    return next(wihtHeaders);
-    }
-  ))
+      return next(wihtHeaders);
+    })
+  );
 }
