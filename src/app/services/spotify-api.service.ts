@@ -2,7 +2,9 @@ import { HttpClient, HttpContext, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { map, Observable, of, tap } from 'rxjs';
 import {
+  AlbumSearchResponse,
   AlbumSearchResult,
+  ArtistSearchResponse,
   ArtistSearchResult,
   SearchType,
 } from '../models/spotify-api/spotify-api.model';
@@ -109,7 +111,7 @@ export class SpotifyAPIService {
     type: SearchType,
     page?: number,
     offset?: number
-  ): Observable<ArtistSearchResult | AlbumSearchResult> {
+  ): Observable<ArtistSearchResponse | AlbumSearchResponse> {
     let params = new HttpParams().append('q', search).append('type', type);
 
     if (page) {
@@ -120,7 +122,7 @@ export class SpotifyAPIService {
       params = params.append('offset', offset);
     }
 
-    return this.http.get<ArtistSearchResult | AlbumSearchResult>(
+    return this.http.get<ArtistSearchResponse | AlbumSearchResponse>(
       `${this.BASE_URL}search`,
       {
         context: this.context,

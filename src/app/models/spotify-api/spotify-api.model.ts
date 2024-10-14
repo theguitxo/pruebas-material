@@ -43,15 +43,16 @@ export interface ArtistResultItem extends ArtistResultItemBase {
 }
 
 export interface ArtistSearchResult {
-  artists: {
-    href: string;
-    items: ArtistResultItem[];
-    limit: number;
-    next: string;
-    offset: number;
-    previous: string;
-    total: number;
-  };
+  href: string;
+  items: ArtistResultItem[];
+  limit: number;
+  next: string;
+  offset: number;
+  previous: string;
+  total: number;
+}
+export interface ArtistSearchResponse {
+  artists: ArtistSearchResult;
 }
 
 export interface AlbumResultItem {
@@ -70,13 +71,14 @@ export interface AlbumResultItem {
 }
 
 export interface AlbumSearchResult {
-  albums: {
-    href: string;
-    items: ArtistResultItem[];
-    limit: number;
-    next: string;
-    offset: number;
-    previous: string;
-    total: number;
-  };
+  href: string;
+  items: ArtistResultItem[];
+  limit: number;
+  next: string;
+  offset: number;
+  previous: string;
+  total: number;
+}
+export interface AlbumSearchResponse {
+  albums: AlbumSearchResult;
 }

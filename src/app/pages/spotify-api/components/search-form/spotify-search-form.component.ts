@@ -15,7 +15,7 @@ import {
   SearchValues,
   SpotifySearchForm,
   TypeOption,
-} from '../../../models/spotify-api/spotify-api.model';
+} from '../../../../models/spotify-api/spotify-api.model';
 
 @Component({
   selector: 'app-spotify-search-form',
