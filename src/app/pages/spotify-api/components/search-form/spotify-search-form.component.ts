@@ -61,11 +61,11 @@ export class SpotifySearchFormComponent implements OnInit {
 
   private initForm(): void {
     this.form = new FormGroup<SpotifySearchForm>({
-      search: new FormControl(undefined, {
+      search: new FormControl('aerosmith', {
         validators: Validators.required,
         nonNullable: true,
       }),
-      type: new FormControl(undefined, {
+      type: new FormControl('artist', {
         validators: Validators.required,
         nonNullable: true,
       }),

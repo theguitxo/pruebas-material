@@ -5,7 +5,12 @@
     (search)="handleSearch($event)"
   ></app-spotify-search-form>
 
-  <div *ngIf="result()">
-    {{ result() | json }}
-  </div>
+  @if(result()) {
+  <mat-accordion>
+    @for(item of result()?.items; track item) {
+    <app-artist-album-data [isArtist]="isArtist()" [info]="item">
+    </app-artist-album-data>
+    }
+  </mat-accordion>
+  }
 </div>
