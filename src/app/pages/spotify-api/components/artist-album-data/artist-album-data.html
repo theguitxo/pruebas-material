@@ -1,0 +1,17 @@
+<mat-expansion-panel>
+  <mat-expansion-panel-header>
+    <mat-panel-title> {{ info.name }} </mat-panel-title>
+  </mat-expansion-panel-header>
+  {{ info | json}}
+
+  @if(genres.length) {
+    <div class="genres__wrapper">
+      <div class="genres__title">Genres</div>
+      <div class="genres__list">
+        @for(genre of genres; track genre) {
+          <mat-chip>{{ genre }}</mat-chip>
+        }
+      </div>
+    </div>
+  }
+</mat-expansion-panel>

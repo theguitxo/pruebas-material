@@ -1,4 +1,4 @@
-import { JsonPipe, NgIf } from '@angular/common';
+import { NgIf } from '@angular/common';
 import {
   Component,
   DestroyRef,
@@ -9,6 +9,7 @@ import {
   Signal,
 } from '@angular/core';
 import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
+import { MatExpansionModule } from '@angular/material/expansion';
 import { map, Subject, switchMap, tap } from 'rxjs';
 import {
   AlbumSearchResponse,
@@ -19,14 +20,20 @@ import {
   SearchValues,
 } from '../../models/spotify-api/spotify-api.model';
 import { SpotifyAPIService } from '../../services/spotify-api.service';
-import { SpotifySearchFormComponent } from './components/search-form/spotify-search-form.component';
 import { ArtistAlbumDataComponent } from './components/artist-album-data/artist-album-data';
+import { SpotifySearchFormComponent } from './components/search-form/spotify-search-form.component';
 
 @Component({
   selector: 'app-spotify-api',
   templateUrl: './spotify-api.component.html',
+  styleUrl: './spotify-api.component.scss',
   standalone: true,
-  imports: [JsonPipe, NgIf, SpotifySearchFormComponent, ArtistAlbumDataComponent],
+  imports: [
+    NgIf,
+    SpotifySearchFormComponent,
+    ArtistAlbumDataComponent,
+    MatExpansionModule,
+  ],
   providers: [SpotifyAPIService],
 })
 export class SpotifyAPIComponent implements OnInit {
@@ -59,7 +66,8 @@ export class SpotifyAPIComponent implements OnInit {
         tap(() => this.isArtist.set(this.searchType === 'artist')),
         switchMap(() =>
           this.spotifyService.search(this.searchString, this.searchType)
-        ),map((response: ArtistSearchResponse | AlbumSearchResponse) => {
+        ),
+        map((response: ArtistSearchResponse | AlbumSearchResponse) => {
           if (this.isArtist()) {
             return (response as ArtistSearchResponse).artists;
           }

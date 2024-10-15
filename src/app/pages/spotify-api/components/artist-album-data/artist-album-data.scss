@@ -1,0 +1,17 @@
+.genres {
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+  }
+
+  &__title {
+    font-weight: bold;
+  }
+
+  &__list {
+    display: flex;
+    gap: .5rem;
+  }
+}
+
