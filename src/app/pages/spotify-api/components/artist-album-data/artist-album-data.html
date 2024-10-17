@@ -1,6 +1,46 @@
 <mat-expansion-panel>
   <mat-expansion-panel-header>
     <mat-panel-title> {{ info.name }} </mat-panel-title>
+    <mat-panel-description>
+      @if (isArtist) {
+      <div class="header-info__wrapper">
+        <div
+          class="header-info__item"
+          [matBadge]="popularity"
+          [matBadgeOverlap]="false"
+        >
+          Popularity
+        </div>
+        <div
+          class="header-info__item"
+          [matBadge]="followers"
+          [matBadgeOverlap]="false"
+        >
+          Followers
+        </div>
+      </div>
+      }
+    </mat-panel-description>
   </mat-expansion-panel-header>
-  {{ info | json}}
+  {{ info | json}} @if(artistImage) {
+  <div class="artist-image__wrapper">
+    <img
+      src
+      loading="lazy"
+      [src]="artistImage.url"
+      [width]="artistImage.width"
+      [height]="artistImage.height"
+      [alt]="'Artist: ' + info.name"
+    />
+  </div>
+  } @if(genres.length) {
+  <div class="genres__wrapper">
+    <div class="genres__title">Genres</div>
+    <div class="genres__list">
+      @for(genre of genres; track genre) {
+      <mat-chip>{{ genre }}</mat-chip>
+      }
+    </div>
+  </div>
+  }
 </mat-expansion-panel>

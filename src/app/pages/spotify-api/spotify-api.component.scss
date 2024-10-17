@@ -4,3 +4,9 @@ mat-accordion {
   flex-direction: column;
   gap: 1rem;
 }
+
+.result {
+  &__wrapper {
+    padding: 0.5rem;
+  }
+}

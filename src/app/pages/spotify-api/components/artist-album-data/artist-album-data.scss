@@ -1,0 +1,40 @@
+.genres {
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+  }
+
+  &__title {
+    font-weight: bold;
+  }
+
+  &__list {
+    display: flex;
+    gap: .5rem;
+  }
+
+
+}
+
+.header-info {
+  &__wrapper {
+    display: flex;
+    gap: 2rem;
+    align-items: flex-end;
+    min-height: 2rem;
+  }
+
+  &__item {
+    & .mat-badge-content {
+      width: auto;
+    }
+  }
+}
+
+.artist-image {
+  &__wrapper {
+    padding: .5rem 0;
+  }
+}
+
