@@ -1,8 +1,8 @@
-<mat-expansion-panel>
+<mat-expansion-panel (opened)="panelOpened = true">
   <mat-expansion-panel-header>
     <mat-panel-title> {{ info.name }} </mat-panel-title>
+    @if (isArtist) {
     <mat-panel-description>
-      @if (isArtist) {
       <div class="header-info__wrapper">
         <div
           class="header-info__item"
@@ -19,18 +19,16 @@
           Followers
         </div>
       </div>
-      }
     </mat-panel-description>
+    }
   </mat-expansion-panel-header>
-  {{ info | json}} @if(artistImage) {
-  <div class="artist-image__wrapper">
+  @if(panelOpened) { {{ info | json}} @if(image) {
+  <div *ngIf="image" class="artist-image__wrapper">
     <img
-      src
-      loading="lazy"
-      [src]="artistImage.url"
-      [width]="artistImage.width"
-      [height]="artistImage.height"
-      [alt]="'Artist: ' + info.name"
+      [src]="image.url"
+      [width]="image.width"
+      [height]="image.height"
+      alt="{{ info.name }}"
     />
   </div>
   } @if(genres.length) {
@@ -42,5 +40,9 @@
       }
     </div>
   </div>
-  }
+  } @if(spotifyUrl) {
+  <div class="view-spotify__wrapper">
+    <button mat-button (click)="openSpotify()">View on Spotify</button>
+  </div>
+  }}
 </mat-expansion-panel>

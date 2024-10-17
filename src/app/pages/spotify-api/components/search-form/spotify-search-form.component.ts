@@ -65,7 +65,7 @@ export class SpotifySearchFormComponent implements OnInit {
         validators: Validators.required,
         nonNullable: true,
       }),
-      type: new FormControl('artist', {
+      type: new FormControl('album', {
         validators: Validators.required,
         nonNullable: true,
       }),
