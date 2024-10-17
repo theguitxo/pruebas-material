@@ -14,7 +14,7 @@
 
   @if(artistImage) {
     <div class="artist-image__wrapper">
-      <img src loading="lazy" [src]="artistImage.url" [width]="artistImage.width" [height]="artistImage.height" />
+      <img src loading="lazy" [src]="artistImage.url" [width]="artistImage.width" [height]="artistImage.height" [alt]="'Artist: ' + info.name" />
     </div>
   }
 

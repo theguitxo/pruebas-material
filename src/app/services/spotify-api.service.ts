@@ -3,9 +3,7 @@ import { inject, Injectable } from '@angular/core';
 import { map, Observable, of, tap } from 'rxjs';
 import {
   AlbumSearchResponse,
-  AlbumSearchResult,
   ArtistSearchResponse,
-  ArtistSearchResult,
   SearchType,
 } from '../models/spotify-api/spotify-api.model';
 import {
@@ -22,7 +20,7 @@ export const TOKEN_STORE_KEY = 'token';
 })
 export class SpotifyAPIService {
   private readonly CLIENT = '40a7ec852b9f4dbb9daaedd86ab8239a';
-  private readonly SECRET = '70263a73066d41229e51903cd81bf9d9';
+  private readonly KEY = '70263a73066d41229e51903cd81bf9d9';
 
   private readonly http!: HttpClient;
 
@@ -84,7 +82,7 @@ export class SpotifyAPIService {
       return of(tokenInfo.token);
     }
 
-    const body = `grant_type=client_credentials&client_id=${this.CLIENT}&client_secret=${this.SECRET}`;
+    const body = `grant_type=client_credentials&client_id=${this.CLIENT}&client_secret=${this.KEY}`;
     return this.http
       .post<TokenInfo>('https://accounts.spotify.com/api/token', body, {
         headers: {

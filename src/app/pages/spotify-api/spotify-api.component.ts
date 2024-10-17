@@ -81,7 +81,9 @@ export class SpotifyAPIComponent implements OnInit {
     );
   }
 
-  handleClear(): void {}
+  handleClear(): void {
+    console.log('clear button');
+  }
 
   handleSearch(searchValues: SearchValues): void {
     this.searchString = searchValues.search;
