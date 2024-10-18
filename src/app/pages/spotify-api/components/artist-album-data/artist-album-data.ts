@@ -1,9 +1,8 @@
-import { JsonPipe, NgFor, NgIf } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
-import { MatBadgeModule } from '@angular/material/badge';
+import { JsonPipe, NgIf } from '@angular/common';
+import { Component, Input, OnInit, signal } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
-import { MatExpansionModule } from '@angular/material/expansion';
 import {
   AlbumResultItem,
   ArtistResultItem,
@@ -18,11 +17,9 @@ import {
   imports: [
     JsonPipe,
     NgIf,
-    NgFor,
-    MatExpansionModule,
     MatChipsModule,
-    MatBadgeModule,
     MatButtonModule,
+    MatCardModule
   ],
 })
 export class ArtistAlbumDataComponent implements OnInit {
@@ -30,9 +27,9 @@ export class ArtistAlbumDataComponent implements OnInit {
   @Input({ required: true }) info!: ArtistResultItem | AlbumResultItem;
 
   genres: string[] = [];
-  followers!: number;
-  popularity!: number;
-  image!: ImageItemInfo | undefined;
+  followers =  signal<number | undefined>(undefined);
+  popularity = signal<number | undefined>(undefined);
+  image = signal<ImageItemInfo | undefined>(undefined);
   spotifyUrl!: string;
 
   panelOpened = false;
@@ -45,8 +42,8 @@ export class ArtistAlbumDataComponent implements OnInit {
   private setArtistInfo(): void {
     if (this.isArtist) {
       this.genres = (this.info as ArtistResultItem).genres;
-      this.followers = (this.info as ArtistResultItem).followers?.total;
-      this.popularity = (this.info as ArtistResultItem).popularity;
+      this.followers.set((this.info as ArtistResultItem).followers?.total);
+      this.popularity.set((this.info as ArtistResultItem).popularity);
 
       if (this.info.external_urls) {
         this.spotifyUrl = this.info.external_urls['spotify'];
@@ -55,10 +52,19 @@ export class ArtistAlbumDataComponent implements OnInit {
   }
 
   private setImageInfo(): void {
+    let bigger!: ImageItemInfo;
+    let current!: ImageItemInfo;
+
     this.info.images?.forEach((image: ImageItemInfo) => {
-      if (!this.image || image.width < this.image?.width) {
-        this.image = image;
+      let isBigger = false;
+      if (!bigger || image.width > bigger?.width) {
+        bigger = image;
+        isBigger = true;
       }
+      if ((!current || image.width > current?.width) && !isBigger) {
+        current = image;
+      }
+      this.image.set(current);
     });
   }
 

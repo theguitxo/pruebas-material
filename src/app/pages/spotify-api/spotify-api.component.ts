@@ -1,4 +1,3 @@
-import { NgIf } from '@angular/common';
 import {
   Component,
   DestroyRef,
@@ -9,7 +8,6 @@ import {
   Signal,
 } from '@angular/core';
 import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
-import { MatExpansionModule } from '@angular/material/expansion';
 import { map, Subject, switchMap, tap } from 'rxjs';
 import {
   AlbumSearchResponse,
@@ -29,10 +27,8 @@ import { SpotifySearchFormComponent } from './components/search-form/spotify-sea
   styleUrl: './spotify-api.component.scss',
   standalone: true,
   imports: [
-    NgIf,
     SpotifySearchFormComponent,
     ArtistAlbumDataComponent,
-    MatExpansionModule,
   ],
   providers: [SpotifyAPIService],
 })

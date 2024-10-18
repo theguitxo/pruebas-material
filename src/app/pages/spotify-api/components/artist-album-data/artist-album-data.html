@@ -1,48 +1,32 @@
-<mat-expansion-panel (opened)="panelOpened = true">
-  <mat-expansion-panel-header>
-    <mat-panel-title> {{ info.name }} </mat-panel-title>
-    @if (isArtist) {
-    <mat-panel-description>
-      <div class="header-info__wrapper">
-        <div
-          class="header-info__item"
-          [matBadge]="popularity"
-          [matBadgeOverlap]="false"
-        >
-          Popularity
-        </div>
-        <div
-          class="header-info__item"
-          [matBadge]="followers"
-          [matBadgeOverlap]="false"
-        >
-          Followers
-        </div>
-      </div>
-    </mat-panel-description>
-    }
-  </mat-expansion-panel-header>
-  @if(panelOpened) { {{ info | json}} @if(image) {
-  <div *ngIf="image" class="artist-image__wrapper">
+<mat-card class="artist-album-card" appearance="outlined">
+  <mat-card-header>
+    <mat-card-title>{{ info.name }}</mat-card-title>
+  </mat-card-header>
+  <div *ngIf="image()" class="artist-image__wrapper">
     <img
-      [src]="image.url"
-      [width]="image.width"
-      [height]="image.height"
+      [src]="image()?.url"
+      [width]="image()?.width"
+      [height]="image()?.height"
       alt="{{ info.name }}"
     />
   </div>
-  } @if(genres.length) {
-  <div class="genres__wrapper">
-    <div class="genres__title">Genres</div>
-    <div class="genres__list">
-      @for(genre of genres; track genre) {
-      <mat-chip>{{ genre }}</mat-chip>
-      }
+  <mat-card-content>
+    <div *ngIf="genres.length" class="genres__wrapper">
+      <div class="genres__title">Genres</div>
+      <div class="genres__list">
+        @for(genre of genres; track genre) {
+        <mat-chip>{{ genre }}</mat-chip>
+        }
+      </div>
     </div>
-  </div>
-  } @if(spotifyUrl) {
-  <div class="view-spotify__wrapper">
-    <button mat-button (click)="openSpotify()">View on Spotify</button>
-  </div>
-  }}
-</mat-expansion-panel>
+    <div>
+      Popularity: {{ popularity() }}
+    </div>
+    <div>
+      Followers: {{ followers() }}
+    </div>
+  </mat-card-content>
+  <mat-card-actions>
+    <button *ngIf="spotifyUrl" mat-button (click)="openSpotify()">View on Spotify</button>
+  </mat-card-actions>
+</mat-card>

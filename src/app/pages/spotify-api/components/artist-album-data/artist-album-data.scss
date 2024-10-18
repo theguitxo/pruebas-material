@@ -1,5 +1,13 @@
+.artist-album-card {
+  height: 100%;
+
+  & .mat-mdc-card-content {
+    height: 100%;
+  }
+}
 .genres {
   &__wrapper {
+    width: 100%;
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
@@ -12,6 +20,7 @@
   &__list {
     display: flex;
     gap: 0.5rem;
+    flex-wrap: wrap;
   }
 }
 
@@ -33,6 +42,11 @@
 .artist-image {
   &__wrapper {
     padding: 0.5rem 0;
+
+    & img {
+      width: 100%;
+      height: auto;
+    }
   }
 }
 
