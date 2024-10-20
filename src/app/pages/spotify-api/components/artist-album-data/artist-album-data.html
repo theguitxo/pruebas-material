@@ -2,7 +2,8 @@
   <mat-card-header>
     <mat-card-title>{{ info.name }}</mat-card-title>
   </mat-card-header>
-  <div *ngIf="image()" class="artist-image__wrapper">
+  @if(image()) {
+  <div class="artist-image__wrapper">
     <img
       [src]="image()?.url"
       [width]="image()?.width"
@@ -10,8 +11,10 @@
       alt="{{ info.name }}"
     />
   </div>
+  }
   <mat-card-content>
-    <div *ngIf="genres.length" class="genres__wrapper">
+    @if(genres.length) {
+    <div class="genres__wrapper">
       <div class="genres__title">Genres</div>
       <div class="genres__list">
         @for(genre of genres; track genre) {
@@ -19,14 +22,22 @@
         }
       </div>
     </div>
-    <div>
-      Popularity: {{ popularity() }}
+    } @if(isArtist) {
+    <div class="artist-info__wrapper">
+      <div class="artist-info__item">Popularity:</div>
+      <div class="artist-info__value">
+        {{ popularity() | number : "1.0-0" : "es-ES" }}
+      </div>
+      <div class="artist-info__item">Followers:</div>
+      <div class="artist-info__value">
+        {{ followers() | number : "1.0-0" : "es-ES" }}
+      </div>
     </div>
-    <div>
-      Followers: {{ followers() }}
-    </div>
+    }
   </mat-card-content>
-  <mat-card-actions>
-    <button *ngIf="spotifyUrl" mat-button (click)="openSpotify()">View on Spotify</button>
+  <mat-card-actions class="view-spotify__wrapper">
+    @if(spotifyUrl) {
+    <button mat-button (click)="openSpotify()">View on Spotify</button>
+    }
   </mat-card-actions>
 </mat-card>

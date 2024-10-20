@@ -1,4 +1,3 @@
-import { NgIf } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { MatButton } from '@angular/material/button';
 import {
@@ -13,7 +12,6 @@ import {
   templateUrl: './modal-wrapper.component.html',
   standalone: true,
   imports: [
-    NgIf,
     MatDialogTitle,
     MatDialogContent,
     MatDialogActions,

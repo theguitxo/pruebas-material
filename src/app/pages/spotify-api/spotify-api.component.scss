@@ -1,3 +1,13 @@
+.result {
+  &__wrapper {
+    padding: 0.5rem 0;
+  }
+
+  &__paginator {
+    padding: 0.5rem 0;
+  }
+}
+
 .artist-album-info {
   &__wrapper {
     display: grid;
@@ -6,7 +16,7 @@
     gap: 1rem;
 
     @media (min-width: 480px) {
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(5, 1fr);
     }
   }
 

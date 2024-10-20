@@ -1,4 +1,3 @@
-import { NgIf } from '@angular/common';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import {
   FormControl,
@@ -24,7 +23,6 @@ export interface SearchForm {
   templateUrl: './search-filter.component.html',
   standalone: true,
   imports: [
-    NgIf,
     MatExpansionModule,
     MatFormFieldModule,
     MatInputModule,

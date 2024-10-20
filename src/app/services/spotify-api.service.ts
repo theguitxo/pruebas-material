@@ -107,13 +107,13 @@ export class SpotifyAPIService {
   search(
     search: string,
     type: SearchType,
-    page?: number,
+    limit?: number,
     offset?: number
   ): Observable<ArtistSearchResponse | AlbumSearchResponse> {
     let params = new HttpParams().append('q', search).append('type', type);
 
-    if (page) {
-      params = params.append('page', page);
+    if (limit) {
+      params = params.append('limit', limit);
     }
 
     if (offset) {

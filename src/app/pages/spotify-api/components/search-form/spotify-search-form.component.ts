@@ -1,4 +1,3 @@
-import { NgFor, NgIf } from '@angular/common';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import {
   FormControl,
@@ -23,8 +22,6 @@ import {
   styleUrl: './spotify-search-form.component.scss',
   standalone: true,
   imports: [
-    NgIf,
-    NgFor,
     FormsModule,
     ReactiveFormsModule,
     MatInputModule,
@@ -61,11 +58,11 @@ export class SpotifySearchFormComponent implements OnInit {
 
   private initForm(): void {
     this.form = new FormGroup<SpotifySearchForm>({
-      search: new FormControl('aerosmith', {
+      search: new FormControl(undefined, {
         validators: Validators.required,
         nonNullable: true,
       }),
-      type: new FormControl('artist', {
+      type: new FormControl(undefined, {
         validators: Validators.required,
         nonNullable: true,
       }),

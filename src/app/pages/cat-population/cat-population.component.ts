@@ -1,4 +1,4 @@
-import { DecimalPipe, NgFor, NgIf } from '@angular/common';
+import { DecimalPipe } from '@angular/common';
 import {
   Component,
   computed,
@@ -50,8 +50,6 @@ import { CatPopulationService } from '../../services/app-population.service';
   styleUrl: './cat-population.component.scss',
   standalone: true,
   imports: [
-    NgIf,
-    NgFor,
     DecimalPipe,
     MatStepperModule,
     FormsModule,

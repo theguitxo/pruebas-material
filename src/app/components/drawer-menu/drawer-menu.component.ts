@@ -1,4 +1,3 @@
-import { NgFor } from '@angular/common';
 import { Component, inject, Input } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -18,7 +17,7 @@ export interface MenuItem {
   templateUrl: './drawer-menu.component.html',
   styleUrl: './drawer-menu.component.scss',
   standalone: true,
-  imports: [NgFor, MatListModule, MatButtonModule, MatIconModule],
+  imports: [MatListModule, MatButtonModule, MatIconModule],
 })
 export class DrawerMenuComponent {
   @Input() drawerRef!: MatDrawer;

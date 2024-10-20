@@ -23,6 +23,15 @@ export interface ImageItemInfo {
   width: number;
 }
 
+export interface ResultSearchBase {
+  href: string;
+  limit: number;
+  next: string;
+  offset: number;
+  previous: string;
+  total: number;
+}
+
 export interface ArtistResultItemBase {
   external_urls: { [key: string]: string };
   href: string;
@@ -42,14 +51,8 @@ export interface ArtistResultItem extends ArtistResultItemBase {
   popularity: number;
 }
 
-export interface ArtistSearchResult {
-  href: string;
+export interface ArtistSearchResult extends ResultSearchBase {
   items: ArtistResultItem[];
-  limit: number;
-  next: string;
-  offset: number;
-  previous: string;
-  total: number;
 }
 export interface ArtistSearchResponse {
   artists: ArtistSearchResult;
@@ -70,15 +73,10 @@ export interface AlbumResultItem {
   uri: string;
 }
 
-export interface AlbumSearchResult {
-  href: string;
-  items: ArtistResultItem[];
-  limit: number;
-  next: string;
-  offset: number;
-  previous: string;
-  total: number;
+export interface AlbumSearchResult extends ResultSearchBase {
+  items: AlbumResultItem[];
 }
+
 export interface AlbumSearchResponse {
   albums: AlbumSearchResult;
 }

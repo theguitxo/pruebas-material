@@ -5,7 +5,7 @@ import {
   transition,
   trigger,
 } from '@angular/animations';
-import { AsyncPipe, NgIf } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import {
   Component,
   effect,
@@ -40,7 +40,6 @@ import { SearchFilterComponent } from './components/search-filter/search-filter.
   standalone: true,
   imports: [
     AsyncPipe,
-    NgIf,
     MatTableModule,
     MatIconModule,
     MatButtonModule,

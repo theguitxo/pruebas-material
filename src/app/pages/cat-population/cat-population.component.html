@@ -69,11 +69,13 @@
     <mat-step>
       <ng-template matStepLabel>Population data</ng-template>
       <div class="data-tabs__wrapper">
-        <h4 *ngIf="citySelected">
+        @if(citySelected) {
+        <h4>
           {{ citySelected.nom_municipi }} ({{
             citySelected.codi_postal | joinPostalCodes
           }})
         </h4>
+        }
         <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
           @if(populationData()) { @for (data of populationData(); track data) {
           <mat-tab [label]="data.any">
@@ -177,8 +179,10 @@
         </mat-tab-group>
       </div>
       <div class="step-form__buttons step-form__buttons--inline">
-        <button mat-flat-button matStepperPrevious>Back</button>
-        <button mat-flat-button (click)="stepper.reset()">Reset</button>
+        <button type="button" mat-flat-button matStepperPrevious>Back</button>
+        <button type="button" mat-flat-button (click)="stepper.reset()">
+          Reset
+        </button>
       </div>
     </mat-step>
   </mat-stepper>

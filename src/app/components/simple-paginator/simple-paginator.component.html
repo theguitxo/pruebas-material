@@ -5,8 +5,8 @@
   "
 >
   <div class="simple-paginator__button-container">
+    @if(showFirstLastPage) {
     <button
-      *ngIf="showFirstLastPage"
       mat-button
       mat-stroked-button
       [disabled]="firstPage === currentPage"
@@ -14,6 +14,7 @@
     >
       First
     </button>
+    }
     <button
       mat-button
       mat-stroked-button
@@ -43,8 +44,8 @@
     >
       Next
     </button>
+    @if(showFirstLastPage) {
     <button
-      *ngIf="showFirstLastPage"
       mat-button
       mat-stroked-button
       [disabled]="lastPage === currentPage"
@@ -52,5 +53,6 @@
     >
       Last
     </button>
+    }
   </div>
 </div>

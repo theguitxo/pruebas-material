@@ -1,4 +1,3 @@
-import { NgIf } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ModalWrapperComponent } from '../modal-wrapper/modal-wrapper.component';
@@ -14,7 +13,7 @@ export interface ModalImageViewerData {
   templateUrl: './modal-image-viewer.component.html',
   styleUrl: './modal-image-viewer.component.scss',
   standalone: true,
-  imports: [NgIf, ModalWrapperComponent],
+  imports: [ModalWrapperComponent],
 })
 export class ModalImageViewerComponent implements OnInit {
   data: ModalImageViewerData = inject(MAT_DIALOG_DATA);

@@ -1,4 +1,4 @@
-import { AsyncPipe, NgFor, NgIf } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import {
@@ -13,14 +13,7 @@ import { BreakpointService } from '../../services/breakpoint.service';
   templateUrl: './simple-paginator.component.html',
   styleUrl: './simple-paginator.component.scss',
   standalone: true,
-  imports: [
-    AsyncPipe,
-    MatSelectModule,
-    NgFor,
-    MatFormField,
-    MatButtonModule,
-    NgIf,
-  ],
+  imports: [AsyncPipe, MatSelectModule, MatFormField, MatButtonModule],
 })
 export class SimplePaginatorComponent {
   @Input() pageSizeOptions = [5, 10, 15, 25, 50, 100];

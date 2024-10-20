@@ -1,4 +1,4 @@
-import { JsonPipe, NgIf } from '@angular/common';
+import { DecimalPipe, JsonPipe } from '@angular/common';
 import { Component, Input, OnInit, signal } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -16,10 +16,10 @@ import {
   standalone: true,
   imports: [
     JsonPipe,
-    NgIf,
+    DecimalPipe,
     MatChipsModule,
     MatButtonModule,
-    MatCardModule
+    MatCardModule,
   ],
 })
 export class ArtistAlbumDataComponent implements OnInit {
@@ -27,7 +27,7 @@ export class ArtistAlbumDataComponent implements OnInit {
   @Input({ required: true }) info!: ArtistResultItem | AlbumResultItem;
 
   genres: string[] = [];
-  followers =  signal<number | undefined>(undefined);
+  followers = signal<number | undefined>(undefined);
   popularity = signal<number | undefined>(undefined);
   image = signal<ImageItemInfo | undefined>(undefined);
   spotifyUrl!: string;

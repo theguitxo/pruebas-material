@@ -1,5 +1,7 @@
 <div class="modal-wrapper__container">
-  <h3 *ngIf="title" mat-dialog-title>{{ title }}</h3>
+  @if(title) {
+  <h3 mat-dialog-title>{{ title }}</h3>
+  }
   <mat-dialog-content>
     <ng-content></ng-content>
   </mat-dialog-content>

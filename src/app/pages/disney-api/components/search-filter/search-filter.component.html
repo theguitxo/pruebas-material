@@ -1,6 +1,7 @@
 <mat-expansion-panel>
   <mat-expansion-panel-header>Filter</mat-expansion-panel-header>
-  <form *ngIf="form" [formGroup]="form">
+  @if(form) {
+  <form [formGroup]="form">
     <mat-form-field>
       <mat-label>Name</mat-label>
       <input
@@ -15,9 +16,17 @@
       }
     </mat-form-field>
   </form>
+  }
   <mat-action-row>
-    <button mat-button [disabled]="!form.dirty" (click)="reset()">Reset</button>
-    <button mat-button [disabled]="!form.valid" (click)="search()">
+    <button type="button" mat-button [disabled]="!form.dirty" (click)="reset()">
+      Reset
+    </button>
+    <button
+      type="button"
+      mat-button
+      [disabled]="!form.valid"
+      (click)="search()"
+    >
       Search
     </button>
   </mat-action-row>

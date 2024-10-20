@@ -8,6 +8,7 @@ import {
   Signal,
 } from '@angular/core';
 import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
+import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { map, Subject, switchMap, tap } from 'rxjs';
 import {
   AlbumSearchResponse,
@@ -29,6 +30,7 @@ import { SpotifySearchFormComponent } from './components/search-form/spotify-sea
   imports: [
     SpotifySearchFormComponent,
     ArtistAlbumDataComponent,
+    MatPaginatorModule,
   ],
   providers: [SpotifyAPIService],
 })
@@ -45,6 +47,13 @@ export class SpotifyAPIComponent implements OnInit {
   searchString!: string;
   searchType!: SearchType;
 
+  listLimit = 10;
+  listOffset = 0;
+  pageSizeOptions = [10, 20, 30];
+  nextLink!: string;
+  previousLink!: string;
+  totalItems!: number;
+
   constructor() {
     this.injector = inject(Injector);
     this.spotifyService = inject(SpotifyAPIService);
@@ -53,6 +62,10 @@ export class SpotifyAPIComponent implements OnInit {
 
   ngOnInit(): void {
     this.initSignals();
+    this.handleSearch({
+      search: 'aerosmith',
+      type: 'artist',
+    });
   }
 
   private initSignals(): void {
@@ -61,13 +74,21 @@ export class SpotifyAPIComponent implements OnInit {
         takeUntilDestroyed(this.destroyRef),
         tap(() => this.isArtist.set(this.searchType === 'artist')),
         switchMap(() =>
-          this.spotifyService.search(this.searchString, this.searchType)
+          this.spotifyService.search(
+            this.searchString,
+            this.searchType,
+            this.listLimit,
+            this.listOffset
+          )
         ),
         map((response: ArtistSearchResponse | AlbumSearchResponse) => {
-          if (this.isArtist()) {
-            return (response as ArtistSearchResponse).artists;
-          }
-          return (response as AlbumSearchResponse).albums;
+          const data = this.isArtist()
+            ? (response as ArtistSearchResponse).artists
+            : (response as AlbumSearchResponse).albums;
+          this.previousLink = data.previous;
+          this.nextLink = data.next;
+          this.totalItems = data.total;
+          return data;
         })
       ),
       {
@@ -84,6 +105,39 @@ export class SpotifyAPIComponent implements OnInit {
   handleSearch(searchValues: SearchValues): void {
     this.searchString = searchValues.search;
     this.searchType = searchValues.type;
+    this._search.next();
+  }
+
+  changePage(event: PageEvent): void {
+    if (event.pageSize !== this.listLimit) {
+      this.changePageLimit(event.pageSize);
+    } else {
+      this.nextPreviousPage(event);
+    }
+  }
+
+  changePageLimit(pageLimit: number): void {
+    this.listLimit = pageLimit;
+    this.listOffset = 0;
+    this._search.next();
+  }
+
+  nextPreviousPage(event: PageEvent) {
+    const urlString =
+      event.previousPageIndex !== undefined &&
+      event.pageIndex > event.previousPageIndex
+        ? this.nextLink
+        : this.previousLink;
+
+    const params = new URLSearchParams(new URL(urlString).search);
+    const offset = params.get('offset');
+    if (offset) {
+      this.listOffset = parseInt(offset);
+    }
+    const limit = params.get('limit');
+    if (limit) {
+      this.listLimit = parseInt(limit);
+    }
     this._search.next();
   }
 }

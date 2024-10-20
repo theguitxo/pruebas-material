@@ -11,6 +11,7 @@
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+    padding: 0.5rem 0;
   }
 
   &__title {
@@ -21,21 +22,6 @@
     display: flex;
     gap: 0.5rem;
     flex-wrap: wrap;
-  }
-}
-
-.header-info {
-  &__wrapper {
-    display: flex;
-    gap: 2rem;
-    align-items: flex-end;
-    min-height: 2rem;
-  }
-
-  &__item {
-    & .mat-badge-content {
-      width: auto;
-    }
   }
 }
 
@@ -52,8 +38,24 @@
 
 .view-spotify {
   &__wrapper {
-    padding: 0.5rem 0;
-    display: flex;
     justify-content: flex-end;
+  }
+}
+
+.artist-info {
+  &__wrapper {
+    padding: 0.5rem 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+  }
+
+  &__item {
+    font-weight: bold;
+    text-align: start;
+  }
+
+  &__value {
+    text-align: end;
   }
 }
