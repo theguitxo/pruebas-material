@@ -1,11 +1,13 @@
-import { DecimalPipe, JsonPipe } from '@angular/common';
+import { DatePipe, DecimalPipe } from '@angular/common';
 import { Component, Input, OnInit, signal } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
+import { EXTERNAL_URL_SPOTIFY_KEY } from '../../../../constants/spotify-api/spotify-api.constants';
 import {
   AlbumResultItem,
   ArtistResultItem,
+  ArtistResultItemBase,
   ImageItemInfo,
 } from '../../../../models/spotify-api/spotify-api.model';
 
@@ -15,8 +17,8 @@ import {
   styleUrl: './artist-album-data.scss',
   standalone: true,
   imports: [
-    JsonPipe,
     DecimalPipe,
+    DatePipe,
     MatChipsModule,
     MatButtonModule,
     MatCardModule,
@@ -31,23 +33,36 @@ export class ArtistAlbumDataComponent implements OnInit {
   popularity = signal<number | undefined>(undefined);
   image = signal<ImageItemInfo | undefined>(undefined);
   spotifyUrl!: string;
+  releaseDate!: string;
+  totalTracks!: number;
+  artistsList: { name: string; url: string }[] = [];
 
   panelOpened = false;
 
   ngOnInit(): void {
-    this.setArtistInfo();
+    this.setArtistAlbumInfo();
     this.setImageInfo();
   }
 
-  private setArtistInfo(): void {
+  private setArtistAlbumInfo(): void {
     if (this.isArtist) {
       this.genres = (this.info as ArtistResultItem).genres;
       this.followers.set((this.info as ArtistResultItem).followers?.total);
       this.popularity.set((this.info as ArtistResultItem).popularity);
+    } else {
+      this.releaseDate = (this.info as AlbumResultItem).release_date;
+      this.totalTracks = (this.info as AlbumResultItem).total_tracks;
 
-      if (this.info.external_urls) {
-        this.spotifyUrl = this.info.external_urls['spotify'];
-      }
+      this.artistsList = (this.info as AlbumResultItem).artists?.map(
+        (item: ArtistResultItemBase) => ({
+          name: item.name,
+          url: item.external_urls[EXTERNAL_URL_SPOTIFY_KEY],
+        })
+      );
+    }
+
+    if (this.info.external_urls) {
+      this.spotifyUrl = this.info.external_urls[EXTERNAL_URL_SPOTIFY_KEY];
     }
   }
 
@@ -68,7 +83,7 @@ export class ArtistAlbumDataComponent implements OnInit {
     });
   }
 
-  openSpotify(): void {
-    window.open(this.spotifyUrl, '_blank');
+  openUrl(url: string): void {
+    window.open(url, '_blank');
   }
 }

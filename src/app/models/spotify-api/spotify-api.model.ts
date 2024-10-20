@@ -60,7 +60,7 @@ export interface ArtistSearchResponse {
 
 export interface AlbumResultItem {
   album_type: string;
-  artits: ArtistResultItemBase[];
+  artists: ArtistResultItemBase[];
   available_markets: string[];
   external_urls: { [key: string]: string };
   href: string;

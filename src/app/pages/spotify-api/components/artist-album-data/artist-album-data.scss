@@ -42,7 +42,7 @@
   }
 }
 
-.artist-info {
+.item-info {
   &__wrapper {
     padding: 0.5rem 0;
     display: grid;
@@ -50,9 +50,19 @@
     grid-template-rows: 1fr 1fr;
   }
 
+  &__title {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    font-weight: bold;
+    align-self: center;
+  }
+
   &__item {
     font-weight: bold;
     text-align: start;
+    &--align-center {
+      align-self: center;
+    }
   }
 
   &__value {

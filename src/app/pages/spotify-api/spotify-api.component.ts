@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import {
   Component,
   DestroyRef,
@@ -9,7 +10,12 @@ import {
 } from '@angular/core';
 import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
-import { map, Subject, switchMap, tap } from 'rxjs';
+import { map, of, Subject, switchMap, tap } from 'rxjs';
+import {
+  INITIAL_LIST_LIMIT,
+  INITIAL_LIST_OFFSET,
+  PAGE_SIZE_OPTIONS,
+} from '../../constants/spotify-api/spotify-api.constants';
 import {
   AlbumSearchResponse,
   AlbumSearchResult,
@@ -28,6 +34,7 @@ import { SpotifySearchFormComponent } from './components/search-form/spotify-sea
   styleUrl: './spotify-api.component.scss',
   standalone: true,
   imports: [
+    CommonModule,
     SpotifySearchFormComponent,
     ArtistAlbumDataComponent,
     MatPaginatorModule,
@@ -44,12 +51,12 @@ export class SpotifyAPIComponent implements OnInit {
 
   private readonly _search: Subject<void> = new Subject<void>();
 
-  searchString!: string;
-  searchType!: SearchType;
+  searchString!: string | undefined;
+  searchType!: SearchType | undefined;
 
-  listLimit = 10;
-  listOffset = 0;
-  pageSizeOptions = [10, 20, 30];
+  listLimit = INITIAL_LIST_LIMIT;
+  listOffset = INITIAL_LIST_OFFSET;
+  pageSizeOptions = PAGE_SIZE_OPTIONS;
   nextLink!: string;
   previousLink!: string;
   totalItems!: number;
@@ -62,10 +69,6 @@ export class SpotifyAPIComponent implements OnInit {
 
   ngOnInit(): void {
     this.initSignals();
-    this.handleSearch({
-      search: 'aerosmith',
-      type: 'artist',
-    });
   }
 
   private initSignals(): void {
@@ -73,23 +76,31 @@ export class SpotifyAPIComponent implements OnInit {
       this._search.pipe(
         takeUntilDestroyed(this.destroyRef),
         tap(() => this.isArtist.set(this.searchType === 'artist')),
-        switchMap(() =>
-          this.spotifyService.search(
-            this.searchString,
-            this.searchType,
-            this.listLimit,
-            this.listOffset
-          )
-        ),
-        map((response: ArtistSearchResponse | AlbumSearchResponse) => {
-          const data = this.isArtist()
-            ? (response as ArtistSearchResponse).artists
-            : (response as AlbumSearchResponse).albums;
-          this.previousLink = data.previous;
-          this.nextLink = data.next;
-          this.totalItems = data.total;
-          return data;
-        })
+        switchMap(() => {
+          if (
+            this.searchString !== undefined &&
+            this.searchType !== undefined
+          ) {
+            return this.spotifyService.search(
+              this.searchString,
+              this.searchType,
+              this.listLimit,
+              this.listOffset
+            );
+          }
+          return of(undefined);
+        }),
+        map(
+          (
+            response: ArtistSearchResponse | AlbumSearchResponse | undefined
+          ) => {
+            if (response !== undefined) {
+              return this.setAlbumArtistData(response);
+            }
+
+            return undefined;
+          }
+        )
       ),
       {
         initialValue: undefined,
@@ -98,8 +109,24 @@ export class SpotifyAPIComponent implements OnInit {
     );
   }
 
+  setAlbumArtistData(
+    info: ArtistSearchResponse | AlbumSearchResponse
+  ): ArtistSearchResult | AlbumSearchResult {
+    const data = this.isArtist()
+      ? (info as ArtistSearchResponse).artists
+      : (info as AlbumSearchResponse).albums;
+    this.previousLink = data.previous;
+    this.nextLink = data.next;
+    this.totalItems = data.total;
+    return data;
+  }
+
   handleClear(): void {
-    console.log('clear button');
+    this.searchString = undefined;
+    this.searchType = undefined;
+    this.listLimit = INITIAL_LIST_LIMIT;
+    this.listOffset = INITIAL_LIST_OFFSET;
+    this._search.next();
   }
 
   handleSearch(searchValues: SearchValues): void {
