@@ -4,7 +4,7 @@ import {
   FormGroup,
   FormsModule,
   ReactiveFormsModule,
-  Validators,
+  Validators
 } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -83,5 +83,10 @@ export class SpotifySearchFormComponent implements OnInit {
 
       this.search.emit(searchValues);
     }
+  }
+
+  handleSearchEnter(event: Event): void {
+    event.preventDefault();
+    this.submitForm();
   }
 }

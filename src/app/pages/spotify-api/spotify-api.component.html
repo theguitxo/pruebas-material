@@ -6,38 +6,42 @@
   ></app-spotify-search-form>
 
   @if(result()) {
-  <div class="result__wrapper">
-    <h6>@if (isArtist()) { Artist and related artists } @else { Albums }</h6>
-    <mat-paginator
-      class="result__paginator"
-      [length]="totalItems"
-      [pageSize]="listLimit"
-      [pageSizeOptions]="pageSizeOptions"
-      (page)="changePage($event)"
-    >
-    </mat-paginator>
-    <div
-      class="artist-album-info__wrapper"
-      [ngClass]="{
-        'artist-album-info__wrapper--artist': isArtist(),
-        'artist-album-info__wrapper--album': !isArtist()
-      }"
-    >
-      @for(item of result()?.items; track item.id) {
-      <div class="artist-album-info__item">
-        <app-artist-album-data [isArtist]="isArtist()" [info]="item">
-        </app-artist-album-data>
+    @if(totalItems > 0) {
+      <div class="result__wrapper">
+        <h6>@if (isArtist()) { Artist and related artists } @else { Albums }</h6>
+        <mat-paginator
+          class="result__paginator"
+          [length]="totalItems"
+          [pageSize]="listLimit"
+          [pageSizeOptions]="pageSizeOptions"
+          (page)="changePage($event)"
+        >
+        </mat-paginator>
+        <div
+          class="artist-album-info__wrapper"
+          [ngClass]="{
+            'artist-album-info__wrapper--artist': isArtist(),
+            'artist-album-info__wrapper--album': !isArtist()
+          }"
+        >
+          @for(item of result()?.items; track item.id) {
+          <div class="artist-album-info__item">
+            <app-artist-album-data [isArtist]="isArtist()" [info]="item">
+            </app-artist-album-data>
+          </div>
+          }
+        </div>
+        <mat-paginator
+          class="result__paginator"
+          [length]="totalItems"
+          [pageSize]="listLimit"
+          [pageSizeOptions]="pageSizeOptions"
+          (page)="changePage($event)"
+        >
+        </mat-paginator>
       </div>
-      }
-    </div>
-    <mat-paginator
-      class="result__paginator"
-      [length]="totalItems"
-      [pageSize]="listLimit"
-      [pageSizeOptions]="pageSizeOptions"
-      (page)="changePage($event)"
-    >
-    </mat-paginator>
-  </div>
+    } @else {
+      <div>Data no found</div>
+    }
   }
 </div>
