@@ -21,6 +21,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatDialog } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
+import { DataNotFoundComponent } from '../../components/data-not-found/data-not-found.component';
 import {
   ModalImageViewerComponent,
   ModalImageViewerData,
@@ -48,6 +49,7 @@ import { SearchFilterComponent } from './components/search-filter/search-filter.
     MatChipsModule,
     ModalImageViewerComponent,
     SearchFilterComponent,
+    DataNotFoundComponent,
   ],
   templateUrl: './disney-api.component.html',
   styleUrl: './disney-api.component.scss',

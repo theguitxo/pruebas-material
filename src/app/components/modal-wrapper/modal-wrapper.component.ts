@@ -1,9 +1,10 @@
-import { Component, Input } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { MatButton } from '@angular/material/button';
 import {
   MatDialogActions,
   MatDialogClose,
   MatDialogContent,
+  MatDialogRef,
   MatDialogTitle,
 } from '@angular/material/dialog';
 
@@ -20,5 +21,15 @@ import {
   ],
 })
 export class ModalWrapperComponent {
+  dialogRef!: MatDialogRef<ModalWrapperComponent>;
+
   @Input() title!: string | undefined;
+
+  constructor() {
+    this.dialogRef = inject(MatDialogRef<ModalWrapperComponent>);
+  }
+
+  close(value: unknown): void {
+    this.dialogRef.close(value);
+  }
 }

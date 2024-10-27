@@ -132,5 +132,7 @@
     (goPage)="goPage($event)"
     (changePageSize)="changePageSize($event)"
   ></app-simple-paginator>
+  } @else {
+  <app-data-not-found></app-data-not-found>
   }
 </div>

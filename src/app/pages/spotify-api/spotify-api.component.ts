@@ -11,6 +11,7 @@ import {
 import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { map, of, Subject, switchMap, tap } from 'rxjs';
+import { DataNotFoundComponent } from '../../components/data-not-found/data-not-found.component';
 import {
   INITIAL_LIST_LIMIT,
   INITIAL_LIST_OFFSET,
@@ -38,6 +39,7 @@ import { SpotifySearchFormComponent } from './components/search-form/spotify-sea
     SpotifySearchFormComponent,
     ArtistAlbumDataComponent,
     MatPaginatorModule,
+    DataNotFoundComponent,
   ],
   providers: [SpotifyAPIService],
 })
