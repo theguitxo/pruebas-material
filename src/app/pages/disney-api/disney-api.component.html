@@ -6,7 +6,7 @@
       (emitReset)="resetSearch()"
     ></app-search-filter>
   </div>
-  @if(dataSource.length) {
+  @if(!loadingService.isLoading) { @if(dataSource.length) {
   <div class="table__wrapper">
     <table mat-table [dataSource]="dataSource" multiTemplateDataRows>
       @for(column of displayedColumns; track column) {
@@ -123,16 +123,18 @@
       ></tr>
     </table>
   </div>
-  <app-simple-paginator
-    [currentPage]="currentPage"
-    [disablePrevious]="disablePreviousPage"
-    [disableNext]="disableNextPage"
-    [showFirstLastPage]="true"
-    [lastPage]="lastPage"
-    (goPage)="goPage($event)"
-    (changePageSize)="changePageSize($event)"
-  ></app-simple-paginator>
+  <div class="paginator-container">
+    <app-simple-paginator
+      [currentPage]="currentPage"
+      [disablePrevious]="disablePreviousPage"
+      [disableNext]="disableNextPage"
+      [showFirstLastPage]="true"
+      [lastPage]="lastPage"
+      (goPage)="goPage($event)"
+      (changePageSize)="changePageSize($event)"
+    ></app-simple-paginator>
+  </div>
   } @else {
   <app-data-not-found></app-data-not-found>
-  }
+  } }
 </div>

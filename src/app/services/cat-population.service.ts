@@ -9,7 +9,7 @@ import {
 import { NO_CACHE } from '../utils/http-context.util';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'any',
 })
 export class CatPopulationService {
   private readonly httpClient!: HttpClient;

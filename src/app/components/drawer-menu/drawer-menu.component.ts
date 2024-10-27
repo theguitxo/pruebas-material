@@ -49,6 +49,11 @@ export class DrawerMenuComponent {
       path: ROUTES_PATHS.SPOTIFY_API,
       icon: 'music_note',
     },
+    {
+      title: 'Catalunya dammings',
+      path: ROUTES_PATHS.CAT_DAMMINGS,
+      icon: 'water',
+    },
   ];
 
   navigate(path: string): void {

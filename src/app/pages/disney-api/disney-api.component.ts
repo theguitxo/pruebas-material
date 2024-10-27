@@ -7,6 +7,8 @@ import {
 } from '@angular/animations';
 import { AsyncPipe } from '@angular/common';
 import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   effect,
   inject,
@@ -33,6 +35,7 @@ import {
   ResponseCharacterList,
   ResponseData,
 } from '../../services/disney-api.service';
+import { LoadingService } from '../../services/loading.service';
 import { goToExternalLink } from '../../utils/external-link.util';
 import { SearchFilterComponent } from './components/search-filter/search-filter.component';
 
@@ -63,10 +66,13 @@ import { SearchFilterComponent } from './components/search-filter/search-filter.
       ),
     ]),
   ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DisneyAPIComponent implements OnInit {
   private readonly disneyAPIService!: DisneyAPIService;
   private readonly dialog!: MatDialog;
+  public readonly loadingService!: LoadingService;
+  private readonly cdr!: ChangeDetectorRef;
 
   breakpointService!: BreakpointService;
 
@@ -78,6 +84,8 @@ export class DisneyAPIComponent implements OnInit {
     this.disneyAPIService = inject(DisneyAPIService);
     this.breakpointService = inject(BreakpointService);
     this.dialog = inject(MatDialog);
+    this.loadingService = inject(LoadingService);
+    this.cdr = inject(ChangeDetectorRef);
   }
 
   columnsTitles: { [key: string]: string } = {
@@ -151,6 +159,8 @@ export class DisneyAPIComponent implements OnInit {
         this.lastPage = this.characters()?.info.totalPages ?? 1;
         this.disableNextPage = !this.characters()?.info.nextPage;
         this.disablePreviousPage = !this.characters()?.info.previousPage;
+
+        this.cdr.detectChanges();
       },
       { injector: this.injector }
     );

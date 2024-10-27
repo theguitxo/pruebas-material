@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import {
+  ChangeDetectionStrategy,
   Component,
   DestroyRef,
   inject,
@@ -41,7 +42,7 @@ import { SpotifySearchFormComponent } from './components/search-form/spotify-sea
     MatPaginatorModule,
     DataNotFoundComponent,
   ],
-  providers: [SpotifyAPIService],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SpotifyAPIComponent implements OnInit {
   private readonly spotifyService!: SpotifyAPIService;

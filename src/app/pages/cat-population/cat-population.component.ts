@@ -1,5 +1,6 @@
 import { DecimalPipe } from '@angular/common';
 import {
+  ChangeDetectionStrategy,
   Component,
   computed,
   DestroyRef,
@@ -42,7 +43,7 @@ import {
 import { PopulationDataResponse } from '../../models/cat-population/population-response.model';
 import { ZipCodeListItem } from '../../models/cat-population/zip-codes.model';
 import { JoinPostalCodesPipe } from '../../pipes/join-postal-codes.pipe';
-import { CatPopulationService } from '../../services/app-population.service';
+import { CatPopulationService } from '../../services/cat-population.service';
 
 @Component({
   selector: 'app-cat-population',
@@ -64,6 +65,7 @@ import { CatPopulationService } from '../../services/app-population.service';
     MatGridListModule,
   ],
   providers: [JoinPostalCodesPipe],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CatPopulationComponent implements OnInit {
   @ViewChild('stepper') stepper!: MatStepper;

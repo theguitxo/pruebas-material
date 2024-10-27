@@ -23,7 +23,17 @@ export const routes: Routes = [
   },
   {
     path: ROUTES_PATHS.SPOTIFY_API,
-    loadComponent: () => import('./pages/spotify-api/spotify-api.component').then((c) => c.SpotifyAPIComponent)
+    loadComponent: () =>
+      import('./pages/spotify-api/spotify-api.component').then(
+        (c) => c.SpotifyAPIComponent
+      ),
+  },
+  {
+    path: ROUTES_PATHS.CAT_DAMMINGS,
+    loadComponent: () =>
+      import('./pages/cat-dammings/cat-dammings.component').then(
+        (c) => c.CatDammingsComponent
+      ),
   },
   { path: '', redirectTo: `/${ROUTES_PATHS.HOME}`, pathMatch: 'full' },
   { path: '**', redirectTo: `/${ROUTES_PATHS.HOME}` },

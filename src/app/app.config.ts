@@ -1,20 +1,25 @@
 import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
 import { provideRouter } from '@angular/router';
 
-import { HttpInterceptorFn, provideHttpClient, withInterceptors } from '@angular/common/http';
+import {
+  HttpInterceptorFn,
+  provideHttpClient,
+  withInterceptors,
+} from '@angular/common/http';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { routes } from './app.routes';
 import { cacheInterceptor } from './interceptors/cache.interceptor';
 import { loadingInterceptor } from './interceptors/loading.interceptor';
+import { tokenInterceptor } from './interceptors/token.interceptor';
 import { BreakpointService } from './services/breakpoint.service';
 import { CacheService } from './services/cache.service';
-import { DisneyAPIService } from './services/disney-api.service';
 import { LoadingService } from './services/loading.service';
-import { tokenInterceptor } from './interceptors/token.interceptor';
 
 const interceptors: HttpInterceptorFn[] = [
-  cacheInterceptor, loadingInterceptor, tokenInterceptor
+  cacheInterceptor,
+  tokenInterceptor,
+  loadingInterceptor,
 ];
 
 export const appConfig: ApplicationConfig = {
@@ -23,7 +28,6 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideAnimationsAsync(),
     provideHttpClient(withInterceptors(interceptors)),
-    DisneyAPIService,
     CacheService,
     LoadingService,
     BreakpointService,
