@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+} from '@angular/core';
+import { CatDammingsService } from '../../services/cat-dammings.service';
 
 @Component({
   selector: 'app-cat-dammings',
@@ -7,4 +13,14 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CatDammingsComponent {}
+export class CatDammingsComponent implements OnInit {
+  dammingsService!: CatDammingsService;
+
+  constructor() {
+    this.dammingsService = inject(CatDammingsService);
+  }
+
+  ngOnInit(): void {
+    this.dammingsService.loadData();
+  }
+}
