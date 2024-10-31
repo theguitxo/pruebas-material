@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { take, tap } from 'rxjs';
-import { DammingsInfoResponse } from '../models/cat-dammings/cat-dammings.model';
+import { map, take } from 'rxjs';
+import { v4 as uuidv4 } from 'uuid';
+import { DammingsInfoItem, DammingsInfoResponse } from '../models/cat-dammings/cat-dammings.model';
 
 @Injectable({
   providedIn: 'any',
@@ -12,7 +13,8 @@ export class CatDammingsService {
 
   private readonly http!: HttpClient;
 
-  dates: Set<string> = new Set<string>();
+  maxDate!: Date;
+  minDate!: Date;
 
   constructor() {
     this.http = inject(HttpClient);
@@ -23,14 +25,38 @@ export class CatDammingsService {
       .get<DammingsInfoResponse[]>(this.URL)
       .pipe(
         take(1),
-        tap((result: DammingsInfoResponse[]) => {
-          result?.forEach((item: DammingsInfoResponse) => {
-            if (!this.dates.has(item.dia)) {
-              this.dates.add(item.dia);
-            }
+        map((result: DammingsInfoResponse[]) => {
+          const list: DammingsInfoItem[] = result.map((item: DammingsInfoResponse) => {
+            this.setMaxMinDate(item.dia);
+
+            return {
+              ...item,
+              id: uuidv4(),
+              id_estaci: ''
+            };
           });
+
+          return list;
         })
       )
-      .subscribe(() => console.log(this.dates));
+      .subscribe((data: DammingsInfoItem[]) => {
+        console.log(data);
+        console.log(this.maxDate.toLocaleDateString());
+        console.log(this.minDate.toLocaleDateString());
+      });
+  }
+
+  setMaxMinDate(date: string): void {
+    const currentValue = new Date(date).getTime();
+    const maxValue = this.maxDate?.getTime();
+    const minValue = this.minDate?.getTime();
+
+    if (!maxValue || currentValue > maxValue) {
+      this.maxDate = new Date(date);
+    }
+
+    if (!minValue || currentValue < minValue) {
+      this.minDate = new Date(date);
+    }
   }
 }
