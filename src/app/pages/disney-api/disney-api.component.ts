@@ -179,11 +179,13 @@ export class DisneyAPIComponent implements OnInit {
   }
 
   search(name: string): void {
+    this.currentPage = 1;
     this.filterSearch = name;
     this.loadData();
   }
 
   resetSearch(): void {
+    this.currentPage = 1;
     this.filterSearch = undefined;
     this.loadData();
   }

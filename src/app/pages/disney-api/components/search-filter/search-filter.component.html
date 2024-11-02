@@ -3,11 +3,11 @@
   @if(form) {
   <form [formGroup]="form">
     <mat-form-field>
-      <mat-label>Name</mat-label>
+      <mat-label>Nombre</mat-label>
       <input
         matInput
         type="text"
-        placeholder="Type to search"
+        placeholder="Introduzca para buscar"
         formControlName="name"
         (keyup.enter)="search()"
       />
