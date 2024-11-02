@@ -1,7 +1,7 @@
-<mat-drawer #drawer mode="side" class="drawer__container">
-  <app-drawer-menu [drawerRef]="drawerRef"></app-drawer-menu>
-</mat-drawer>
-<mat-drawer-container>
+<mat-drawer-container [hasBackdrop]="true">
+  <mat-drawer #drawer mode="side" class="drawer__container">
+    <app-drawer-menu [drawerRef]="drawerRef"></app-drawer-menu>
+  </mat-drawer>
   <mat-toolbar>
     <button mat-icon-button aria-label="Menu button" (click)="toggleDrawer()">
       <mat-icon>menu</mat-icon>

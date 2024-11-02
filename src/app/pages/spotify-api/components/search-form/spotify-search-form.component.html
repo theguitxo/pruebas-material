@@ -2,7 +2,7 @@
 <form [formGroup]="form">
   <!-- TO SEARCH -->
   <mat-form-field>
-    <mat-label>Search...</mat-label>
+    <mat-label>Buscar...</mat-label>
     <input
       matInput
       placeholder="Type to search"
@@ -10,19 +10,19 @@
       (keyup.enter)="handleSearchEnter($event)"
     />
     @if(form.controls.search.hasError('required')) {
-    <mat-error>This field is required</mat-error>
+    <mat-error>El campo es requerido</mat-error>
     }
   </mat-form-field>
   <!-- SEARCH TYPE -->
   <mat-form-field>
-    <mat-label>Search type</mat-label>
+    <mat-label>Tipo de búsqueda</mat-label>
     <mat-select [formControl]="form.controls.type">
       @for (type of typeOptions; track type) {
       <mat-option [value]="type.value">{{ type.text }}</mat-option>
       }
     </mat-select>
     @if(form.controls.type.hasError('required')) {
-    <mat-error>This field is required</mat-error>
+    <mat-error>El campo es requerido</mat-error>
     }
   </mat-form-field>
   <!-- BUTTONS -->
@@ -33,7 +33,7 @@
       [disabled]="!form.valid"
       (click)="submitForm()"
     >
-      Search
+      Buscar
     </button>
     <button
       type="button"
@@ -41,7 +41,7 @@
       [disabled]="!form.dirty"
       (click)="clearForm()"
     >
-      Clear
+      Reiniciar
     </button>
   </div>
 </form>

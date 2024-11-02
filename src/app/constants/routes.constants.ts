@@ -5,3 +5,11 @@ export enum ROUTES_PATHS {
   SPOTIFY_API = 'spotify-api',
   CAT_DAMMINGS = 'cat-dammings',
 }
+
+export const TITLES = {
+  [ROUTES_PATHS.HOME]: 'Inicio',
+  [ROUTES_PATHS.DISNEY_API]: 'Personajes de Disney',
+  [ROUTES_PATHS.SPOTIFY_API]: 'Artistas y albumes de Spotify',
+  [ROUTES_PATHS.CAT_POPULATION]: 'Población de Cataluña',
+  [ROUTES_PATHS.CAT_DAMMINGS]: 'Embalses de Cataluña',
+};

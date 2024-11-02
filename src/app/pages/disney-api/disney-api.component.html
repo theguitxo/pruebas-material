@@ -1,5 +1,5 @@
 <div class="page__layout">
-  <h5>Disney API</h5>
+  <app-page-title></app-page-title>
   <div class="filter__wrapper">
     <app-search-filter
       (emitSearch)="search($event)"
@@ -23,7 +23,7 @@
         </th>
         <td mat-cell *matCellDef="let element">
           <button mat-button (click)="openSourceUrl($event, element.sourceUrl)">
-            Open
+            Abrir
           </button>
         </td>
       </ng-container>
@@ -36,7 +36,7 @@
             mat-button
             (click)="openImage($event, element.imageUrl, element.name)"
           >
-            View
+            Ver
           </button>
         </td>
       </ng-container>

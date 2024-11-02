@@ -7,6 +7,7 @@ import {
   withInterceptors,
 } from '@angular/common/http';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
+import { MatPaginatorIntl } from '@angular/material/paginator';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { routes } from './app.routes';
 import { cacheInterceptor } from './interceptors/cache.interceptor';
@@ -15,6 +16,7 @@ import { tokenInterceptor } from './interceptors/token.interceptor';
 import { BreakpointService } from './services/breakpoint.service';
 import { CacheService } from './services/cache.service';
 import { LoadingService } from './services/loading.service';
+import { CustomPaginatorIntl } from './services/mat-paginator-intl.service';
 
 const interceptors: HttpInterceptorFn[] = [
   cacheInterceptor,
@@ -36,6 +38,10 @@ export const appConfig: ApplicationConfig = {
       useValue: {
         subscriptSizing: 'dynamic',
       },
+    },
+    {
+      provide: MatPaginatorIntl,
+      useClass: CustomPaginatorIntl,
     },
   ],
 };

@@ -15,7 +15,7 @@
   <mat-card-content>
     @if(genres.length) {
     <div class="genres__wrapper">
-      <div class="genres__title">Genres</div>
+      <div class="genres__title">Generos</div>
       <div class="genres__list">
         @for(genre of genres; track genre) {
         <mat-chip>{{ genre }}</mat-chip>
@@ -24,37 +24,35 @@
     </div>
     } @if(isArtist) {
     <div class="item-info__wrapper">
-      <div class="item-info__item">Popularity:</div>
+      <div class="item-info__item">Popularidad:</div>
       <div class="item-info__value">
         {{ popularity() | number : "1.0-0" : "es-ES" }}
       </div>
-      <div class="item-info__item">Followers:</div>
+      <div class="item-info__item">Seguidores:</div>
       <div class="item-info__value">
         {{ followers() | number : "1.0-0" : "es-ES" }}
       </div>
     </div>
     } @else {
     <div class="item-info__wrapper">
-      <div class="item-info__item">Release date:</div>
+      <div class="item-info__item">Fecha de lanzamiento:</div>
       <div class="item-info__value">
         {{ releaseDate | date : "mediumDate" : "" : "es-ES" }}
       </div>
-      <div class="item-info__item">Total tracks:</div>
+      <div class="item-info__item">Número de pistas:</div>
       <div class="item-info__value">
         {{ totalTracks | number : "1.0-0" : "es-ES" }}
       </div>
     </div>
     @if(artistsList.length) {
     <div class="item-info__wrapper">
-      <div class="item-info__title">Artists</div>
+      <div class="item-info__title">Artistas</div>
       @for(artist of artistsList; track artist) {
       <div class="item-info__item item-info__item--align-center">
         {{ artist.name }}
       </div>
       <div class="item-info__value">
-        <button mat-button (click)="openUrl(artist.url)">
-          View on Spotify
-        </button>
+        <button mat-button (click)="openUrl(artist.url)">Ver en Spotify</button>
       </div>
       }
     </div>
@@ -62,7 +60,7 @@
   </mat-card-content>
   <mat-card-actions class="view-spotify__wrapper">
     @if(spotifyUrl) {
-    <button mat-button (click)="openUrl(spotifyUrl)">View on Spotify</button>
+    <button mat-button (click)="openUrl(spotifyUrl)">Ver en Spotify</button>
     }
   </mat-card-actions>
 </mat-card>

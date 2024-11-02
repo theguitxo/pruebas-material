@@ -1,5 +1,5 @@
 <mat-expansion-panel>
-  <mat-expansion-panel-header>Filter</mat-expansion-panel-header>
+  <mat-expansion-panel-header>Filtro</mat-expansion-panel-header>
   @if(form) {
   <form [formGroup]="form">
     <mat-form-field>
@@ -12,14 +12,14 @@
         (keyup.enter)="search()"
       />
       @if (form.controls.name.hasError('required')) {
-      <mat-error>Name is <strong>required</strong></mat-error>
+      <mat-error>Nombre es <strong>requerido</strong></mat-error>
       }
     </mat-form-field>
   </form>
   }
   <mat-action-row>
     <button type="button" mat-button [disabled]="!form.dirty" (click)="reset()">
-      Reset
+      Reiniciar
     </button>
     <button
       type="button"
@@ -27,7 +27,7 @@
       [disabled]="!form.valid"
       (click)="search()"
     >
-      Search
+      Buscar
     </button>
   </mat-action-row>
 </mat-expansion-panel>

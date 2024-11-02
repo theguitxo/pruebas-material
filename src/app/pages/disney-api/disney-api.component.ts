@@ -28,6 +28,7 @@ import {
   ModalImageViewerComponent,
   ModalImageViewerData,
 } from '../../components/modal-image-viewer/modal-image-viewer.component';
+import { PageTitleComponent } from '../../components/page-title/page-title.component';
 import { SimplePaginatorComponent } from '../../components/simple-paginator/simple-paginator.component';
 import { BreakpointService } from '../../services/breakpoint.service';
 import {
@@ -43,6 +44,7 @@ import { SearchFilterComponent } from './components/search-filter/search-filter.
   selector: 'app-disney-api',
   standalone: true,
   imports: [
+    PageTitleComponent,
     AsyncPipe,
     MatTableModule,
     MatIconModule,
@@ -90,9 +92,9 @@ export class DisneyAPIComponent implements OnInit {
 
   columnsTitles: { [key: string]: string } = {
     _id: 'ID',
-    name: 'Name',
-    sourceUrl: 'Information Source',
-    imageUrl: 'Image',
+    name: 'Nombre',
+    sourceUrl: 'Fuende de información',
+    imageUrl: 'Imagen',
   };
   dataSource: ResponseData[] = [];
   displayedColumns = ['_id', 'name'];
@@ -113,27 +115,27 @@ export class DisneyAPIComponent implements OnInit {
 
   itemsExpandedInfo: { title: string; field: string }[] = [
     {
-      title: 'Enemies',
+      title: 'Enemigos',
       field: 'enemies',
     },
     {
-      title: 'Films',
+      title: 'Películas',
       field: 'films',
     },
     {
-      title: 'Park Attractions',
+      title: 'Parque de atracciones',
       field: 'parkAttractions',
     },
     {
-      title: 'Short Films',
+      title: 'Cortos',
       field: 'shortFilms',
     },
     {
-      title: 'TV Shows',
+      title: 'Programas de TV',
       field: 'tvShows',
     },
     {
-      title: 'VideoGames',
+      title: 'Videojuegos',
       field: 'videoGames',
     },
   ];

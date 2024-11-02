@@ -12,7 +12,7 @@
       [disabled]="firstPage === currentPage"
       (click)="goPage.emit(firstPage)"
     >
-      First
+      Inicio
     </button>
     }
     <button
@@ -21,11 +21,11 @@
       [disabled]="disablePrevious"
       (click)="goPage.emit(currentPage - 1)"
     >
-      Previous
+      Anterior
     </button>
   </div>
   <mat-form-field>
-    <mat-label>Items per page</mat-label>
+    <mat-label>Elementos por página</mat-label>
     <mat-select
       [value]="pageSize"
       (selectionChange)="handleChangePageSize($event)"
@@ -42,7 +42,7 @@
       [disabled]="disableNext"
       (click)="goPage.emit(currentPage + 1)"
     >
-      Next
+      Siguiente
     </button>
     @if(showFirstLastPage) {
     <button
@@ -51,7 +51,7 @@
       [disabled]="lastPage === currentPage"
       (click)="goPage.emit(lastPage)"
     >
-      Last
+      Final
     </button>
     }
   </div>

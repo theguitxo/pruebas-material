@@ -36,6 +36,7 @@ import { MatSelectChange, MatSelectModule } from '@angular/material/select';
 import { MatStepper, MatStepperModule } from '@angular/material/stepper';
 import { MatTabsModule } from '@angular/material/tabs';
 import { filter, switchMap } from 'rxjs';
+import { PageTitleComponent } from '../../components/page-title/page-title.component';
 import {
   FILTER_PROVINCE_OPTIONS,
   ZIP_CODES,
@@ -51,6 +52,7 @@ import { CatPopulationService } from '../../services/cat-population.service';
   styleUrl: './cat-population.component.scss',
   standalone: true,
   imports: [
+    PageTitleComponent,
     DecimalPipe,
     MatStepperModule,
     FormsModule,

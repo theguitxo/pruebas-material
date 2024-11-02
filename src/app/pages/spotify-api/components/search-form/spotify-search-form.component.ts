@@ -4,7 +4,7 @@ import {
   FormGroup,
   FormsModule,
   ReactiveFormsModule,
-  Validators
+  Validators,
 } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -40,7 +40,7 @@ export class SpotifySearchFormComponent implements OnInit {
   typeOptions: TypeOption[] = [
     {
       value: undefined,
-      text: 'Select type of search',
+      text: 'Seleccione el tipo de búsqueda',
     },
     {
       value: 'album',
@@ -48,7 +48,7 @@ export class SpotifySearchFormComponent implements OnInit {
     },
     {
       value: 'artist',
-      text: 'Artist',
+      text: 'Artista',
     },
   ];
 

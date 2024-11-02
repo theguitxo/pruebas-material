@@ -1,11 +1,12 @@
 <div class="page__layout">
+  <app-page-title></app-page-title>
   <mat-stepper #stepper>
     <mat-step [stepControl]="provinceForm">
       <form [formGroup]="provinceForm">
-        <ng-template matStepLabel>Select province</ng-template>
+        <ng-template matStepLabel>Seleccione una provincia</ng-template>
         <div class="step-form__wrapper">
           <mat-form-field>
-            <mat-label>Province</mat-label>
+            <mat-label>Provincia</mat-label>
             <mat-select
               [formControlName]="'province'"
               (selectionChange)="handleSelectProvince($event)"
@@ -20,23 +21,23 @@
             [disabled]="!this.provinceForm.valid"
             matStepperNext
           >
-            Next
+            Siguiente
           </button>
         </div>
       </form>
     </mat-step>
     <mat-step [stepControl]="cityForm">
       <form [formGroup]="cityForm">
-        <ng-template matStepLabel>Select city</ng-template>
+        <ng-template matStepLabel>Seleccione una ciudad</ng-template>
         <div class="step-form__wrapper">
           <mat-form-field>
-            <mat-label>City</mat-label>
+            <mat-label>Ciudad</mat-label>
             <input
               type="text"
               matInput
               [formControlName]="'city'"
               [matAutocomplete]="auto"
-              placeholder="City"
+              placeholder="Ciudad"
             />
             <mat-autocomplete
               #auto="matAutocomplete"
@@ -52,7 +53,7 @@
           </mat-form-field>
           <div class="step-form__buttons">
             <button type="button" mat-flat-button matStepperPrevious>
-              Back
+              Volver
             </button>
             <button
               type="button"
@@ -60,14 +61,14 @@
               [disabled]="!this.cityForm.valid"
               matStepperNext
             >
-              Next
+              Siguiente
             </button>
           </div>
         </div>
       </form>
     </mat-step>
     <mat-step>
-      <ng-template matStepLabel>Population data</ng-template>
+      <ng-template matStepLabel>Información de la población</ng-template>
       <div class="data-tabs__wrapper">
         @if(citySelected) {
         <h4>
@@ -82,17 +83,21 @@
             <mat-grid-list cols="4" rowHeight="2rem" gutterSize="0">
               <mat-grid-tile>&nbsp;</mat-grid-tile>
               <mat-grid-tile class="border-bottom"
-                ><span class="data-tabs__grid-title">Men</span></mat-grid-tile
+                ><span class="data-tabs__grid-title"
+                  >Hombres</span
+                ></mat-grid-tile
               >
               <mat-grid-tile class="border-bottom"
-                ><span class="data-tabs__grid-title">Women</span></mat-grid-tile
+                ><span class="data-tabs__grid-title"
+                  >Mujeres</span
+                ></mat-grid-tile
               >
               <mat-grid-tile class="border-bottom"
-                ><span class="data-tabs__grid-title">All</span></mat-grid-tile
+                ><span class="data-tabs__grid-title">Todos</span></mat-grid-tile
               >
               <mat-grid-tile class="border-bottom"
                 ><span class="data-tabs__grid-title data-tabs__grid-title--left"
-                  >From 0 to 14 years</span
+                  >De 0 a 14 años</span
                 ></mat-grid-tile
               >
               <mat-grid-tile class="border-bottom"
@@ -112,7 +117,7 @@
               >
               <mat-grid-tile class="border-bottom"
                 ><span class="data-tabs__grid-title data-tabs__grid-title--left"
-                  >From 15 to 64 years</span
+                  >De 15 a 64 años</span
                 ></mat-grid-tile
               >
               <mat-grid-tile class="border-bottom"
@@ -132,7 +137,7 @@
               >
               <mat-grid-tile class="border-bottom"
                 ><span class="data-tabs__grid-title data-tabs__grid-title--left"
-                  >65 years or more</span
+                  >65 años o más</span
                 ></mat-grid-tile
               >
               <mat-grid-tile class="border-bottom"
@@ -179,9 +184,9 @@
         </mat-tab-group>
       </div>
       <div class="step-form__buttons step-form__buttons--inline">
-        <button type="button" mat-flat-button matStepperPrevious>Back</button>
+        <button type="button" mat-flat-button matStepperPrevious>Volver</button>
         <button type="button" mat-flat-button (click)="stepper.reset()">
-          Reset
+          Reiniciar
         </button>
       </div>
     </mat-step>
