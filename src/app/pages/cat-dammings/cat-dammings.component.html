@@ -1,8 +1,15 @@
 <div class="page__layout">
   <app-page-title></app-page-title>
   @if (form) {
-  <div class="form__wrapper">
-    <form [formGroup]="form">
+  <form class="form__wrapper" [formGroup]="form">
+    <div class="form__stations-list">
+      @for (station of stations(); track station) {
+      <mat-checkbox (change)="changeStation($event, station)">{{
+        station.name
+      }}</mat-checkbox>
+      }
+    </div>
+    <div>
       <mat-form-field>
         <mat-label>Elija una fecha</mat-label>
         <input
@@ -10,6 +17,7 @@
           [min]="minDate()"
           [max]="maxDate()"
           [matDatepicker]="picker"
+          [formControlName]="'date'"
         />
         <mat-datepicker-toggle
           matIconSuffix
@@ -17,8 +25,17 @@
         ></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
-    </form>
-    <div></div>
-  </div>
+    </div>
+    <div>
+      <button
+        type="button"
+        mat-flat-button
+        [disabled]="!form.valid"
+        (click)="search()"
+      >
+        Buscar
+      </button>
+    </div>
+  </form>
   }
 </div>

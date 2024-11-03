@@ -14,7 +14,12 @@ export interface DammingsInfoItem extends DammingsInfoResponse {
   date: Date;
 }
 
+export interface StationItem {
+  key: string;
+  name: string;
+}
+
 export interface FilterForm {
-  startDate: FormControl<Date | undefined>;
-  endDate: FormControl<Date | undefined>;
+  date: FormControl<Date | undefined>;
+  stations: FormControl<string[] | undefined>;
 }

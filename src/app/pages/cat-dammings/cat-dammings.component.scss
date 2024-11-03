@@ -1,6 +1,13 @@
 .form {
   &__wrapper {
-    display: flex;
+    display: inline-grid;
+    grid-template-columns: 3fr 1fr;
+    grid-template-rows: 1fr 1fr;
     gap: 1rem;
+  }
+
+  &__stations-list {
+    grid-column: 1;
+    grid-row: 1 / 3;
   }
 }
