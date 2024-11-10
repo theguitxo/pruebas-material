@@ -1,7 +1,25 @@
 <div class="page__layout">
   <app-page-title></app-page-title>
   @if (form) {
-  <form class="form__wrapper" [formGroup]="form">
+  <form class="form__wrapper" [formGroup]="form" (ngSubmit)="filterData()">
+    @if (breakpointService.isHandsetPortrait() | async) {
+    <mat-form-field>
+      <mat-label>Embalse</mat-label>
+      <mat-select-trigger>
+        @if (selectedStations.length) {
+        {{ selectedStations.length }} embalse{{
+          selectedStations.length > 1 ? "s" : ""
+        }}
+        seleccionado{{ selectedStations.length > 1 ? "s" : "" }}
+        }
+      </mat-select-trigger>
+      <mat-select multiple (selectionChange)="selectChangeStation($event)">
+        @for (station of stations(); track station) {
+        <mat-option [value]="station">{{ station.name }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+    } @else {
     <div class="form__stations-list">
       @for (station of stations(); track station) {
       <mat-checkbox (change)="changeStation($event, station)">{{
@@ -9,6 +27,7 @@
       }}</mat-checkbox>
       }
     </div>
+    }
     <div>
       <mat-form-field>
         <mat-label>Elija una fecha</mat-label>
@@ -27,15 +46,52 @@
       </mat-form-field>
     </div>
     <div>
-      <button
-        type="button"
-        mat-flat-button
-        [disabled]="!form.valid"
-        (click)="search()"
-      >
+      <button type="submit" mat-flat-button [disabled]="!form.valid">
         Buscar
       </button>
     </div>
   </form>
+  } @if (filteredStations) {
+  <div class="table__wrapper">
+    <table mat-table [dataSource]="filteredStations" matSort>
+      <ng-container matColumnDef="estaci">
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          mat-sort-header
+          sortActionDescription="Sort by estaci"
+        >
+          Embalse
+        </th>
+        <td mat-cell *matCellDef="let station">{{ station.estaci }}</td>
+      </ng-container>
+      <ng-container matColumnDef="nivell_absolut">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          Nivel absoluto (msnm)
+        </th>
+        <td class="number" mat-cell *matCellDef="let station">
+          {{ station.nivell_absolut | number : "1.2-2" : "es-ES" }}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="percentatge_volum_embassat">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          Porcentage volumen embalsado (%)
+        </th>
+        <td class="number" mat-cell *matCellDef="let station">
+          {{ station.percentatge_volum_embassat | number : "1.2-2" : "es-ES" }}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="volum_embassat">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          Volumen embasado (hm<sup>3</sup>)
+        </th>
+        <td class="number" mat-cell *matCellDef="let station">
+          {{ station.volum_embassat | number : "1.2-2" : "es-ES" }}
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="stationsDisplayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: stationsDisplayedColumns"></tr>
+    </table>
+  </div>
   }
 </div>

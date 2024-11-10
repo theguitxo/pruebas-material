@@ -23,3 +23,10 @@ export interface FilterForm {
   date: FormControl<Date | undefined>;
   stations: FormControl<string[] | undefined>;
 }
+
+export interface FilteredInfoItem {
+  estaci: string;
+  nivell_absolut: string;
+  percentatge_volum_embassat: string;
+  volum_embassat: string;
+}
