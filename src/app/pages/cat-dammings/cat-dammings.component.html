@@ -89,6 +89,21 @@
           {{ station.volum_embassat | number : "1.2-2" : "es-ES" }}
         </td>
       </ng-container>
+      <ng-container matColumnDef="actions" stickyEnd>
+        <th mat-header-cell *matHeaderCellDef aria-label="row actions">
+          &nbsp;
+        </th>
+        <td mat-cell *matCellDef="let station">
+          <mat-icon
+            class="table__more-icon"
+            matTooltip="Ver más"
+            matTooltipPosition="above"
+            (click)="viewMore(station.id_estaci)"
+            (keypress)="viewMore(station.id_estaci)"
+            >add_circle</mat-icon
+          >
+        </td>
+      </ng-container>
       <tr mat-header-row *matHeaderRowDef="stationsDisplayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: stationsDisplayedColumns"></tr>
     </table>

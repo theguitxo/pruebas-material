@@ -26,21 +26,27 @@ import {
   provideNativeDateAdapter,
 } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatDialog } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectChange, MatSelectModule } from '@angular/material/select';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { PageTitleComponent } from '../../components/page-title/page-title.component';
+import { ONE_DAY_MILISECONDS } from '../../constants/common.constants';
 import {
   DammingsInfoItem,
   FilteredInfoItem,
+  FilteredInfoItemDate,
   FilterForm,
   StationItem,
 } from '../../models/cat-dammings/cat-dammings.model';
 import { BreakpointService } from '../../services/breakpoint.service';
 import { CatDammingsService } from '../../services/cat-dammings.service';
-
+import { CatDammingsHistoricChartComponent } from './components/historic-chart/historic-chart.component';
 @Component({
   selector: 'app-cat-dammings',
   templateUrl: './cat-dammings.component.html',
@@ -69,10 +75,14 @@ import { CatDammingsService } from '../../services/cat-dammings.service';
     MatTableModule,
     MatSortModule,
     MatSort,
+    MatIconModule,
+    MatTooltipModule,
   ],
 })
 export class CatDammingsComponent implements OnInit {
   private readonly dammingsService!: CatDammingsService;
+  private readonly snackBar!: MatSnackBar;
+  private readonly dialog!: MatDialog;
   private readonly injector = inject(Injector);
   breakpointService!: BreakpointService;
 
@@ -98,10 +108,15 @@ export class CatDammingsComponent implements OnInit {
     'nivell_absolut',
     'percentatge_volum_embassat',
     'volum_embassat',
+    'actions',
   ];
+
+  moreInfoData: FilteredInfoItemDate[] = [];
 
   constructor() {
     this.dammingsService = inject(CatDammingsService);
+    this.snackBar = inject(MatSnackBar);
+    this.dialog = inject(MatDialog);
     this.breakpointService = inject(BreakpointService);
   }
 
@@ -173,22 +188,100 @@ export class CatDammingsComponent implements OnInit {
   filterData(): void {
     this.filteredStations = new MatTableDataSource(
       this.list()
-        ?.filter((station: DammingsInfoItem) => {
-          const formDate = new Date(this.form.controls.date.value ?? '');
-          return (
-            station.date.getTime() === formDate.getTime() &&
-            this.form.controls.stations.value?.includes(station.id_estaci)
-          );
-        })
+        ?.filter((station: DammingsInfoItem) =>
+          this.filterStationByDate(
+            station,
+            this.form.controls.stations.value || []
+          )
+        )
+        ?.map((stationFiltered: DammingsInfoItem) =>
+          this.mapStationInfo(stationFiltered)
+        ) || []
+    );
+  }
+
+  private filterStationByDate(
+    station: DammingsInfoItem,
+    stations: string[]
+  ): boolean | undefined {
+    const formDate = new Date(this.form.controls.date.value ?? '');
+    return (
+      station.date.getTime() === formDate.getTime() &&
+      stations.includes(station.id_estaci)
+    );
+  }
+
+  private mapStationInfo(station: DammingsInfoItem): FilteredInfoItem {
+    return {
+      id_estaci: station.id_estaci,
+      estaci: station.estaci,
+      nivell_absolut: station.nivell_absolut,
+      volum_embassat: station.volum_embassat,
+      percentatge_volum_embassat:
+        +station.percentatge_volum_embassat > 100
+          ? `100`
+          : station.percentatge_volum_embassat,
+    };
+  }
+
+  viewMore(stationId: string): void {
+    const dates = this.getDatesList();
+    this.moreInfoData = [];
+
+    if (dates.length) {
+      dates.forEach((date: Date) => {
+        this.moreInfoData = [
+          ...this.moreInfoData,
+          ...this.getMoreInfo(stationId, date),
+        ];
+      });
+    }
+
+    if (this.moreInfoData.length) {
+      this.dialog.open(CatDammingsHistoricChartComponent, {
+        data: this.moreInfoData,
+      });
+    } else {
+      this.snackBar.open('No hay datos para mostrar', 'Cerrar', {
+        duration: 3000,
+        horizontalPosition: 'center',
+        verticalPosition: 'top',
+      });
+    }
+  }
+
+  private getMoreInfo(stationId: string, date: Date): FilteredInfoItemDate[] {
+    return (
+      this.list()
+        ?.filter((station: DammingsInfoItem) =>
+          this.filterStationByDate(station, [stationId])
+        )
         ?.map((stationFiltered: DammingsInfoItem) => ({
-          estaci: stationFiltered.estaci,
-          nivell_absolut: stationFiltered.nivell_absolut,
-          percentatge_volum_embassat:
-            +stationFiltered.percentatge_volum_embassat > 100
-              ? `100`
-              : stationFiltered.percentatge_volum_embassat,
-          volum_embassat: stationFiltered.volum_embassat,
+          ...this.mapStationInfo(stationFiltered),
+          dia: date,
         })) || []
     );
+  }
+
+  private getDatesList(): Date[] {
+    if (this.form.controls.date.value) {
+      const minDate = this.minDate()?.getTime();
+      let selectedDate = this.form.controls.date.value.getTime();
+      let endDate = selectedDate - ONE_DAY_MILISECONDS * 7;
+
+      if (minDate && endDate < minDate) {
+        selectedDate = minDate + ONE_DAY_MILISECONDS * 7;
+      }
+
+      let dates = Array<Date>(7)
+        .fill(new Date())
+        .map((_v: Date, i: number) => {
+          return new Date(selectedDate - ONE_DAY_MILISECONDS * i);
+        });
+
+      return dates;
+    }
+
+    return [];
   }
 }

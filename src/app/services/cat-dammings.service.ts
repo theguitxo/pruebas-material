@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, take, tap } from 'rxjs';
 import { v4 as uuidv4 } from 'uuid';
+import { ONE_DAY_MILISECONDS } from '../constants/common.constants';
 import {
   DammingsInfoItem,
   DammingsInfoResponse,
@@ -100,7 +101,7 @@ export class CatDammingsService {
     const newMax = !max || currentValue > maxValue ? date : max;
     const newMin = !min || currentValue < minValue ? date : min;
 
-    return [newMax, newMin];
+    return [newMax, new Date(newMin.getTime() + ONE_DAY_MILISECONDS)];
   }
 
   private manageStationsList(

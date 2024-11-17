@@ -25,8 +25,13 @@ export interface FilterForm {
 }
 
 export interface FilteredInfoItem {
+  id_estaci: string;
   estaci: string;
   nivell_absolut: string;
   percentatge_volum_embassat: string;
   volum_embassat: string;
+}
+
+export interface FilteredInfoItemDate extends FilteredInfoItem {
+  dia: Date;
 }
