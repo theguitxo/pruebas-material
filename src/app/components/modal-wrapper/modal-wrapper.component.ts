@@ -9,16 +9,15 @@ import {
 } from '@angular/material/dialog';
 
 @Component({
-  selector: 'app-modal-wrapper',
-  templateUrl: './modal-wrapper.component.html',
-  standalone: true,
-  imports: [
-    MatDialogTitle,
-    MatDialogContent,
-    MatDialogActions,
-    MatDialogClose,
-    MatButton,
-  ],
+    selector: 'app-modal-wrapper',
+    templateUrl: './modal-wrapper.component.html',
+    imports: [
+        MatDialogTitle,
+        MatDialogContent,
+        MatDialogActions,
+        MatDialogClose,
+        MatButton,
+    ]
 })
 export class ModalWrapperComponent {
   dialogRef!: MatDialogRef<ModalWrapperComponent>;

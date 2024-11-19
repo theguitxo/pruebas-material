@@ -41,34 +41,30 @@ import { goToExternalLink } from '../../utils/external-link.util';
 import { SearchFilterComponent } from './components/search-filter/search-filter.component';
 
 @Component({
-  selector: 'app-disney-api',
-  standalone: true,
-  imports: [
-    PageTitleComponent,
-    AsyncPipe,
-    MatTableModule,
-    MatIconModule,
-    MatButtonModule,
-    SimplePaginatorComponent,
-    MatCardModule,
-    MatChipsModule,
-    ModalImageViewerComponent,
-    SearchFilterComponent,
-    DataNotFoundComponent,
-  ],
-  templateUrl: './disney-api.component.html',
-  styleUrl: './disney-api.component.scss',
-  animations: [
-    trigger('detailExpand', [
-      state('collapsed,void', style({ height: '0px', minHeight: '0' })),
-      state('expanded', style({ height: '*' })),
-      transition(
-        'expanded <=> collapsed',
-        animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')
-      ),
-    ]),
-  ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'app-disney-api',
+    imports: [
+        PageTitleComponent,
+        AsyncPipe,
+        MatTableModule,
+        MatIconModule,
+        MatButtonModule,
+        SimplePaginatorComponent,
+        MatCardModule,
+        MatChipsModule,
+        ModalImageViewerComponent,
+        SearchFilterComponent,
+        DataNotFoundComponent,
+    ],
+    templateUrl: './disney-api.component.html',
+    styleUrl: './disney-api.component.scss',
+    animations: [
+        trigger('detailExpand', [
+            state('collapsed,void', style({ height: '0px', minHeight: '0' })),
+            state('expanded', style({ height: '*' })),
+            transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+        ]),
+    ],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DisneyAPIComponent implements OnInit {
   private readonly disneyAPIService!: DisneyAPIService;

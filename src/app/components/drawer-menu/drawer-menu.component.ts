@@ -13,11 +13,10 @@ export interface MenuItem {
 }
 
 @Component({
-  selector: 'app-drawer-menu',
-  templateUrl: './drawer-menu.component.html',
-  styleUrl: './drawer-menu.component.scss',
-  standalone: true,
-  imports: [MatListModule, MatButtonModule, MatIconModule],
+    selector: 'app-drawer-menu',
+    templateUrl: './drawer-menu.component.html',
+    styleUrl: './drawer-menu.component.scss',
+    imports: [MatListModule, MatButtonModule, MatIconModule]
 })
 export class DrawerMenuComponent {
   @Input() drawerRef!: MatDrawer;

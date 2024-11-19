@@ -9,11 +9,10 @@ import {
 import { BreakpointService } from '../../services/breakpoint.service';
 
 @Component({
-  selector: 'app-simple-paginator',
-  templateUrl: './simple-paginator.component.html',
-  styleUrl: './simple-paginator.component.scss',
-  standalone: true,
-  imports: [AsyncPipe, MatSelectModule, MatFormField, MatButtonModule],
+    selector: 'app-simple-paginator',
+    templateUrl: './simple-paginator.component.html',
+    styleUrl: './simple-paginator.component.scss',
+    imports: [AsyncPipe, MatSelectModule, MatFormField, MatButtonModule]
 })
 export class SimplePaginatorComponent {
   @Input() pageSizeOptions = [5, 10, 15, 25, 50, 100];

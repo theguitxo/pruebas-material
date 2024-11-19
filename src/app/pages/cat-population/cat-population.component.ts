@@ -47,27 +47,26 @@ import { JoinPostalCodesPipe } from '../../pipes/join-postal-codes.pipe';
 import { CatPopulationService } from '../../services/cat-population.service';
 
 @Component({
-  selector: 'app-cat-population',
-  templateUrl: './cat-population.component.html',
-  styleUrl: './cat-population.component.scss',
-  standalone: true,
-  imports: [
-    PageTitleComponent,
-    DecimalPipe,
-    MatStepperModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MatFormFieldModule,
-    MatSelectModule,
-    MatButtonModule,
-    MatInputModule,
-    MatAutocompleteModule,
-    MatTabsModule,
-    JoinPostalCodesPipe,
-    MatGridListModule,
-  ],
-  providers: [JoinPostalCodesPipe],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'app-cat-population',
+    templateUrl: './cat-population.component.html',
+    styleUrl: './cat-population.component.scss',
+    imports: [
+        PageTitleComponent,
+        DecimalPipe,
+        MatStepperModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MatFormFieldModule,
+        MatSelectModule,
+        MatButtonModule,
+        MatInputModule,
+        MatAutocompleteModule,
+        MatTabsModule,
+        JoinPostalCodesPipe,
+        MatGridListModule,
+    ],
+    providers: [JoinPostalCodesPipe],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CatPopulationComponent implements OnInit {
   @ViewChild('stepper') stepper!: MatStepper;

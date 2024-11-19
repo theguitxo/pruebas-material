@@ -9,11 +9,10 @@ export interface ModalImageViewerData {
 }
 
 @Component({
-  selector: 'app-modal-image-viewer',
-  templateUrl: './modal-image-viewer.component.html',
-  styleUrl: './modal-image-viewer.component.scss',
-  standalone: true,
-  imports: [ModalWrapperComponent],
+    selector: 'app-modal-image-viewer',
+    templateUrl: './modal-image-viewer.component.html',
+    styleUrl: './modal-image-viewer.component.scss',
+    imports: [ModalWrapperComponent]
 })
 export class ModalImageViewerComponent implements OnInit {
   data: ModalImageViewerData = inject(MAT_DIALOG_DATA);

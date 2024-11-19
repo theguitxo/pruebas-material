@@ -17,18 +17,17 @@ import {
 } from '../../../../models/spotify-api/spotify-api.model';
 
 @Component({
-  selector: 'app-spotify-search-form',
-  templateUrl: './spotify-search-form.component.html',
-  styleUrl: './spotify-search-form.component.scss',
-  standalone: true,
-  imports: [
-    FormsModule,
-    ReactiveFormsModule,
-    MatInputModule,
-    MatSelectModule,
-    MatFormFieldModule,
-    MatButtonModule,
-  ],
+    selector: 'app-spotify-search-form',
+    templateUrl: './spotify-search-form.component.html',
+    styleUrl: './spotify-search-form.component.scss',
+    imports: [
+        FormsModule,
+        ReactiveFormsModule,
+        MatInputModule,
+        MatSelectModule,
+        MatFormFieldModule,
+        MatButtonModule,
+    ]
 })
 export class SpotifySearchFormComponent implements OnInit {
   @Output() clear: EventEmitter<void> = new EventEmitter<void>();

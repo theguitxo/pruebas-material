@@ -14,12 +14,11 @@ import { ModalWrapperComponent } from '../../../../components/modal-wrapper/moda
 import { FilteredInfoItemDate } from '../../../../models/cat-dammings/cat-dammings.model';
 
 @Component({
-  selector: 'app-dammings-historic-chart',
-  templateUrl: './historic-chart.component.html',
-  styleUrl: './historic-chart.component.scss',
-  standalone: true,
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [ModalWrapperComponent, JsonPipe, BaseChartDirective],
+    selector: 'app-dammings-historic-chart',
+    templateUrl: './historic-chart.component.html',
+    styleUrl: './historic-chart.component.scss',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [ModalWrapperComponent, JsonPipe, BaseChartDirective]
 })
 export class CatDammingsHistoricChartComponent implements OnInit {
   data: FilteredInfoItemDate[] = inject(MAT_DIALOG_DATA);

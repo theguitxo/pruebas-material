@@ -48,36 +48,35 @@ import { BreakpointService } from '../../services/breakpoint.service';
 import { CatDammingsService } from '../../services/cat-dammings.service';
 import { CatDammingsHistoricChartComponent } from './components/historic-chart/historic-chart.component';
 @Component({
-  selector: 'app-cat-dammings',
-  templateUrl: './cat-dammings.component.html',
-  styleUrl: './cat-dammings.component.scss',
-  standalone: true,
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [
-    {
-      provide: MAT_DATE_LOCALE,
-      useValue: 'es-ES',
-    },
-    provideNativeDateAdapter(),
-  ],
-  imports: [
-    DecimalPipe,
-    AsyncPipe,
-    PageTitleComponent,
-    MatInputModule,
-    MatDatepickerModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MatFormFieldModule,
-    MatButtonModule,
-    MatCheckboxModule,
-    MatSelectModule,
-    MatTableModule,
-    MatSortModule,
-    MatSort,
-    MatIconModule,
-    MatTooltipModule,
-  ],
+    selector: 'app-cat-dammings',
+    templateUrl: './cat-dammings.component.html',
+    styleUrl: './cat-dammings.component.scss',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    providers: [
+        {
+            provide: MAT_DATE_LOCALE,
+            useValue: 'es-ES',
+        },
+        provideNativeDateAdapter(),
+    ],
+    imports: [
+        DecimalPipe,
+        AsyncPipe,
+        PageTitleComponent,
+        MatInputModule,
+        MatDatepickerModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MatFormFieldModule,
+        MatButtonModule,
+        MatCheckboxModule,
+        MatSelectModule,
+        MatTableModule,
+        MatSortModule,
+        MatSort,
+        MatIconModule,
+        MatTooltipModule,
+    ]
 })
 export class CatDammingsComponent implements OnInit {
   private readonly dammingsService!: CatDammingsService;

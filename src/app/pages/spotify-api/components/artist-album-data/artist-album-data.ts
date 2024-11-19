@@ -12,17 +12,16 @@ import {
 } from '../../../../models/spotify-api/spotify-api.model';
 
 @Component({
-  selector: 'app-artist-album-data',
-  templateUrl: './artist-album-data.html',
-  styleUrl: './artist-album-data.scss',
-  standalone: true,
-  imports: [
-    DecimalPipe,
-    DatePipe,
-    MatChipsModule,
-    MatButtonModule,
-    MatCardModule,
-  ],
+    selector: 'app-artist-album-data',
+    templateUrl: './artist-album-data.html',
+    styleUrl: './artist-album-data.scss',
+    imports: [
+        DecimalPipe,
+        DatePipe,
+        MatChipsModule,
+        MatButtonModule,
+        MatCardModule,
+    ]
 })
 export class ArtistAlbumDataComponent implements OnInit {
   @Input({ required: true }) isArtist!: boolean;

@@ -19,18 +19,17 @@ export interface SearchForm {
 }
 
 @Component({
-  selector: 'app-search-filter',
-  templateUrl: './search-filter.component.html',
-  standalone: true,
-  imports: [
-    MatExpansionModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatExpansionPanelActionRow,
-    MatButtonModule,
-    FormsModule,
-    ReactiveFormsModule,
-  ],
+    selector: 'app-search-filter',
+    templateUrl: './search-filter.component.html',
+    imports: [
+        MatExpansionModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatExpansionPanelActionRow,
+        MatButtonModule,
+        FormsModule,
+        ReactiveFormsModule,
+    ]
 })
 export class SearchFilterComponent implements OnInit {
   @Output() emitSearch: EventEmitter<string> = new EventEmitter<string>();

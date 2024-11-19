@@ -32,19 +32,18 @@ import { ArtistAlbumDataComponent } from './components/artist-album-data/artist-
 import { SpotifySearchFormComponent } from './components/search-form/spotify-search-form.component';
 
 @Component({
-  selector: 'app-spotify-api',
-  templateUrl: './spotify-api.component.html',
-  styleUrl: './spotify-api.component.scss',
-  standalone: true,
-  imports: [
-    NgClass,
-    PageTitleComponent,
-    SpotifySearchFormComponent,
-    ArtistAlbumDataComponent,
-    MatPaginatorModule,
-    DataNotFoundComponent,
-  ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'app-spotify-api',
+    templateUrl: './spotify-api.component.html',
+    styleUrl: './spotify-api.component.scss',
+    imports: [
+        NgClass,
+        PageTitleComponent,
+        SpotifySearchFormComponent,
+        ArtistAlbumDataComponent,
+        MatPaginatorModule,
+        DataNotFoundComponent,
+    ],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SpotifyAPIComponent implements OnInit {
   private readonly spotifyService!: SpotifyAPIService;
