@@ -9,6 +9,7 @@ import {
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { MatPaginatorIntl } from '@angular/material/paginator';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { provideCharts, withDefaultRegisterables } from 'ng2-charts';
 import { routes } from './app.routes';
 import { cacheInterceptor } from './interceptors/cache.interceptor';
 import { loadingInterceptor } from './interceptors/loading.interceptor';
@@ -30,6 +31,7 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideAnimationsAsync(),
     provideHttpClient(withInterceptors(interceptors)),
+    provideCharts(withDefaultRegisterables()),
     CacheService,
     LoadingService,
     BreakpointService,

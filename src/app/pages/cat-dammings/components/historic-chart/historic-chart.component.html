@@ -1,3 +1,9 @@
 <app-modal-wrapper [title]="title()">
-  {{ data | json }}
+  <canvas
+    baseChart
+    [data]="barChartData"
+    [options]="barChartOptions"
+    [legend]="barChartLegend"
+    [type]="'bar'"
+  ></canvas>
 </app-modal-wrapper>
