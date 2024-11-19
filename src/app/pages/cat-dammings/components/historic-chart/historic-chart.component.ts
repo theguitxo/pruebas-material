@@ -1,4 +1,3 @@
-import { JsonPipe } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -18,7 +17,7 @@ import { FilteredInfoItemDate } from '../../../../models/cat-dammings/cat-dammin
     templateUrl: './historic-chart.component.html',
     styleUrl: './historic-chart.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [ModalWrapperComponent, JsonPipe, BaseChartDirective]
+    imports: [ModalWrapperComponent, BaseChartDirective]
 })
 export class CatDammingsHistoricChartComponent implements OnInit {
   data: FilteredInfoItemDate[] = inject(MAT_DIALOG_DATA);

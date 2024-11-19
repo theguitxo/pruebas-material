@@ -44,7 +44,6 @@
               [displayWith]="displayFn"
               (optionSelected)="handleCitySelected($event)"
             >
-              <mat-select-trigger> aa </mat-select-trigger>
               @for (option of zipCodesFiltered; track option) {
               <mat-option [value]="option">{{
                 option.nom_municipi

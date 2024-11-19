@@ -41,30 +41,32 @@ import { goToExternalLink } from '../../utils/external-link.util';
 import { SearchFilterComponent } from './components/search-filter/search-filter.component';
 
 @Component({
-    selector: 'app-disney-api',
-    imports: [
-        PageTitleComponent,
-        AsyncPipe,
-        MatTableModule,
-        MatIconModule,
-        MatButtonModule,
-        SimplePaginatorComponent,
-        MatCardModule,
-        MatChipsModule,
-        ModalImageViewerComponent,
-        SearchFilterComponent,
-        DataNotFoundComponent,
-    ],
-    templateUrl: './disney-api.component.html',
-    styleUrl: './disney-api.component.scss',
-    animations: [
-        trigger('detailExpand', [
-            state('collapsed,void', style({ height: '0px', minHeight: '0' })),
-            state('expanded', style({ height: '*' })),
-            transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
-        ]),
-    ],
-    changeDetection: ChangeDetectionStrategy.OnPush
+  selector: 'app-disney-api',
+  imports: [
+    PageTitleComponent,
+    AsyncPipe,
+    MatTableModule,
+    MatIconModule,
+    MatButtonModule,
+    SimplePaginatorComponent,
+    MatCardModule,
+    MatChipsModule,
+    SearchFilterComponent,
+    DataNotFoundComponent,
+  ],
+  templateUrl: './disney-api.component.html',
+  styleUrl: './disney-api.component.scss',
+  animations: [
+    trigger('detailExpand', [
+      state('collapsed,void', style({ height: '0px', minHeight: '0' })),
+      state('expanded', style({ height: '*' })),
+      transition(
+        'expanded <=> collapsed',
+        animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')
+      ),
+    ]),
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DisneyAPIComponent implements OnInit {
   private readonly disneyAPIService!: DisneyAPIService;
@@ -167,6 +169,7 @@ export class DisneyAPIComponent implements OnInit {
   private loadData(): void {
     this.disneyAPIService.currentPage = this.currentPage;
     this.disneyAPIService.pageSize = this.pageSize;
+
     if (this.filterSearch) {
       this.disneyAPIService.filterCharacters(this.filterSearch);
     } else {
@@ -192,6 +195,7 @@ export class DisneyAPIComponent implements OnInit {
   }
 
   changePageSize(value: number): void {
+    console.log(value);
     this.pageSize = value;
     this.currentPage = 1;
     this.loadData();
