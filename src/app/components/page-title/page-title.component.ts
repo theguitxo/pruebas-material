@@ -4,8 +4,15 @@ import { TITLES } from '../../constants/routes.constants';
 
 @Component({
   selector: 'app-page-title',
-  template: ` <h5>{{ title() }}</h5> `,
-  standalone: true,
+  template: ` <h3>{{ title() }}</h3>`,
+  styles: [
+    `
+      h3 {
+        font-size: 1.5rem;
+        font-weight: normal;
+      }
+    `,
+  ],
 })
 export class PageTitleComponent implements OnInit {
   private readonly activatedRoute!: ActivatedRoute;
