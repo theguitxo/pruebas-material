@@ -1,194 +1,201 @@
 <div class="page__layout">
   <app-page-title></app-page-title>
-  <mat-stepper #stepper>
+  <mat-stepper #stepper linear>
     <mat-step [stepControl]="provinceForm">
-      <form [formGroup]="provinceForm">
-        <ng-template matStepLabel>Seleccione una provincia</ng-template>
-        <div class="step-form__wrapper">
-          <mat-form-field>
-            <mat-label>Provincia</mat-label>
-            <mat-select
-              [formControlName]="'province'"
-              (selectionChange)="handleSelectProvince($event)"
-            >
-              @for (option of provinces; track option) {
-              <mat-option [value]="option.code">{{ option.name }}</mat-option> }
-            </mat-select>
-          </mat-form-field>
-          <button
-            type="button"
-            mat-flat-button
-            [disabled]="!this.provinceForm.valid"
-            matStepperNext
-          >
-            Siguiente
-          </button>
-        </div>
-      </form>
+      <ng-template matStepLabel>Seleccione una provincia</ng-template>
+      <ng-container *ngTemplateOutlet="stepOne" matStepContent></ng-container>
     </mat-step>
     <mat-step [stepControl]="cityForm">
-      <form [formGroup]="cityForm">
-        <ng-template matStepLabel>Seleccione una ciudad</ng-template>
-        <div class="step-form__wrapper">
-          <mat-form-field>
-            <mat-label>Ciudad</mat-label>
-            <input
-              type="text"
-              matInput
-              [formControlName]="'city'"
-              [matAutocomplete]="auto"
-              placeholder="Ciudad"
-            />
-            <mat-autocomplete
-              #auto="matAutocomplete"
-              [displayWith]="displayFn"
-              (optionSelected)="handleCitySelected($event)"
-            >
-              @for (option of zipCodesFiltered; track option) {
-              <mat-option [value]="option">{{
-                option.nom_municipi
-              }}</mat-option>
-              }
-            </mat-autocomplete>
-          </mat-form-field>
-          <div class="step-form__buttons">
-            <button type="button" mat-flat-button matStepperPrevious>
-              Volver
-            </button>
-            <button
-              type="button"
-              mat-flat-button
-              [disabled]="!this.cityForm.valid"
-              matStepperNext
-            >
-              Siguiente
-            </button>
-          </div>
-        </div>
-      </form>
+      <ng-template matStepLabel>Seleccione una ciudad</ng-template>
+      <ng-container *ngTemplateOutlet="stepTwo" matStepContent></ng-container>
     </mat-step>
     <mat-step>
       <ng-template matStepLabel>Información de la población</ng-template>
-      <div class="data-tabs__wrapper">
-        @if(citySelected) {
-        <h4>
-          {{ citySelected.nom_municipi }} ({{
-            citySelected.codi_postal | joinPostalCodes
-          }})
-        </h4>
-        }
-        <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
-          @if(populationData()) { @for (data of populationData(); track data) {
-          <mat-tab [label]="data.any">
-            <mat-grid-list cols="4" rowHeight="2rem" gutterSize="0">
-              <mat-grid-tile>&nbsp;</mat-grid-tile>
-              <mat-grid-tile class="border-bottom"
-                ><span class="data-tabs__grid-title"
-                  >Hombres</span
-                ></mat-grid-tile
-              >
-              <mat-grid-tile class="border-bottom"
-                ><span class="data-tabs__grid-title"
-                  >Mujeres</span
-                ></mat-grid-tile
-              >
-              <mat-grid-tile class="border-bottom"
-                ><span class="data-tabs__grid-title">Todos</span></mat-grid-tile
-              >
-              <mat-grid-tile class="border-bottom"
-                ><span class="data-tabs__grid-title data-tabs__grid-title--left"
-                  >De 0 a 14 años</span
-                ></mat-grid-tile
-              >
-              <mat-grid-tile class="border-bottom"
-                ><span class="data-tabs__grid-number">{{
-                  data.homes_de_0_a_14_anys | number : "1.0-0" : "es-ES"
-                }}</span></mat-grid-tile
-              >
-              <mat-grid-tile class="border-bottom"
-                ><span class="data-tabs__grid-number">{{
-                  data.dones_de_0_a_14_anys | number : "1.0-0" : "es-ES"
-                }}</span></mat-grid-tile
-              >
-              <mat-grid-tile class="border-bottom"
-                ><span class="data-tabs__grid-number">{{
-                  data.total_de_0_a_14_anys | number : "1.0-0" : "es-ES"
-                }}</span></mat-grid-tile
-              >
-              <mat-grid-tile class="border-bottom"
-                ><span class="data-tabs__grid-title data-tabs__grid-title--left"
-                  >De 15 a 64 años</span
-                ></mat-grid-tile
-              >
-              <mat-grid-tile class="border-bottom"
-                ><span class="data-tabs__grid-number">{{
-                  data.homes_de_15_a_64_anys | number : "1.0-0" : "es-ES"
-                }}</span></mat-grid-tile
-              >
-              <mat-grid-tile class="border-bottom"
-                ><span class="data-tabs__grid-number">{{
-                  data.dones_de_15_a_64_anys | number : "1.0-0" : "es-ES"
-                }}</span></mat-grid-tile
-              >
-              <mat-grid-tile class="border-bottom"
-                ><span class="data-tabs__grid-number">{{
-                  data.total_de_15_a_64_anys | number : "1.0-0" : "es-ES"
-                }}</span></mat-grid-tile
-              >
-              <mat-grid-tile class="border-bottom"
-                ><span class="data-tabs__grid-title data-tabs__grid-title--left"
-                  >65 años o más</span
-                ></mat-grid-tile
-              >
-              <mat-grid-tile class="border-bottom"
-                ><span class="data-tabs__grid-number">{{
-                  data.homes_de_65_anys_i_m_s | number : "1.0-0" : "es-ES"
-                }}</span></mat-grid-tile
-              >
-              <mat-grid-tile class="border-bottom"
-                ><span class="data-tabs__grid-number">{{
-                  data.dones_de_65_anys_i_m_s | number : "1.0-0" : "es-ES"
-                }}</span></mat-grid-tile
-              >
-              <mat-grid-tile class="border-bottom"
-                ><span class="data-tabs__grid-number">{{
-                  data.total_de_65_anys_i_m_s | number : "1.0-0" : "es-ES"
-                }}</span></mat-grid-tile
-              >
-              <mat-grid-tile
-                ><span class="data-tabs__grid-title data-tabs__grid-title--left"
-                  >Total</span
-                ></mat-grid-tile
-              >
-              <mat-grid-tile>
-                <span class="data-tabs__grid-number">{{
-                  totalsPopulation()[data.any]["men"]
-                    | number : "1.0-0" : "es-ES"
-                }}</span>
-              </mat-grid-tile>
-              <mat-grid-tile>
-                <span class="data-tabs__grid-number">{{
-                  totalsPopulation()[data.any]["women"]
-                    | number : "1.0-0" : "es-ES"
-                }}</span>
-              </mat-grid-tile>
-              <mat-grid-tile>
-                <span class="data-tabs__grid-number">{{
-                  totalsPopulation()[data.any]["total"]
-                    | number : "1.0-0" : "es-ES"
-                }}</span></mat-grid-tile
-              >
-            </mat-grid-list>
-          </mat-tab>
-          } }
-        </mat-tab-group>
-      </div>
-      <div class="step-form__buttons step-form__buttons--inline">
-        <button type="button" mat-flat-button matStepperPrevious>Volver</button>
-        <button type="button" mat-flat-button (click)="stepper.reset()">
-          Reiniciar
-        </button>
-      </div>
+      <ng-container *ngTemplateOutlet="stepThree" matStepContent></ng-container>
     </mat-step>
   </mat-stepper>
 </div>
+
+<ng-template #stepOne>
+  <form [formGroup]="provinceForm">
+    <div class="step-form__wrapper">
+      <mat-form-field>
+        <mat-label>Provincia</mat-label>
+        <mat-select
+          [formControlName]="'province'"
+          (selectionChange)="handleSelectProvince($event)"
+        >
+          @for (option of provinces; track option) {
+          <mat-option [value]="option.code">{{ option.name }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+      <button
+        type="button"
+        mat-flat-button
+        [disabled]="!this.provinceForm.valid"
+        (click)="stepper.next()"
+      >
+        Siguiente
+      </button>
+    </div>
+  </form>
+</ng-template>
+
+<ng-template #stepTwo>
+  <form [formGroup]="cityForm">
+    <ng-template matStepLabel>Seleccione una ciudad</ng-template>
+    <div class="step-form__wrapper">
+      <mat-form-field>
+        <mat-label>Ciudad</mat-label>
+        <input
+          type="text"
+          matInput
+          [formControlName]="'city'"
+          [matAutocomplete]="auto"
+          placeholder="Ciudad"
+        />
+        <mat-autocomplete
+          #auto="matAutocomplete"
+          [displayWith]="displayFn"
+          (optionSelected)="handleCitySelected($event)"
+        >
+          @for (option of zipCodesFiltered; track option) {
+          <mat-option [value]="option">{{ option.nom_municipi }}</mat-option>
+          }
+        </mat-autocomplete>
+      </mat-form-field>
+      <div class="step-form__buttons">
+        <button type="button" mat-flat-button (click)="stepper.previous()">
+          Volver
+        </button>
+        <button
+          type="button"
+          mat-flat-button
+          [disabled]="!this.cityForm.valid"
+          (click)="stepper.next()"
+        >
+          Siguiente
+        </button>
+      </div>
+    </div>
+  </form>
+</ng-template>
+
+<ng-template #stepThree>
+  <div class="data-tabs__wrapper">
+    @if(citySelected) {
+    <h4>
+      {{ citySelected.nom_municipi }} ({{
+        citySelected.codi_postal | joinPostalCodes
+      }})
+    </h4>
+    }
+    <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
+      @if(populationData()) { @for (data of populationData(); track data) {
+      <mat-tab [label]="data.any">
+        <mat-grid-list cols="4" rowHeight="2rem" gutterSize="0">
+          <mat-grid-tile>&nbsp;</mat-grid-tile>
+          <mat-grid-tile class="border-bottom"
+            ><span class="data-tabs__grid-title">Hombres</span></mat-grid-tile
+          >
+          <mat-grid-tile class="border-bottom"
+            ><span class="data-tabs__grid-title">Mujeres</span></mat-grid-tile
+          >
+          <mat-grid-tile class="border-bottom"
+            ><span class="data-tabs__grid-title">Todos</span></mat-grid-tile
+          >
+          <mat-grid-tile class="border-bottom"
+            ><span class="data-tabs__grid-title data-tabs__grid-title--left"
+              >De 0 a 14 años</span
+            ></mat-grid-tile
+          >
+          <mat-grid-tile class="border-bottom"
+            ><span class="data-tabs__grid-number">{{
+              data.homes_de_0_a_14_anys | number : "1.0-0" : "es-ES"
+            }}</span></mat-grid-tile
+          >
+          <mat-grid-tile class="border-bottom"
+            ><span class="data-tabs__grid-number">{{
+              data.dones_de_0_a_14_anys | number : "1.0-0" : "es-ES"
+            }}</span></mat-grid-tile
+          >
+          <mat-grid-tile class="border-bottom"
+            ><span class="data-tabs__grid-number">{{
+              data.total_de_0_a_14_anys | number : "1.0-0" : "es-ES"
+            }}</span></mat-grid-tile
+          >
+          <mat-grid-tile class="border-bottom"
+            ><span class="data-tabs__grid-title data-tabs__grid-title--left"
+              >De 15 a 64 años</span
+            ></mat-grid-tile
+          >
+          <mat-grid-tile class="border-bottom"
+            ><span class="data-tabs__grid-number">{{
+              data.homes_de_15_a_64_anys | number : "1.0-0" : "es-ES"
+            }}</span></mat-grid-tile
+          >
+          <mat-grid-tile class="border-bottom"
+            ><span class="data-tabs__grid-number">{{
+              data.dones_de_15_a_64_anys | number : "1.0-0" : "es-ES"
+            }}</span></mat-grid-tile
+          >
+          <mat-grid-tile class="border-bottom"
+            ><span class="data-tabs__grid-number">{{
+              data.total_de_15_a_64_anys | number : "1.0-0" : "es-ES"
+            }}</span></mat-grid-tile
+          >
+          <mat-grid-tile class="border-bottom"
+            ><span class="data-tabs__grid-title data-tabs__grid-title--left"
+              >65 años o más</span
+            ></mat-grid-tile
+          >
+          <mat-grid-tile class="border-bottom"
+            ><span class="data-tabs__grid-number">{{
+              data.homes_de_65_anys_i_m_s | number : "1.0-0" : "es-ES"
+            }}</span></mat-grid-tile
+          >
+          <mat-grid-tile class="border-bottom"
+            ><span class="data-tabs__grid-number">{{
+              data.dones_de_65_anys_i_m_s | number : "1.0-0" : "es-ES"
+            }}</span></mat-grid-tile
+          >
+          <mat-grid-tile class="border-bottom"
+            ><span class="data-tabs__grid-number">{{
+              data.total_de_65_anys_i_m_s | number : "1.0-0" : "es-ES"
+            }}</span></mat-grid-tile
+          >
+          <mat-grid-tile
+            ><span class="data-tabs__grid-title data-tabs__grid-title--left"
+              >Total</span
+            ></mat-grid-tile
+          >
+          <mat-grid-tile>
+            <span class="data-tabs__grid-number">{{
+              totalsPopulation()[data.any]["men"] | number : "1.0-0" : "es-ES"
+            }}</span>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <span class="data-tabs__grid-number">{{
+              totalsPopulation()[data.any]["women"] | number : "1.0-0" : "es-ES"
+            }}</span>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <span class="data-tabs__grid-number">{{
+              totalsPopulation()[data.any]["total"] | number : "1.0-0" : "es-ES"
+            }}</span></mat-grid-tile
+          >
+        </mat-grid-list>
+      </mat-tab>
+      } }
+    </mat-tab-group>
+  </div>
+  <div class="step-form__buttons step-form__buttons--inline">
+    <button type="button" mat-flat-button (click)="stepper.previous()">
+      Volver
+    </button>
+    <button type="button" mat-flat-button (click)="stepper.reset()">
+      Reiniciar
+    </button>
+  </div>
+</ng-template>

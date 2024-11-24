@@ -1,4 +1,5 @@
-import { DecimalPipe } from '@angular/common';
+import { CdkStepper } from '@angular/cdk/stepper';
+import { DecimalPipe, NgTemplateOutlet } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -47,26 +48,27 @@ import { JoinPostalCodesPipe } from '../../pipes/join-postal-codes.pipe';
 import { CatPopulationService } from '../../services/cat-population.service';
 
 @Component({
-    selector: 'app-cat-population',
-    templateUrl: './cat-population.component.html',
-    styleUrl: './cat-population.component.scss',
-    imports: [
-        PageTitleComponent,
-        DecimalPipe,
-        MatStepperModule,
-        FormsModule,
-        ReactiveFormsModule,
-        MatFormFieldModule,
-        MatSelectModule,
-        MatButtonModule,
-        MatInputModule,
-        MatAutocompleteModule,
-        MatTabsModule,
-        JoinPostalCodesPipe,
-        MatGridListModule,
-    ],
-    providers: [JoinPostalCodesPipe],
-    changeDetection: ChangeDetectionStrategy.OnPush
+  selector: 'app-cat-population',
+  templateUrl: './cat-population.component.html',
+  styleUrl: './cat-population.component.scss',
+  imports: [
+    NgTemplateOutlet,
+    PageTitleComponent,
+    DecimalPipe,
+    MatStepperModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatButtonModule,
+    MatInputModule,
+    MatAutocompleteModule,
+    MatTabsModule,
+    JoinPostalCodesPipe,
+    MatGridListModule,
+  ],
+  providers: [JoinPostalCodesPipe, CdkStepper],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CatPopulationComponent implements OnInit {
   @ViewChild('stepper') stepper!: MatStepper;
@@ -218,5 +220,13 @@ export class CatPopulationComponent implements OnInit {
 
   handleSelectProvince(item: MatSelectChange): void {
     this.zipCodesFiltered = this.filterByProvinceCode();
+  }
+
+  nextStep(): void {
+    this.stepper.next();
+  }
+
+  previousStep(): void {
+    this.stepper.previous();
   }
 }
