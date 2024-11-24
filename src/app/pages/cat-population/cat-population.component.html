@@ -1,5 +1,21 @@
 <div class="page__layout">
   <app-page-title></app-page-title>
+  @if(breakpointService.isHandsetPortrait() | async) {
+  <mat-vertical-stepper #stepper linear>
+    <mat-step [stepControl]="provinceForm">
+      <ng-template matStepLabel>Seleccione una provincia</ng-template>
+      <ng-container *ngTemplateOutlet="stepOne" matStepContent></ng-container>
+    </mat-step>
+    <mat-step [stepControl]="cityForm">
+      <ng-template matStepLabel>Seleccione una ciudad</ng-template>
+      <ng-container *ngTemplateOutlet="stepTwo" matStepContent></ng-container>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Información de la población</ng-template>
+      <ng-container *ngTemplateOutlet="stepThree" matStepContent></ng-container>
+    </mat-step>
+  </mat-vertical-stepper>
+  } @else {
   <mat-stepper #stepper linear>
     <mat-step [stepControl]="provinceForm">
       <ng-template matStepLabel>Seleccione una provincia</ng-template>
@@ -14,11 +30,17 @@
       <ng-container *ngTemplateOutlet="stepThree" matStepContent></ng-container>
     </mat-step>
   </mat-stepper>
+  }
 </div>
 
 <ng-template #stepOne>
   <form [formGroup]="provinceForm">
-    <div class="step-form__wrapper">
+    <div
+      class="step-form__wrapper"
+      [class.step-form__wrapper--mobile]="
+        breakpointService.isHandsetPortrait() | async
+      "
+    >
       <mat-form-field>
         <mat-label>Provincia</mat-label>
         <mat-select
@@ -45,7 +67,12 @@
 <ng-template #stepTwo>
   <form [formGroup]="cityForm">
     <ng-template matStepLabel>Seleccione una ciudad</ng-template>
-    <div class="step-form__wrapper">
+    <div
+      class="step-form__wrapper"
+      [class.step-form__wrapper--mobile]="
+        breakpointService.isHandsetPortrait() | async
+      "
+    >
       <mat-form-field>
         <mat-label>Ciudad</mat-label>
         <input
@@ -83,7 +110,12 @@
 </ng-template>
 
 <ng-template #stepThree>
-  <div class="data-tabs__wrapper">
+  <div
+    class="data-tabs__wrapper"
+    [class.step-form__wrapper--mobile]="
+      breakpointService.isHandsetPortrait() | async
+    "
+  >
     @if(citySelected) {
     <h4>
       {{ citySelected.nom_municipi }} ({{
@@ -112,17 +144,17 @@
           >
           <mat-grid-tile class="border-bottom"
             ><span class="data-tabs__grid-number">{{
-              data.homes_de_0_a_14_anys | number : "1.0-0" : "es-ES"
+              data.homes_de_0_a_14_anys | number : '1.0-0' : 'es-ES'
             }}</span></mat-grid-tile
           >
           <mat-grid-tile class="border-bottom"
             ><span class="data-tabs__grid-number">{{
-              data.dones_de_0_a_14_anys | number : "1.0-0" : "es-ES"
+              data.dones_de_0_a_14_anys | number : '1.0-0' : 'es-ES'
             }}</span></mat-grid-tile
           >
           <mat-grid-tile class="border-bottom"
             ><span class="data-tabs__grid-number">{{
-              data.total_de_0_a_14_anys | number : "1.0-0" : "es-ES"
+              data.total_de_0_a_14_anys | number : '1.0-0' : 'es-ES'
             }}</span></mat-grid-tile
           >
           <mat-grid-tile class="border-bottom"
@@ -132,17 +164,17 @@
           >
           <mat-grid-tile class="border-bottom"
             ><span class="data-tabs__grid-number">{{
-              data.homes_de_15_a_64_anys | number : "1.0-0" : "es-ES"
+              data.homes_de_15_a_64_anys | number : '1.0-0' : 'es-ES'
             }}</span></mat-grid-tile
           >
           <mat-grid-tile class="border-bottom"
             ><span class="data-tabs__grid-number">{{
-              data.dones_de_15_a_64_anys | number : "1.0-0" : "es-ES"
+              data.dones_de_15_a_64_anys | number : '1.0-0' : 'es-ES'
             }}</span></mat-grid-tile
           >
           <mat-grid-tile class="border-bottom"
             ><span class="data-tabs__grid-number">{{
-              data.total_de_15_a_64_anys | number : "1.0-0" : "es-ES"
+              data.total_de_15_a_64_anys | number : '1.0-0' : 'es-ES'
             }}</span></mat-grid-tile
           >
           <mat-grid-tile class="border-bottom"
@@ -152,17 +184,17 @@
           >
           <mat-grid-tile class="border-bottom"
             ><span class="data-tabs__grid-number">{{
-              data.homes_de_65_anys_i_m_s | number : "1.0-0" : "es-ES"
+              data.homes_de_65_anys_i_m_s | number : '1.0-0' : 'es-ES'
             }}</span></mat-grid-tile
           >
           <mat-grid-tile class="border-bottom"
             ><span class="data-tabs__grid-number">{{
-              data.dones_de_65_anys_i_m_s | number : "1.0-0" : "es-ES"
+              data.dones_de_65_anys_i_m_s | number : '1.0-0' : 'es-ES'
             }}</span></mat-grid-tile
           >
           <mat-grid-tile class="border-bottom"
             ><span class="data-tabs__grid-number">{{
-              data.total_de_65_anys_i_m_s | number : "1.0-0" : "es-ES"
+              data.total_de_65_anys_i_m_s | number : '1.0-0' : 'es-ES'
             }}</span></mat-grid-tile
           >
           <mat-grid-tile
@@ -172,17 +204,17 @@
           >
           <mat-grid-tile>
             <span class="data-tabs__grid-number">{{
-              totalsPopulation()[data.any]["men"] | number : "1.0-0" : "es-ES"
+              totalsPopulation()[data.any]['men'] | number : '1.0-0' : 'es-ES'
             }}</span>
           </mat-grid-tile>
           <mat-grid-tile>
             <span class="data-tabs__grid-number">{{
-              totalsPopulation()[data.any]["women"] | number : "1.0-0" : "es-ES"
+              totalsPopulation()[data.any]['women'] | number : '1.0-0' : 'es-ES'
             }}</span>
           </mat-grid-tile>
           <mat-grid-tile>
             <span class="data-tabs__grid-number">{{
-              totalsPopulation()[data.any]["total"] | number : "1.0-0" : "es-ES"
+              totalsPopulation()[data.any]['total'] | number : '1.0-0' : 'es-ES'
             }}</span></mat-grid-tile
           >
         </mat-grid-list>

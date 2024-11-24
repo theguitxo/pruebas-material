@@ -1,5 +1,5 @@
 import { CdkStepper } from '@angular/cdk/stepper';
-import { DecimalPipe, NgTemplateOutlet } from '@angular/common';
+import { AsyncPipe, DecimalPipe, NgTemplateOutlet } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -45,6 +45,7 @@ import {
 import { PopulationDataResponse } from '../../models/cat-population/population-response.model';
 import { ZipCodeListItem } from '../../models/cat-population/zip-codes.model';
 import { JoinPostalCodesPipe } from '../../pipes/join-postal-codes.pipe';
+import { BreakpointService } from '../../services/breakpoint.service';
 import { CatPopulationService } from '../../services/cat-population.service';
 
 @Component({
@@ -52,6 +53,7 @@ import { CatPopulationService } from '../../services/cat-population.service';
   templateUrl: './cat-population.component.html',
   styleUrl: './cat-population.component.scss',
   imports: [
+    AsyncPipe,
     NgTemplateOutlet,
     PageTitleComponent,
     DecimalPipe,
@@ -79,6 +81,8 @@ export class CatPopulationComponent implements OnInit {
   private readonly destroyRef!: DestroyRef;
   private readonly joinPostalCodesPipe!: JoinPostalCodesPipe;
 
+  breakpointService!: BreakpointService;
+
   zipCodes!: Signal<ZipCodeListItem[] | undefined>;
   populationData!: Signal<PopulationDataResponse[] | undefined>;
 
@@ -98,6 +102,7 @@ export class CatPopulationComponent implements OnInit {
     this.formBuilder = inject(FormBuilder);
     this.destroyRef = inject(DestroyRef);
     this.joinPostalCodesPipe = inject(JoinPostalCodesPipe);
+    this.breakpointService = inject(BreakpointService);
   }
 
   ngOnInit(): void {
@@ -220,13 +225,5 @@ export class CatPopulationComponent implements OnInit {
 
   handleSelectProvince(item: MatSelectChange): void {
     this.zipCodesFiltered = this.filterByProvinceCode();
-  }
-
-  nextStep(): void {
-    this.stepper.next();
-  }
-
-  previousStep(): void {
-    this.stepper.previous();
   }
 }
