@@ -1,4 +1,4 @@
-import { Pipe, PipeTransform } from '@angular/core';
+import { Pipe, PipeTransform } from '@angular/core'
 
 @Pipe({
   name: 'joinPostalCodes',
@@ -6,9 +6,13 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class JoinPostalCodesPipe implements PipeTransform {
   transform(value: string[], itemsToElipsis = 5): string {
-    const itemsToShow = value.slice(0, itemsToElipsis);
-    return `${itemsToShow.join(', ')}${
-      value.length > itemsToElipsis ? ', ...' : ''
-    }`;
+    if (value?.length) {
+      const itemsToShow = value.slice(0, itemsToElipsis)
+      return `${itemsToShow.join(', ')}${
+        value.length > itemsToElipsis ? ', ...' : ''
+      }`
+    }
+
+    return ''
   }
 }

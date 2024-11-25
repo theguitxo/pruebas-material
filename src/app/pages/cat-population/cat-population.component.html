@@ -43,10 +43,7 @@
     >
       <mat-form-field>
         <mat-label>Provincia</mat-label>
-        <mat-select
-          [formControlName]="'province'"
-          (selectionChange)="handleSelectProvince($event)"
-        >
+        <mat-select [formControlName]="'province'">
           @for (option of provinces; track option) {
           <mat-option [value]="option.code">{{ option.name }}</mat-option>
           }
@@ -87,8 +84,10 @@
           [displayWith]="displayFn"
           (optionSelected)="handleCitySelected($event)"
         >
-          @for (option of zipCodesFiltered; track option) {
-          <mat-option [value]="option">{{ option.nom_municipi }}</mat-option>
+          @for (option of zipCodesFiltered; track option.codi_municipi) {
+          <mat-option [value]="option.codi_municipi">{{
+            option.nom_municipi
+          }}</mat-option>
           }
         </mat-autocomplete>
       </mat-form-field>
@@ -124,99 +123,22 @@
     </h4>
     }
     <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
-      @if(populationData()) { @for (data of populationData(); track data) {
-      <mat-tab [label]="data.any">
+      @if(formatedPopulationData()) { @for (data of formatedPopulationData();
+      track data.id) {
+      <mat-tab [label]="data.year">
         <mat-grid-list cols="4" rowHeight="2rem" gutterSize="0">
-          <mat-grid-tile>&nbsp;</mat-grid-tile>
-          <mat-grid-tile class="border-bottom"
-            ><span class="data-tabs__grid-title">Hombres</span></mat-grid-tile
+          @for(row of data.rows; track row) { @for(column of row; track
+          column.id) {
+          <mat-grid-tile [class.border-bottom]="column.borderBottom">
+            @if(column.value) {
+            <span
+              [class.data-tabs__grid-title]="column.isTitle"
+              [class.data-tabs__grid-title--left]="column.isTitleLeft"
+              [class.data-tabs__grid-number]="column.isNumber"
+              >{{ column.value }}</span
+            >}</mat-grid-tile
           >
-          <mat-grid-tile class="border-bottom"
-            ><span class="data-tabs__grid-title">Mujeres</span></mat-grid-tile
-          >
-          <mat-grid-tile class="border-bottom"
-            ><span class="data-tabs__grid-title">Todos</span></mat-grid-tile
-          >
-          <mat-grid-tile class="border-bottom"
-            ><span class="data-tabs__grid-title data-tabs__grid-title--left"
-              >De 0 a 14 años</span
-            ></mat-grid-tile
-          >
-          <mat-grid-tile class="border-bottom"
-            ><span class="data-tabs__grid-number">{{
-              data.homes_de_0_a_14_anys | number : '1.0-0' : 'es-ES'
-            }}</span></mat-grid-tile
-          >
-          <mat-grid-tile class="border-bottom"
-            ><span class="data-tabs__grid-number">{{
-              data.dones_de_0_a_14_anys | number : '1.0-0' : 'es-ES'
-            }}</span></mat-grid-tile
-          >
-          <mat-grid-tile class="border-bottom"
-            ><span class="data-tabs__grid-number">{{
-              data.total_de_0_a_14_anys | number : '1.0-0' : 'es-ES'
-            }}</span></mat-grid-tile
-          >
-          <mat-grid-tile class="border-bottom"
-            ><span class="data-tabs__grid-title data-tabs__grid-title--left"
-              >De 15 a 64 años</span
-            ></mat-grid-tile
-          >
-          <mat-grid-tile class="border-bottom"
-            ><span class="data-tabs__grid-number">{{
-              data.homes_de_15_a_64_anys | number : '1.0-0' : 'es-ES'
-            }}</span></mat-grid-tile
-          >
-          <mat-grid-tile class="border-bottom"
-            ><span class="data-tabs__grid-number">{{
-              data.dones_de_15_a_64_anys | number : '1.0-0' : 'es-ES'
-            }}</span></mat-grid-tile
-          >
-          <mat-grid-tile class="border-bottom"
-            ><span class="data-tabs__grid-number">{{
-              data.total_de_15_a_64_anys | number : '1.0-0' : 'es-ES'
-            }}</span></mat-grid-tile
-          >
-          <mat-grid-tile class="border-bottom"
-            ><span class="data-tabs__grid-title data-tabs__grid-title--left"
-              >65 años o más</span
-            ></mat-grid-tile
-          >
-          <mat-grid-tile class="border-bottom"
-            ><span class="data-tabs__grid-number">{{
-              data.homes_de_65_anys_i_m_s | number : '1.0-0' : 'es-ES'
-            }}</span></mat-grid-tile
-          >
-          <mat-grid-tile class="border-bottom"
-            ><span class="data-tabs__grid-number">{{
-              data.dones_de_65_anys_i_m_s | number : '1.0-0' : 'es-ES'
-            }}</span></mat-grid-tile
-          >
-          <mat-grid-tile class="border-bottom"
-            ><span class="data-tabs__grid-number">{{
-              data.total_de_65_anys_i_m_s | number : '1.0-0' : 'es-ES'
-            }}</span></mat-grid-tile
-          >
-          <mat-grid-tile
-            ><span class="data-tabs__grid-title data-tabs__grid-title--left"
-              >Total</span
-            ></mat-grid-tile
-          >
-          <mat-grid-tile>
-            <span class="data-tabs__grid-number">{{
-              totalsPopulation()[data.any]['men'] | number : '1.0-0' : 'es-ES'
-            }}</span>
-          </mat-grid-tile>
-          <mat-grid-tile>
-            <span class="data-tabs__grid-number">{{
-              totalsPopulation()[data.any]['women'] | number : '1.0-0' : 'es-ES'
-            }}</span>
-          </mat-grid-tile>
-          <mat-grid-tile>
-            <span class="data-tabs__grid-number">{{
-              totalsPopulation()[data.any]['total'] | number : '1.0-0' : 'es-ES'
-            }}</span></mat-grid-tile
-          >
+          } }
         </mat-grid-list>
       </mat-tab>
       } }
