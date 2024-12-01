@@ -26,11 +26,35 @@
     </mat-form-field>
     } @else {
     <div class="form__stations-list">
-      @for (station of stations(); track station) {
-      <mat-checkbox (change)="changeStation($event, station)">{{
-        station.name
-      }}</mat-checkbox>
-      }
+      <div>
+        @for (station of stations(); track station) {
+        <mat-checkbox
+          [checked]="checkedStations.has(station.key)"
+          (change)="changeStation($event, station)"
+          >{{ station.name }}</mat-checkbox
+        >
+        }
+      </div>
+      <div class="form__all-none-buttons">
+        <button
+          type="button"
+          mat-flat-button
+          [disabled]="
+            form.controls.stations.value?.length === stations()?.length
+          "
+          (click)="selectAll()"
+        >
+          Todos
+        </button>
+        <button
+          type="button"
+          mat-flat-button
+          [disabled]="selectedStations.length === 0"
+          (click)="unselectAll()"
+        >
+          Ninguno
+        </button>
+      </div>
     </div>
     }
     <div>
