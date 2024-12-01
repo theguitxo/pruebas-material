@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, inject, OnInit, signal, WritableSignal } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { TITLES } from '../../constants/routes.constants';
 
@@ -17,7 +17,7 @@ import { TITLES } from '../../constants/routes.constants';
 export class PageTitleComponent implements OnInit {
   private readonly activatedRoute!: ActivatedRoute;
 
-  title = signal<string | undefined>(undefined);
+  title!: WritableSignal<string | undefined>;
 
   constructor() {
     this.activatedRoute = inject(ActivatedRoute);

@@ -1,5 +1,5 @@
 import { DatePipe, DecimalPipe } from '@angular/common';
-import { Component, Input, OnInit, signal } from '@angular/core';
+import { Component, Input, OnInit, signal, WritableSignal } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
@@ -28,9 +28,9 @@ export class ArtistAlbumDataComponent implements OnInit {
   @Input({ required: true }) info!: ArtistResultItem | AlbumResultItem;
 
   genres: string[] = [];
-  followers = signal<number | undefined>(undefined);
-  popularity = signal<number | undefined>(undefined);
-  image = signal<ImageItemInfo | undefined>(undefined);
+  followers!: WritableSignal<number | undefined>;
+  popularity!: WritableSignal<number | undefined>;
+  image!: WritableSignal<ImageItemInfo | undefined>;
   spotifyUrl!: string;
   releaseDate!: string;
   totalTracks!: number;

@@ -8,6 +8,7 @@ import {
   OnInit,
   signal,
   Signal,
+  WritableSignal,
 } from '@angular/core';
 import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
@@ -51,7 +52,7 @@ export class SpotifyAPIComponent implements OnInit {
   private readonly destroyRef!: DestroyRef;
 
   result!: Signal<ArtistSearchResult | AlbumSearchResult | undefined>;
-  isArtist = signal<boolean>(false);
+  isArtist!: WritableSignal<boolean>;
 
   private readonly _search: Subject<void> = new Subject<void>();
 

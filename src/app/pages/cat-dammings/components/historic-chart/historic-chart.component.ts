@@ -5,6 +5,7 @@ import {
   OnInit,
   signal,
   Signal,
+  WritableSignal,
 } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ChartConfiguration } from 'chart.js';
@@ -22,7 +23,7 @@ import { FilteredInfoItemDate } from '../../../../models/cat-dammings/cat-dammin
 export class CatDammingsHistoricChartComponent implements OnInit {
   data: FilteredInfoItemDate[] = inject(MAT_DIALOG_DATA);
 
-  title!: Signal<string>;
+  title!: WritableSignal<string>;
 
   barChartLegend = false;
 
@@ -36,6 +37,6 @@ export class CatDammingsHistoricChartComponent implements OnInit {
   };
 
   ngOnInit(): void {
-    this.title = signal(this.data[0].estaci);
+    this.title.set(this.data[0].estaci);
   }
 }
