@@ -30,7 +30,7 @@ export class PageTitleComponent implements OnInit {
         (item: string[]) => item[0] === path
       );
       if (value) {
-        this.title.set(value[1]);
+        this.title = signal(value[1]);
       }
     }
   }

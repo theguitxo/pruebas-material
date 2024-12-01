@@ -77,6 +77,8 @@ export class SpotifyAPIComponent implements OnInit {
   }
 
   private initSignals(): void {
+    this.isArtist = signal(false);
+
     this.result = toSignal(
       this._search.pipe(
         takeUntilDestroyed(this.destroyRef),

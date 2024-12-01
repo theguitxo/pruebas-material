@@ -37,6 +37,6 @@ export class CatDammingsHistoricChartComponent implements OnInit {
   };
 
   ngOnInit(): void {
-    this.title.set(this.data[0].estaci);
+    this.title = signal(this.data[0].estaci);
   }
 }

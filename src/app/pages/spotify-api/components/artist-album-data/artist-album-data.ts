@@ -39,6 +39,9 @@ export class ArtistAlbumDataComponent implements OnInit {
   panelOpened = false;
 
   ngOnInit(): void {
+    this.followers = signal(undefined);
+    this.popularity = signal(undefined);
+    this.image = signal(undefined);
     this.setArtistAlbumInfo();
     this.setImageInfo();
   }
