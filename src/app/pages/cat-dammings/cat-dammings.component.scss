@@ -21,6 +21,11 @@
     grid-column: 1;
     grid-row: 1 / 3;
   }
+
+  &__all-none-buttons {
+    display: flex;
+    gap: 0.5rem;
+  }
 }
 
 .table {

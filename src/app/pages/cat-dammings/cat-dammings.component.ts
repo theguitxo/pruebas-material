@@ -105,6 +105,7 @@ export class CatDammingsComponent implements OnInit {
   form!: FormGroup<FilterForm>;
 
   selectedStations: string[] = [];
+  checkedStations: Set<string> = new Set<string>();
 
   filteredStations!: MatTableDataSource<FilteredInfoItem>;
 
@@ -126,12 +127,12 @@ export class CatDammingsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.initForm();
-    this.initSignals();
+    this._initForm();
+    this._initSignals();
     this.dammingsService.loadData();
   }
 
-  private initForm() {
+  private _initForm() {
     this.form = new FormGroup<FilterForm>({
       date: new FormControl(undefined, {
         nonNullable: true,
@@ -144,7 +145,7 @@ export class CatDammingsComponent implements OnInit {
     });
   }
 
-  private initSignals(): void {
+  private _initSignals(): void {
     this.maxDate = toSignal(this.dammingsService.maxDate, {
       requireSync: true,
       injector: this.injector,
@@ -183,13 +184,15 @@ export class CatDammingsComponent implements OnInit {
       );
     }
 
-    this.setFormStationsValue();
+    this._updateCheckedAndForm();
   }
 
   selectChangeStation(event: MatSelectChange): void {
     const todosSelected = event.value?.find(
       (item: StationItem) => item.key === TODOS
     );
+
+    this.checkedStations.clear();
 
     if (todosSelected && !this.allSelected) {
       this.selectedStations =
@@ -224,14 +227,18 @@ export class CatDammingsComponent implements OnInit {
       (value: string) => value !== TODOS
     ).length;
 
-    this.setFormStationsValue();
+    this._updateCheckedAndForm();
+  }
+
+  private _setCheckedStations(): void {
+    this.checkedStations = new Set(this.selectedStations);
   }
 
   private _getSelectedStationsFiltered(): string[] {
     return this.selectedStations.filter((item: string) => item !== TODOS);
   }
 
-  setFormStationsValue(): void {
+  private _setFormStationsValue(): void {
     this.form.controls.stations.setValue(
       this.selectedStations.length
         ? this.selectedStations.filter((item: string) => item !== TODOS)
@@ -243,18 +250,18 @@ export class CatDammingsComponent implements OnInit {
     this.filteredStations = new MatTableDataSource(
       this.list()
         ?.filter((station: DammingsInfoItem) =>
-          this.filterStationByDate(
+          this._filterStationByDate(
             station,
             this.form.controls.stations.value || []
           )
         )
         ?.map((stationFiltered: DammingsInfoItem) =>
-          this.mapStationInfo(stationFiltered)
+          this._mapStationInfo(stationFiltered)
         ) || []
     );
   }
 
-  private filterStationByDate(
+  private _filterStationByDate(
     station: DammingsInfoItem,
     stations: string[]
   ): boolean | undefined {
@@ -265,7 +272,7 @@ export class CatDammingsComponent implements OnInit {
     );
   }
 
-  private mapStationInfo(station: DammingsInfoItem): FilteredInfoItem {
+  private _mapStationInfo(station: DammingsInfoItem): FilteredInfoItem {
     return {
       id_estaci: station.id_estaci,
       estaci: station.estaci,
@@ -279,14 +286,14 @@ export class CatDammingsComponent implements OnInit {
   }
 
   viewMore(stationId: string): void {
-    const dates = this.getDatesList();
+    const dates = this._getDatesList();
     this.moreInfoData = [];
 
     if (dates.length) {
       dates.forEach((date: Date) => {
         this.moreInfoData = [
           ...this.moreInfoData,
-          ...this.getMoreInfo(stationId, date),
+          ...this._getMoreInfo(stationId, date),
         ];
       });
     }
@@ -304,20 +311,20 @@ export class CatDammingsComponent implements OnInit {
     }
   }
 
-  private getMoreInfo(stationId: string, date: Date): FilteredInfoItemDate[] {
+  private _getMoreInfo(stationId: string, date: Date): FilteredInfoItemDate[] {
     return (
       this.list()
         ?.filter((station: DammingsInfoItem) =>
-          this.filterStationByDate(station, [stationId])
+          this._filterStationByDate(station, [stationId])
         )
         ?.map((stationFiltered: DammingsInfoItem) => ({
-          ...this.mapStationInfo(stationFiltered),
+          ...this._mapStationInfo(stationFiltered),
           dia: date,
         })) || []
     );
   }
 
-  private getDatesList(): Date[] {
+  private _getDatesList(): Date[] {
     if (this.form.controls.date.value) {
       const minDate = this.minDate()?.getTime();
       let selectedDate = this.form.controls.date.value.getTime();
@@ -339,7 +346,28 @@ export class CatDammingsComponent implements OnInit {
     return [];
   }
 
-  compareFn(option: StationItem, selected: string) {
+  compareFn(option: StationItem, selected: string): boolean {
     return option?.key === selected;
+  }
+
+  selectAll(): void {
+    this.selectedStations =
+      this.stations()?.map((value: StationItem) => value.key) ?? [];
+    this.allSelected = true;
+
+    this._updateCheckedAndForm();
+  }
+
+  unselectAll(): void {
+    this.selectedStations = [];
+    this.allSelected = false;
+
+    this._updateCheckedAndForm();
+  }
+
+  private _updateCheckedAndForm(): void {
+    this._setCheckedStations();
+
+    this._setFormStationsValue();
   }
 }
