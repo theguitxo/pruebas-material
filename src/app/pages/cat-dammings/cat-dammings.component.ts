@@ -2,6 +2,7 @@ import { AsyncPipe, DecimalPipe } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
+  computed,
   inject,
   Injector,
   OnInit,
@@ -47,36 +48,38 @@ import {
 import { BreakpointService } from '../../services/breakpoint.service';
 import { CatDammingsService } from '../../services/cat-dammings.service';
 import { CatDammingsHistoricChartComponent } from './components/historic-chart/historic-chart.component';
+
+export const TODOS = 'todos';
 @Component({
-    selector: 'app-cat-dammings',
-    templateUrl: './cat-dammings.component.html',
-    styleUrl: './cat-dammings.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    providers: [
-        {
-            provide: MAT_DATE_LOCALE,
-            useValue: 'es-ES',
-        },
-        provideNativeDateAdapter(),
-    ],
-    imports: [
-        DecimalPipe,
-        AsyncPipe,
-        PageTitleComponent,
-        MatInputModule,
-        MatDatepickerModule,
-        FormsModule,
-        ReactiveFormsModule,
-        MatFormFieldModule,
-        MatButtonModule,
-        MatCheckboxModule,
-        MatSelectModule,
-        MatTableModule,
-        MatSortModule,
-        MatSort,
-        MatIconModule,
-        MatTooltipModule,
-    ]
+  selector: 'app-cat-dammings',
+  templateUrl: './cat-dammings.component.html',
+  styleUrl: './cat-dammings.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [
+    {
+      provide: MAT_DATE_LOCALE,
+      useValue: 'es-ES',
+    },
+    provideNativeDateAdapter(),
+  ],
+  imports: [
+    DecimalPipe,
+    AsyncPipe,
+    PageTitleComponent,
+    MatInputModule,
+    MatDatepickerModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatButtonModule,
+    MatCheckboxModule,
+    MatSelectModule,
+    MatTableModule,
+    MatSortModule,
+    MatSort,
+    MatIconModule,
+    MatTooltipModule,
+  ],
 })
 export class CatDammingsComponent implements OnInit {
   private readonly dammingsService!: CatDammingsService;
@@ -95,6 +98,9 @@ export class CatDammingsComponent implements OnInit {
   minDate!: Signal<Date | undefined>;
   stations!: Signal<StationItem[] | undefined>;
   list!: Signal<DammingsInfoItem[] | undefined>;
+  selectStations!: Signal<StationItem[] | undefined>;
+  allSelected = false;
+  amountSelected = 0;
 
   form!: FormGroup<FilterForm>;
 
@@ -158,6 +164,14 @@ export class CatDammingsComponent implements OnInit {
       requireSync: true,
       injector: this.injector,
     });
+
+    this.selectStations = computed(() => [
+      {
+        key: TODOS,
+        name: 'Todos',
+      },
+      ...(this.stations() ?? []),
+    ]);
   }
 
   changeStation(event: MatCheckboxChange, station: StationItem): void {
@@ -173,14 +187,55 @@ export class CatDammingsComponent implements OnInit {
   }
 
   selectChangeStation(event: MatSelectChange): void {
-    this.selectedStations = event.value?.map((item: StationItem) => item.key);
+    const todosSelected = event.value?.find(
+      (item: StationItem) => item.key === TODOS
+    );
+
+    if (todosSelected && !this.allSelected) {
+      this.selectedStations =
+        this.selectStations()?.map((item: StationItem) => item.key) ?? [];
+      this.allSelected = true;
+    } else if (
+      !todosSelected &&
+      this.allSelected &&
+      this._getSelectedStationsFiltered().length === this.stations()?.length
+    ) {
+      this.selectedStations = [];
+      this.allSelected = false;
+    } else {
+      this.selectedStations = event.value?.map((item: StationItem) => item.key);
+      if (
+        this.selectedStations.length === this.stations()?.length &&
+        !todosSelected
+      ) {
+        this.selectedStations.push(TODOS);
+        this.allSelected = true;
+      } else if (
+        this._getSelectedStationsFiltered().length !==
+          this.stations()?.length &&
+        todosSelected
+      ) {
+        this.selectedStations = this._getSelectedStationsFiltered();
+        this.allSelected = false;
+      }
+    }
+
+    this.amountSelected = this.selectedStations.filter(
+      (value: string) => value !== TODOS
+    ).length;
 
     this.setFormStationsValue();
   }
 
+  private _getSelectedStationsFiltered(): string[] {
+    return this.selectedStations.filter((item: string) => item !== TODOS);
+  }
+
   setFormStationsValue(): void {
     this.form.controls.stations.setValue(
-      this.selectedStations.length ? this.selectedStations : undefined
+      this.selectedStations.length
+        ? this.selectedStations.filter((item: string) => item !== TODOS)
+        : undefined
     );
   }
 
@@ -282,5 +337,9 @@ export class CatDammingsComponent implements OnInit {
     }
 
     return [];
+  }
+
+  compareFn(option: StationItem, selected: string) {
+    return option?.key === selected;
   }
 }

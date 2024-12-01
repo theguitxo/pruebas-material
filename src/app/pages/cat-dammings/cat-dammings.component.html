@@ -5,16 +5,21 @@
     @if (breakpointService.isHandsetPortrait() | async) {
     <mat-form-field>
       <mat-label>Embalse</mat-label>
-      <mat-select-trigger>
-        @if (selectedStations.length) {
-        {{ selectedStations.length }} embalse{{
-          selectedStations.length > 1 ? "s" : ""
-        }}
-        seleccionado{{ selectedStations.length > 1 ? "s" : "" }}
-        }
-      </mat-select-trigger>
-      <mat-select multiple (selectionChange)="selectChangeStation($event)">
-        @for (station of stations(); track station) {
+      <mat-select
+        [compareWith]="compareFn"
+        [(value)]="selectedStations"
+        multiple
+        (selectionChange)="selectChangeStation($event)"
+      >
+        <mat-select-trigger>
+          @if (allSelected) { Todos } @else {
+          {{ amountSelected }} embalse{{
+            amountSelected > 1 ? 's' : ''
+          }}
+          seleccionado{{ amountSelected > 1 ? 's' : '' }}
+          }
+        </mat-select-trigger>
+        @for (station of selectStations(); track station) {
         <mat-option [value]="station">{{ station.name }}</mat-option>
         }
       </mat-select>
@@ -70,7 +75,7 @@
           Nivel absoluto (msnm)
         </th>
         <td class="number" mat-cell *matCellDef="let station">
-          {{ station.nivell_absolut | number : "1.2-2" : "es-ES" }}
+          {{ station.nivell_absolut | number : '1.2-2' : 'es-ES' }}
         </td>
       </ng-container>
       <ng-container matColumnDef="percentatge_volum_embassat">
@@ -78,7 +83,7 @@
           Porcentage volumen embalsado (%)
         </th>
         <td class="number" mat-cell *matCellDef="let station">
-          {{ station.percentatge_volum_embassat | number : "1.2-2" : "es-ES" }}
+          {{ station.percentatge_volum_embassat | number : '1.2-2' : 'es-ES' }}
         </td>
       </ng-container>
       <ng-container matColumnDef="volum_embassat">
@@ -86,7 +91,7 @@
           Volumen embasado (hm<sup>3</sup>)
         </th>
         <td class="number" mat-cell *matCellDef="let station">
-          {{ station.volum_embassat | number : "1.2-2" : "es-ES" }}
+          {{ station.volum_embassat | number : '1.2-2' : 'es-ES' }}
         </td>
       </ng-container>
       <ng-container matColumnDef="actions" stickyEnd>
