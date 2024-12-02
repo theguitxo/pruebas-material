@@ -353,6 +353,7 @@ export class CatDammingsComponent implements OnInit {
   selectAll(): void {
     this.selectedStations =
       this.stations()?.map((value: StationItem) => value.key) ?? [];
+    this.selectedStations.push(TODOS);
     this.allSelected = true;
 
     this._updateCheckedAndForm();
