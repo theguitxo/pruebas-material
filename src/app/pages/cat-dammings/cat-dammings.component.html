@@ -14,13 +14,19 @@
           seleccionado{{ amountSelected > 1 ? 's' : '' }}
           }
         </mat-select-trigger>
-        <mat-option value="todos" (click)="optionSelectClick(true)"
+        <mat-option
+          value="todos"
+          (click)="optionSelectClick(true)"
+          (keypress)="optionSelectClick(true)"
           >Todos</mat-option
         >
         @for (station of stations(); track station) {
-        <mat-option [value]="station.key" (click)="optionSelectClick(false)">{{
-          station.name
-        }}</mat-option>
+        <mat-option
+          [value]="station.key"
+          (click)="optionSelectClick(false)"
+          (keypress)="optionSelectClick(false)"
+          >{{ station.name }}</mat-option
+        >
         }
       </mat-select>
     </mat-form-field>
