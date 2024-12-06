@@ -5,12 +5,7 @@
     @if (breakpointService.isHandsetPortrait() | async) {
     <mat-form-field>
       <mat-label>Embalse</mat-label>
-      <mat-select
-        [compareWith]="compareFn"
-        [(value)]="selectedStations"
-        multiple
-        (selectionChange)="selectChangeStation($event)"
-      >
+      <mat-select [compareWith]="compareFn" formControlName="stations" multiple>
         <mat-select-trigger>
           @if (allSelected) { Todos } @else {
           {{ amountSelected }} embalse{{
@@ -19,8 +14,13 @@
           seleccionado{{ amountSelected > 1 ? 's' : '' }}
           }
         </mat-select-trigger>
-        @for (station of selectStations(); track station) {
-        <mat-option [value]="station">{{ station.name }}</mat-option>
+        <mat-option value="todos" (click)="optionSelectClick(true)"
+          >Todos</mat-option
+        >
+        @for (station of stations(); track station) {
+        <mat-option [value]="station.key" (click)="optionSelectClick(false)">{{
+          station.name
+        }}</mat-option>
         }
       </mat-select>
     </mat-form-field>
@@ -49,7 +49,7 @@
         <button
           type="button"
           mat-flat-button
-          [disabled]="selectedStations.length === 0"
+          [disabled]="!amountSelected"
           (click)="unselectAll()"
         >
           Ninguno

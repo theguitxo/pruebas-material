@@ -2,14 +2,14 @@ import { AsyncPipe, DecimalPipe } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
-  computed,
+  DestroyRef,
   inject,
   Injector,
   OnInit,
   Signal,
   ViewChild,
 } from '@angular/core';
-import { toSignal } from '@angular/core/rxjs-interop';
+import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 import {
   FormControl,
   FormGroup,
@@ -31,7 +31,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { MatSelectChange, MatSelectModule } from '@angular/material/select';
+import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
@@ -86,6 +86,8 @@ export class CatDammingsComponent implements OnInit {
   private readonly snackBar!: MatSnackBar;
   private readonly dialog!: MatDialog;
   private readonly injector = inject(Injector);
+  private readonly destroyRef = inject(DestroyRef);
+
   breakpointService!: BreakpointService;
 
   @ViewChild(MatSort, { static: false }) set sort(sort: MatSort) {
@@ -98,17 +100,11 @@ export class CatDammingsComponent implements OnInit {
   minDate!: Signal<Date | undefined>;
   stations!: Signal<StationItem[] | undefined>;
   list!: Signal<DammingsInfoItem[] | undefined>;
-  selectStations!: Signal<StationItem[] | undefined>;
   allSelected = false;
   amountSelected = 0;
-
   form!: FormGroup<FilterForm>;
-
-  selectedStations: string[] = [];
   checkedStations: Set<string> = new Set<string>();
-
   filteredStations!: MatTableDataSource<FilteredInfoItem>;
-
   stationsDisplayedColumns: string[] = [
     'estaci',
     'nivell_absolut',
@@ -116,7 +112,6 @@ export class CatDammingsComponent implements OnInit {
     'volum_embassat',
     'actions',
   ];
-
   moreInfoData: FilteredInfoItemDate[] = [];
 
   constructor() {
@@ -143,6 +138,12 @@ export class CatDammingsComponent implements OnInit {
         validators: Validators.required,
       }),
     });
+
+    this.form.controls.stations.valueChanges
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((value: string[] | undefined) => {
+        this.amountSelected = value?.length ?? 0;
+      });
   }
 
   private _initSignals(): void {
@@ -165,85 +166,69 @@ export class CatDammingsComponent implements OnInit {
       requireSync: true,
       injector: this.injector,
     });
-
-    this.selectStations = computed(() => [
-      {
-        key: TODOS,
-        name: 'Todos',
-      },
-      ...(this.stations() ?? []),
-    ]);
   }
 
   changeStation(event: MatCheckboxChange, station: StationItem): void {
-    if (event.checked) {
-      this.selectedStations.push(station.key);
-    } else {
-      this.selectedStations = this.selectedStations.filter(
-        (item) => item !== station.key
-      );
-    }
-
-    this._updateCheckedAndForm();
-  }
-
-  selectChangeStation(event: MatSelectChange): void {
-    const todosSelected = event.value?.find(
-      (item: StationItem) => item.key === TODOS
+    this.form.controls.stations.setValue(
+      event.checked
+        ? [...(this.form.controls.stations.value ?? []), station.key]
+        : this.form.controls.stations.value?.filter((i) => i !== station.key)
     );
 
-    this.checkedStations.clear();
+    this._setCheckedStations();
+  }
 
-    if (todosSelected && !this.allSelected) {
-      this.selectedStations =
-        this.selectStations()?.map((item: StationItem) => item.key) ?? [];
-      this.allSelected = true;
-    } else if (
-      !todosSelected &&
-      this.allSelected &&
-      this._getSelectedStationsFiltered().length === this.stations()?.length
-    ) {
-      this.selectedStations = [];
-      this.allSelected = false;
-    } else {
-      this.selectedStations = event.value?.map((item: StationItem) => item.key);
-      if (
-        this.selectedStations.length === this.stations()?.length &&
-        !todosSelected
-      ) {
-        this.selectedStations.push(TODOS);
-        this.allSelected = true;
-      } else if (
-        this._getSelectedStationsFiltered().length !==
-          this.stations()?.length &&
-        todosSelected
-      ) {
-        this.selectedStations = this._getSelectedStationsFiltered();
-        this.allSelected = false;
-      }
-    }
+  optionSelectClick(all: boolean): void {
+    all ? this._optionSelectAll() : this._optionSelectValue();
 
-    this.amountSelected = this.selectedStations.filter(
-      (value: string) => value !== TODOS
-    ).length;
+    this._setCheckedStations();
+  }
 
-    this._updateCheckedAndForm();
+  compareFn(option: string, selected: string): boolean {
+    return option === selected;
+  }
+
+  selectAll(): void {
+    this.form.controls.stations.setValue([
+      TODOS,
+      ...(this.stations()?.map((i) => i.key) ?? []),
+    ]);
+    this.allSelected = true;
+    this._setCheckedStations();
+  }
+
+  unselectAll(): void {
+    this.form.controls.stations.reset();
+    this.allSelected = false;
+    this._setCheckedStations();
+  }
+
+  private _optionSelectAll(): void {
+    this.allSelected = !!this._getSelectedStations().length;
+
+    this.form.controls.stations.setValue(
+      this.allSelected
+        ? [TODOS, ...(this.stations()?.map((i) => i.key) ?? [])]
+        : []
+    );
+  }
+
+  private _optionSelectValue(): void {
+    const stationsSelected = this._getSelectedStations();
+
+    this.allSelected = stationsSelected?.length === this.stations()?.length;
+
+    this.form.controls.stations.setValue(
+      this.allSelected ? [TODOS, ...(stationsSelected ?? [])] : stationsSelected
+    );
   }
 
   private _setCheckedStations(): void {
-    this.checkedStations = new Set(this.selectedStations);
+    this.checkedStations = new Set(this._getSelectedStations());
   }
 
-  private _getSelectedStationsFiltered(): string[] {
-    return this.selectedStations.filter((item: string) => item !== TODOS);
-  }
-
-  private _setFormStationsValue(): void {
-    this.form.controls.stations.setValue(
-      this.selectedStations.length
-        ? this.selectedStations.filter((item: string) => item !== TODOS)
-        : undefined
-    );
+  private _getSelectedStations(): string[] {
+    return this.form.controls.stations.value?.filter((i) => i !== TODOS) ?? [];
   }
 
   filterData(): void {
@@ -252,12 +237,12 @@ export class CatDammingsComponent implements OnInit {
         ?.filter((station: DammingsInfoItem) =>
           this._filterStationByDate(
             station,
-            this.form.controls.stations.value || []
+            this.form.controls.stations.value ?? []
           )
         )
         ?.map((stationFiltered: DammingsInfoItem) =>
           this._mapStationInfo(stationFiltered)
-        ) || []
+        ) ?? []
     );
   }
 
@@ -320,7 +305,7 @@ export class CatDammingsComponent implements OnInit {
         ?.map((stationFiltered: DammingsInfoItem) => ({
           ...this._mapStationInfo(stationFiltered),
           dia: date,
-        })) || []
+        })) ?? []
     );
   }
 
@@ -344,31 +329,5 @@ export class CatDammingsComponent implements OnInit {
     }
 
     return [];
-  }
-
-  compareFn(option: StationItem, selected: string): boolean {
-    return option?.key === selected;
-  }
-
-  selectAll(): void {
-    this.selectedStations =
-      this.stations()?.map((value: StationItem) => value.key) ?? [];
-    this.selectedStations.push(TODOS);
-    this.allSelected = true;
-
-    this._updateCheckedAndForm();
-  }
-
-  unselectAll(): void {
-    this.selectedStations = [];
-    this.allSelected = false;
-
-    this._updateCheckedAndForm();
-  }
-
-  private _updateCheckedAndForm(): void {
-    this._setCheckedStations();
-
-    this._setFormStationsValue();
   }
 }
