@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master
+  workflow_dispatch:
 
 jobs:
   build:
@@ -37,7 +38,7 @@ jobs:
       id-token: write
 
     environment:
-      name: "github-pages"
+      name: 'github-pages'
       url: ${{ steps.deployment.outputs.page_url }}
 
     runs-on: ubuntu-latest
