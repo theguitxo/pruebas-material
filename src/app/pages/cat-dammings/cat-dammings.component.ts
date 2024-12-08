@@ -248,9 +248,10 @@ export class CatDammingsComponent implements OnInit {
 
   private _filterStationByDate(
     station: DammingsInfoItem,
-    stations: string[]
+    stations: string[],
+    date?: Date
   ): boolean | undefined {
-    const formDate = new Date(this.form.controls.date.value ?? '');
+    const formDate = date ?? new Date(this.form.controls.date.value ?? '');
     return (
       station.date.getTime() === formDate.getTime() &&
       stations.includes(station.id_estaci)
@@ -286,6 +287,7 @@ export class CatDammingsComponent implements OnInit {
     if (this.moreInfoData.length) {
       this.dialog.open(CatDammingsHistoricChartComponent, {
         data: this.moreInfoData,
+        width: '80%',
       });
     } else {
       this.snackBar.open('No hay datos para mostrar', 'Cerrar', {
@@ -300,7 +302,7 @@ export class CatDammingsComponent implements OnInit {
     return (
       this.list()
         ?.filter((station: DammingsInfoItem) =>
-          this._filterStationByDate(station, [stationId])
+          this._filterStationByDate(station, [stationId], date)
         )
         ?.map((stationFiltered: DammingsInfoItem) => ({
           ...this._mapStationInfo(stationFiltered),
