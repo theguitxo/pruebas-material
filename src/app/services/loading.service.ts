@@ -3,6 +3,9 @@ import { ComponentPortal } from '@angular/cdk/portal';
 import { inject, Injectable } from '@angular/core';
 import { LoadingSpinnerComponent } from '../components/loading-spinner/loading-spinner.component';
 
+/**
+ * Servicio para controlar cuando mostrar un gráfico de progreso de carga
+ */
 @Injectable({
   providedIn: 'root',
 })
