@@ -50,6 +50,10 @@ import { CatDammingsService } from '../../services/cat-dammings.service';
 import { CatDammingsHistoricChartComponent } from './components/historic-chart/historic-chart.component';
 
 export const TODOS = 'todos';
+
+/**
+ * Componente para mostrar información de embalses de Cataluña
+ */
 @Component({
   selector: 'app-cat-dammings',
   templateUrl: './cat-dammings.component.html',
@@ -82,29 +86,79 @@ export const TODOS = 'todos';
   ],
 })
 export class CatDammingsComponent implements OnInit {
+  /**
+   * Servicio para manejar los datos de la API de la Generalitat
+   */
   private readonly dammingsService!: CatDammingsService;
+  /**
+   * Servicio para motrar mensajes emergentes
+   */
   private readonly snackBar!: MatSnackBar;
+  /**
+   * Servicio para manejar modales
+   */
   private readonly dialog!: MatDialog;
+  /**
+   * Servicio para inyectar otros servicios
+   */
   private readonly injector = inject(Injector);
+  /**
+   * Servicio para lanzar eventos cuando se destruye el componente
+   */
   private readonly destroyRef = inject(DestroyRef);
-
+  /**
+   * Servicio de Angular para monitorizar los cambios entre diferentes resoluciones de dispositivos
+   */
   breakpointService!: BreakpointService;
 
+  /**
+   * Referencia al  MatSort de Angular Material usado en el componente
+   */
   @ViewChild(MatSort, { static: false }) set sort(sort: MatSort) {
     if (this.filteredStations) {
       this.filteredStations.sort = sort;
     }
   }
 
+  /**
+   * Fecha máxima de la que hay datos
+   */
   maxDate!: Signal<Date | undefined>;
+  /**
+   * Fecha mínima de la que hay datos
+   */
   minDate!: Signal<Date | undefined>;
+  /**
+   * Lista de embalses para mostrar en los selectores
+   */
   stations!: Signal<StationItem[] | undefined>;
+  /**
+   * Lista con información de los embalses
+   */
   list!: Signal<DammingsInfoItem[] | undefined>;
+  /**
+   * Indicador si se han seleccionado todos los embalses (en selectores o checkboxs)
+   */
   allSelected = false;
+  /**
+   * Total de embalses seleccionados
+   */
   amountSelected = 0;
+  /**
+   * Formulario para filtrar los datos
+   */
   form!: FormGroup<FilterForm>;
+  /**
+   * Embalses seleccionados (para controlar los checkboxes)
+   */
   checkedStations: Set<string> = new Set<string>();
+  /**
+   * Lista con información de embalses filtrada según los seleccionados
+   */
   filteredStations!: MatTableDataSource<FilteredInfoItem>;
+  /**
+   * Columnas a mostrar en el listado de embalses filtrados
+   */
   stationsDisplayedColumns: string[] = [
     'estaci',
     'nivell_absolut',
@@ -112,8 +166,14 @@ export class CatDammingsComponent implements OnInit {
     'volum_embassat',
     'actions',
   ];
+  /**
+   * Información a mostrar en el modal al pusar el botón de más información
+   */
   moreInfoData: FilteredInfoItemDate[] = [];
 
+  /**
+   * Método constructor
+   */
   constructor() {
     this.dammingsService = inject(CatDammingsService);
     this.snackBar = inject(MatSnackBar);
@@ -121,13 +181,19 @@ export class CatDammingsComponent implements OnInit {
     this.breakpointService = inject(BreakpointService);
   }
 
+  /**
+   * Inicia el formulario y los signals, y carga la información de los embalses
+   */
   ngOnInit(): void {
     this._initForm();
     this._initSignals();
     this.dammingsService.loadData();
   }
 
-  private _initForm() {
+  /**
+   * Inicia el formulario para el filtrado de datos
+   */
+  private _initForm(): void {
     this.form = new FormGroup<FilterForm>({
       date: new FormControl(undefined, {
         nonNullable: true,
@@ -146,6 +212,9 @@ export class CatDammingsComponent implements OnInit {
       });
   }
 
+  /**
+   * Inicia los signals
+   */
   private _initSignals(): void {
     this.maxDate = toSignal(this.dammingsService.maxDate, {
       requireSync: true,
@@ -168,6 +237,11 @@ export class CatDammingsComponent implements OnInit {
     });
   }
 
+  /**
+   * Método a llamar cuando se cambia uno de los checkboxes para escoger un embalse en el filtro (en modo escritorio)
+   * @param {MatCheckboxChange} event Información del evento de cambio de un checkbox
+   * @param {StatioItem} station Información del embalse que ha cambiado el checkbox
+   */
   changeStation(event: MatCheckboxChange, station: StationItem): void {
     this.form.controls.stations.setValue(
       event.checked
@@ -178,16 +252,29 @@ export class CatDammingsComponent implements OnInit {
     this._setCheckedStations();
   }
 
+  /**
+   * Método a llamar cuando se selecciona una opción de la lista desplegable (en modo móvil)
+   * @param {boolean} all Indicador si se ha elegido la opción 'TODOS'
+   */
   optionSelectClick(all: boolean): void {
     all ? this._optionSelectAll() : this._optionSelectValue();
 
     this._setCheckedStations();
   }
 
+  /**
+   * Método para que se seleccionen en la lista desplegable las opciones seleccionadas
+   * @param {string} option Valor de la lista a comprobar
+   * @param {string} selected Valor de la lista de seleccionados
+   * @returns {boolean} Verdadero o falso si la opción se encuentra entre las seleccionadas
+   */
   compareFn(option: string, selected: string): boolean {
     return option === selected;
   }
 
+  /**
+   * Selecciona todos los embalses (checkboxes en modo escritorio)
+   */
   selectAll(): void {
     this.form.controls.stations.setValue([
       TODOS,
@@ -197,12 +284,18 @@ export class CatDammingsComponent implements OnInit {
     this._setCheckedStations();
   }
 
+  /**
+   * Deselecciona todos los embalses (checkboxes en modo escritorio)
+   */
   unselectAll(): void {
     this.form.controls.stations.reset();
     this.allSelected = false;
     this._setCheckedStations();
   }
 
+  /**
+   * Acciones a relizar cuando se selecciona la opción 'TODOS' de la lista desplegable
+   */
   private _optionSelectAll(): void {
     this.allSelected = !!this._getSelectedStations().length;
 
@@ -213,6 +306,9 @@ export class CatDammingsComponent implements OnInit {
     );
   }
 
+  /**
+   * Acciones a realizar cuando se selecciona alguna opción de la lista que no sea 'TODOS'
+   */
   private _optionSelectValue(): void {
     const stationsSelected = this._getSelectedStations();
 
@@ -223,14 +319,24 @@ export class CatDammingsComponent implements OnInit {
     );
   }
 
+  /**
+   * Setea uan lista de valores únicos con los embalses seleccionados
+   */
   private _setCheckedStations(): void {
     this.checkedStations = new Set(this._getSelectedStations());
   }
 
+  /**
+   * Obtiene la lista de embalses seleccionados
+   * @returns {string[]} Lista de embalses seleccionados
+   */
   private _getSelectedStations(): string[] {
     return this.form.controls.stations.value?.filter((i) => i !== TODOS) ?? [];
   }
 
+  /**
+   * Establece la información para la tabla de Angular Material con la lista de embalses filtrados
+   */
   filterData(): void {
     this.filteredStations = new MatTableDataSource(
       this.list()
@@ -246,6 +352,13 @@ export class CatDammingsComponent implements OnInit {
     );
   }
 
+  /**
+   * Método para aplicar al filtro de embalses
+   * @param {DammingsInfoItem} station Información del embalse seleccionado
+   * @param {string[]} stations LIsta con los identificadores de los emblases
+   * @param {Date} date Fecha por la que se ha de filtrar
+   * @returns {boolean} Indicador si cumple las condiciones y pasa el fitro
+   */
   private _filterStationByDate(
     station: DammingsInfoItem,
     stations: string[],
@@ -258,6 +371,11 @@ export class CatDammingsComponent implements OnInit {
     );
   }
 
+  /**
+   * Prepara un objeto con la información de un embalse para mostrar en listados, modal, ...
+   * @param {DammingsInfoItem} station Información del embalse a mostrar su información
+   * @returns {FilteredInfoItem} Información el emblase
+   */
   private _mapStationInfo(station: DammingsInfoItem): FilteredInfoItem {
     return {
       id_estaci: station.id_estaci,
@@ -271,6 +389,10 @@ export class CatDammingsComponent implements OnInit {
     };
   }
 
+  /**
+   * Abre un modal con más información de un embalse
+   * @param {stationId} stationId Identificador del embalse a cargar su información
+   */
   viewMore(stationId: string): void {
     const dates = this._getDatesList();
     this.moreInfoData = [];
@@ -298,6 +420,12 @@ export class CatDammingsComponent implements OnInit {
     }
   }
 
+  /**
+   * Obtiene la información del un emblase en un fecha concreta, para mostrar en el modal de más información
+   * @param {string} stationId Identificador del embalse a obtener su información
+   * @param {Date} date Fecha de la que se ha de obtener la información del embalse
+   * @returns {FilteredInfoItemDate} Lista con un único registro con la información del embalse según fecha
+   */
   private _getMoreInfo(stationId: string, date: Date): FilteredInfoItemDate[] {
     return (
       this.list()
@@ -311,6 +439,10 @@ export class CatDammingsComponent implements OnInit {
     );
   }
 
+  /**
+   * Crea la lista de fechas de las que se ha mostrar información en el modal de 'ver más'
+   * @returns {Date[]} Una lista de objetos de fecha
+   */
   private _getDatesList(): Date[] {
     if (this.form.controls.date.value) {
       const minDate = this.minDate()?.getTime();

@@ -1,0 +1,1900 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>pruebas-material documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">pruebas-material documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  CatPopulationComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/pages/cat-population/cat-population.component.ts</code>
+</p>
+
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code>OnInit</code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+            <tr>
+                <td class="col-md-3">changeDetection</td>
+                <td class="col-md-9"><code>ChangeDetectionStrategy.OnPush</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">providers</td>
+                <td class="col-md-9">
+                            <code>JoinPostalCodesPipe</code>
+                            <code>DecimalPipe</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-cat-population</code></td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>AsyncPipe</code>
+                            <code>NgTemplateOutlet</code>
+                                <code><a href="../components/PageTitleComponent.html" target="_self" >PageTitleComponent</a></code>
+                            <code>MatStepperModule</code>
+                            <code>FormsModule</code>
+                            <code>ReactiveFormsModule</code>
+                            <code>MatFormFieldModule</code>
+                            <code>MatSelectModule</code>
+                            <code>MatButtonModule</code>
+                            <code>MatInputModule</code>
+                            <code>MatAutocompleteModule</code>
+                            <code>MatTabsModule</code>
+                            <code>JoinPostalCodesPipe</code>
+                            <code>MatGridListModule</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./cat-population.component.html</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./cat-population.component.scss</code></td>
+            </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#breakpointService" >breakpointService</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#catPopulationService" >catPopulationService</a>
+                            </li>
+                            <li>
+                                <a href="#cityForm" >cityForm</a>
+                            </li>
+                            <li>
+                                <a href="#citySearchCode" >citySearchCode</a>
+                            </li>
+                            <li>
+                                <a href="#citySelected" >citySelected</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#decimalPipe" >decimalPipe</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#destroyRef" >destroyRef</a>
+                            </li>
+                            <li>
+                                <a href="#displayFn" >displayFn</a>
+                            </li>
+                            <li>
+                                <a href="#formatedPopulationData" >formatedPopulationData</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#formBuilder" >formBuilder</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#injector" >injector</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#joinPostalCodesPipe" >joinPostalCodesPipe</a>
+                            </li>
+                            <li>
+                                <a href="#populationData" >populationData</a>
+                            </li>
+                            <li>
+                                <a href="#provinceForm" >provinceForm</a>
+                            </li>
+                            <li>
+                                <a href="#provinces" >provinces</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#stepper" >stepper</a>
+                            </li>
+                            <li>
+                                <a href="#zipCodes" >zipCodes</a>
+                            </li>
+                            <li>
+                                <a href="#zipCodesFiltered" >zipCodesFiltered</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_filter" >_filter</a>
+                            </li>
+                            <li>
+                                <a href="#_getListItemObject" >_getListItemObject</a>
+                            </li>
+                            <li>
+                                <a href="#filterByProvinceCode" >filterByProvinceCode</a>
+                            </li>
+                            <li>
+                                <a href="#handleCitySelected" >handleCitySelected</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#initForm" >initForm</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#initSignals" >initSignals</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor()</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="101" class="link-to-prism">src/app/pages/cat-population/cat-population.component.ts:101</a></div>
+                            </td>
+                        </tr>
+
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_filter"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_filter</b></span>
+                        <a href="#_filter"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_filter(value: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="356"
+                                    class="link-to-prism">src/app/pages/cat-population/cat-population.component.ts:356</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>value</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../interfaces/ZipCodeListItem.html" target="_self" >ZipCodeListItem[]</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_getListItemObject"></a>
+                    <span class="name">
+                        <span ><b>_getListItemObject</b></span>
+                        <a href="#_getListItemObject"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>_getListItemObject(value: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, number: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>, titleLeft: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="316"
+                                    class="link-to-prism">src/app/pages/cat-population/cat-population.component.ts:316</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>value</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>number</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>titleLeft</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../interfaces/ListItemObject.html" target="_self" >ListItemObject</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="filterByProvinceCode"></a>
+                    <span class="name">
+                        <span ><b>filterByProvinceCode</b></span>
+                        <a href="#filterByProvinceCode"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>filterByProvinceCode()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="331"
+                                    class="link-to-prism">src/app/pages/cat-population/cat-population.component.ts:331</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../interfaces/ZipCodeListItem.html" target="_self" >ZipCodeListItem[]</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="handleCitySelected"></a>
+                    <span class="name">
+                        <span ><b>handleCitySelected</b></span>
+                        <a href="#handleCitySelected"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>handleCitySelected(item: MatAutocompleteSelectedEvent)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="364"
+                                    class="link-to-prism">src/app/pages/cat-population/cat-population.component.ts:364</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>item</td>
+                                            <td>
+                                                        <code>MatAutocompleteSelectedEvent</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="initForm"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>initForm</b></span>
+                        <a href="#initForm"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>initForm()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="117"
+                                    class="link-to-prism">src/app/pages/cat-population/cat-population.component.ts:117</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="initSignals"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>initSignals</b></span>
+                        <a href="#initSignals"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>initSignals()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="149"
+                                    class="link-to-prism">src/app/pages/cat-population/cat-population.component.ts:149</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="112"
+                                    class="link-to-prism">src/app/pages/cat-population/cat-population.component.ts:112</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="breakpointService"></a>
+                    <span class="name">
+                        <span ><b>breakpointService</b></span>
+                        <a href="#breakpointService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../injectables/BreakpointService.html" target="_self" >BreakpointService</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="87" class="link-to-prism">src/app/pages/cat-population/cat-population.component.ts:87</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="catPopulationService"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>catPopulationService</b></span>
+                        <a href="#catPopulationService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../injectables/CatPopulationService.html" target="_self" >CatPopulationService</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/app/pages/cat-population/cat-population.component.ts:80</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="cityForm"></a>
+                    <span class="name">
+                        <span ><b>cityForm</b></span>
+                        <a href="#cityForm"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>FormGroup</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="93" class="link-to-prism">src/app/pages/cat-population/cat-population.component.ts:93</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="citySearchCode"></a>
+                    <span class="name">
+                        <span ><b>citySearchCode</b></span>
+                        <a href="#citySearchCode"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal(&#x27;&#x27;)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="99" class="link-to-prism">src/app/pages/cat-population/cat-population.component.ts:99</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="citySelected"></a>
+                    <span class="name">
+                        <span ><b>citySelected</b></span>
+                        <a href="#citySelected"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/ZipCodeListItem.html" target="_self" >ZipCodeListItem</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="98" class="link-to-prism">src/app/pages/cat-population/cat-population.component.ts:98</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="decimalPipe"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>decimalPipe</b></span>
+                        <a href="#decimalPipe"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>DecimalPipe</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="85" class="link-to-prism">src/app/pages/cat-population/cat-population.component.ts:85</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="destroyRef"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>destroyRef</b></span>
+                        <a href="#destroyRef"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>DestroyRef</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="83" class="link-to-prism">src/app/pages/cat-population/cat-population.component.ts:83</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="displayFn"></a>
+                    <span class="name">
+                        <span ><b>displayFn</b></span>
+                        <a href="#displayFn"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>() &#x3D;&gt; {...}</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="345" class="link-to-prism">src/app/pages/cat-population/cat-population.component.ts:345</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="formatedPopulationData"></a>
+                    <span class="name">
+                        <span ><b>formatedPopulationData</b></span>
+                        <a href="#formatedPopulationData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/FormatedPopulationData.html" target="_self" >Signal&lt;FormatedPopulationData[]&gt;</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="101" class="link-to-prism">src/app/pages/cat-population/cat-population.component.ts:101</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="formBuilder"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>formBuilder</b></span>
+                        <a href="#formBuilder"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>FormBuilder</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="82" class="link-to-prism">src/app/pages/cat-population/cat-population.component.ts:82</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="injector"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>injector</b></span>
+                        <a href="#injector"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(Injector)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="81" class="link-to-prism">src/app/pages/cat-population/cat-population.component.ts:81</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="joinPostalCodesPipe"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>joinPostalCodesPipe</b></span>
+                        <a href="#joinPostalCodesPipe"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>JoinPostalCodesPipe</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="84" class="link-to-prism">src/app/pages/cat-population/cat-population.component.ts:84</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="populationData"></a>
+                    <span class="name">
+                        <span ><b>populationData</b></span>
+                        <a href="#populationData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Signal&lt;[] | undefined&gt;</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="90" class="link-to-prism">src/app/pages/cat-population/cat-population.component.ts:90</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="provinceForm"></a>
+                    <span class="name">
+                        <span ><b>provinceForm</b></span>
+                        <a href="#provinceForm"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>FormGroup</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="92" class="link-to-prism">src/app/pages/cat-population/cat-population.component.ts:92</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="provinces"></a>
+                    <span class="name">
+                        <span ><b>provinces</b></span>
+                        <a href="#provinces"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>FILTER_PROVINCE_OPTIONS</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="95" class="link-to-prism">src/app/pages/cat-population/cat-population.component.ts:95</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="stepper"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>stepper</b></span>
+                        <a href="#stepper"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>MatStepper</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ViewChild(&#x27;stepper&#x27;)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="78" class="link-to-prism">src/app/pages/cat-population/cat-population.component.ts:78</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="zipCodes"></a>
+                    <span class="name">
+                        <span ><b>zipCodes</b></span>
+                        <a href="#zipCodes"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Signal&lt;[] | undefined&gt;</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="89" class="link-to-prism">src/app/pages/cat-population/cat-population.component.ts:89</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="zipCodesFiltered"></a>
+                    <span class="name">
+                        <span ><b>zipCodesFiltered</b></span>
+                        <a href="#zipCodesFiltered"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/ZipCodeListItem.html" target="_self" >ZipCodeListItem[]</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="96" class="link-to-prism">src/app/pages/cat-population/cat-population.component.ts:96</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { AsyncPipe, DecimalPipe, NgTemplateOutlet } from &#x27;@angular/common&#x27;
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  DestroyRef,
+  inject,
+  Injector,
+  OnInit,
+  signal,
+  Signal,
+  ViewChild,
+} from &#x27;@angular/core&#x27;
+import {
+  takeUntilDestroyed,
+  toObservable,
+  toSignal,
+} from &#x27;@angular/core/rxjs-interop&#x27;
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from &#x27;@angular/forms&#x27;
+import {
+  MatAutocompleteModule,
+  MatAutocompleteSelectedEvent,
+} from &#x27;@angular/material/autocomplete&#x27;
+import { MatButtonModule } from &#x27;@angular/material/button&#x27;
+import { MatFormFieldModule } from &#x27;@angular/material/form-field&#x27;
+import { MatGridListModule } from &#x27;@angular/material/grid-list&#x27;
+import { MatInputModule } from &#x27;@angular/material/input&#x27;
+import { MatSelectModule } from &#x27;@angular/material/select&#x27;
+import { MatStepper, MatStepperModule } from &#x27;@angular/material/stepper&#x27;
+import { MatTabsModule } from &#x27;@angular/material/tabs&#x27;
+import { filter, switchMap } from &#x27;rxjs&#x27;
+import { PageTitleComponent } from &#x27;../../components/page-title/page-title.component&#x27;
+import {
+  FILTER_PROVINCE_OPTIONS,
+  ZIP_CODES,
+} from &#x27;../../constants/cat-population/zip-codes.constants&#x27;
+import {
+  FormatedPopulationData,
+  ListItemObject,
+} from &#x27;../../models/cat-population/list.model&#x27;
+import { PopulationDataResponse } from &#x27;../../models/cat-population/population-response.model&#x27;
+import { ZipCodeListItem } from &#x27;../../models/cat-population/zip-codes.model&#x27;
+import { JoinPostalCodesPipe } from &#x27;../../pipes/join-postal-codes.pipe&#x27;
+import { BreakpointService } from &#x27;../../services/breakpoint.service&#x27;
+import { CatPopulationService } from &#x27;../../services/cat-population.service&#x27;
+
+@Component({
+  selector: &#x27;app-cat-population&#x27;,
+  templateUrl: &#x27;./cat-population.component.html&#x27;,
+  styleUrl: &#x27;./cat-population.component.scss&#x27;,
+  imports: [
+    AsyncPipe,
+    NgTemplateOutlet,
+    PageTitleComponent,
+    MatStepperModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatButtonModule,
+    MatInputModule,
+    MatAutocompleteModule,
+    MatTabsModule,
+    JoinPostalCodesPipe,
+    MatGridListModule,
+  ],
+  providers: [JoinPostalCodesPipe, DecimalPipe],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class CatPopulationComponent implements OnInit {
+  @ViewChild(&#x27;stepper&#x27;) stepper!: MatStepper
+
+  private readonly catPopulationService!: CatPopulationService
+  private readonly injector &#x3D; inject(Injector)
+  private readonly formBuilder!: FormBuilder
+  private readonly destroyRef!: DestroyRef
+  private readonly joinPostalCodesPipe!: JoinPostalCodesPipe
+  private readonly decimalPipe!: DecimalPipe
+
+  breakpointService!: BreakpointService
+
+  zipCodes!: Signal&lt;ZipCodeListItem[] | undefined&gt;
+  populationData!: Signal&lt;PopulationDataResponse[] | undefined&gt;
+
+  provinceForm!: FormGroup
+  cityForm!: FormGroup
+
+  provinces &#x3D; FILTER_PROVINCE_OPTIONS
+  zipCodesFiltered: ZipCodeListItem[] &#x3D; []
+
+  citySelected!: ZipCodeListItem
+  citySearchCode &#x3D; signal(&#x27;&#x27;)
+
+  formatedPopulationData!: Signal&lt;FormatedPopulationData[]&gt;
+
+  constructor() {
+    this.catPopulationService &#x3D; inject(CatPopulationService)
+    this.formBuilder &#x3D; inject(FormBuilder)
+    this.destroyRef &#x3D; inject(DestroyRef)
+    this.joinPostalCodesPipe &#x3D; inject(JoinPostalCodesPipe)
+    this.breakpointService &#x3D; inject(BreakpointService)
+    this.decimalPipe &#x3D; inject(DecimalPipe)
+  }
+
+  ngOnInit(): void {
+    this.initSignals()
+    this.initForm()
+  }
+
+  private initForm(): void {
+    this.provinceForm &#x3D; this.formBuilder.group({
+      province: new FormControl&lt;string | undefined&gt;(&#x27;&#x27;, {
+        nonNullable: true,
+        validators: [Validators.required],
+      }),
+    })
+
+    this.cityForm &#x3D; this.formBuilder.group({
+      city: new FormControl&lt;string | undefined&gt;(undefined, {
+        nonNullable: true,
+        validators: [Validators.required],
+      }),
+    })
+
+    this.provinceForm.controls[&#x27;province&#x27;]?.valueChanges
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(() &#x3D;&gt; {
+        this.cityForm.controls[&#x27;city&#x27;]?.reset()
+        this.cityForm.controls[&#x27;city&#x27;]?.setErrors(null)
+        this.cityForm.controls[&#x27;city&#x27;]?.markAsPending()
+      })
+
+    this.cityForm.controls[&#x27;city&#x27;]?.valueChanges
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((value) &#x3D;&gt; {
+        this.zipCodesFiltered &#x3D; value
+          ? this._filter(value)
+          : this.filterByProvinceCode()
+      })
+  }
+
+  private initSignals(): void {
+    this.zipCodes &#x3D; toSignal(this.catPopulationService.getZipCodes(), {
+      initialValue: undefined,
+      injector: this.injector,
+    })
+
+    this.formatedPopulationData &#x3D; computed(() &#x3D;&gt; {
+      const data &#x3D; this.populationData()?.map(
+        (item: PopulationDataResponse) &#x3D;&gt; {
+          return {
+            id: window.crypto.randomUUID(),
+            year: item.any,
+            rows: [
+              [
+                this._getListItemObject(&#x27;&#x27;, false, false),
+                this._getListItemObject(&#x27;Hombres&#x27;, false, false),
+                this._getListItemObject(&#x27;Mujeres&#x27;, false, false),
+                this._getListItemObject(&#x27;Todos&#x27;, false, false),
+              ],
+              [
+                this._getListItemObject(&#x27;De 0 a 14 años&#x27;, false, true),
+                this._getListItemObject(
+                  this.decimalPipe.transform(
+                    item.homes_de_0_a_14_anys,
+                    &#x27;1.0-0&#x27;,
+                    &#x27;es-ES&#x27;
+                  ) ?? &#x27;&#x27;,
+                  true,
+                  false
+                ),
+                this._getListItemObject(
+                  this.decimalPipe.transform(
+                    item.dones_de_0_a_14_anys,
+                    &#x27;1.0-0&#x27;,
+                    &#x27;es-ES&#x27;
+                  ) ?? &#x27;&#x27;,
+                  true,
+                  false
+                ),
+                this._getListItemObject(
+                  this.decimalPipe.transform(
+                    item.total_de_65_anys_i_m_s,
+                    &#x27;1.0-0&#x27;,
+                    &#x27;es-ES&#x27;
+                  ) ?? &#x27;&#x27;,
+                  true,
+                  false
+                ),
+              ],
+              [
+                this._getListItemObject(&#x27;De 15 a 64 años&#x27;, false, true),
+                this._getListItemObject(
+                  this.decimalPipe.transform(
+                    item.homes_de_15_a_64_anys,
+                    &#x27;1.0-0&#x27;,
+                    &#x27;es-ES&#x27;
+                  ) ?? &#x27;&#x27;,
+                  true,
+                  false
+                ),
+                this._getListItemObject(
+                  this.decimalPipe.transform(
+                    item.dones_de_15_a_64_anys,
+                    &#x27;1.0-0&#x27;,
+                    &#x27;es-ES&#x27;
+                  ) ?? &#x27;&#x27;,
+                  true,
+                  false
+                ),
+                this._getListItemObject(
+                  this.decimalPipe.transform(
+                    item.total_de_15_a_64_anys,
+                    &#x27;1.0-0&#x27;,
+                    &#x27;es-ES&#x27;
+                  ) ?? &#x27;&#x27;,
+                  true,
+                  false
+                ),
+              ],
+              [
+                this._getListItemObject(&#x27;65 años o más&#x27;, false, true),
+                this._getListItemObject(
+                  this.decimalPipe.transform(
+                    item.homes_de_65_anys_i_m_s,
+                    &#x27;1.0-0&#x27;,
+                    &#x27;es-ES&#x27;
+                  ) ?? &#x27;&#x27;,
+                  true,
+                  false
+                ),
+                this._getListItemObject(
+                  this.decimalPipe.transform(
+                    item.dones_de_15_a_64_anys,
+                    &#x27;1.0-0&#x27;,
+                    &#x27;es-ES&#x27;
+                  ) ?? &#x27;&#x27;,
+                  true,
+                  false
+                ),
+                this._getListItemObject(
+                  this.decimalPipe.transform(
+                    item.total_de_65_anys_i_m_s,
+                    &#x27;1.0-0&#x27;,
+                    &#x27;es-ES&#x27;
+                  ) ?? &#x27;&#x27;,
+                  true,
+                  false
+                ),
+              ],
+              [
+                this._getListItemObject(&#x27;Total&#x27;, false, true),
+                this._getListItemObject(
+                  this.decimalPipe.transform(
+                    parseInt(item.homes_de_0_a_14_anys) +
+                      parseInt(item.homes_de_15_a_64_anys) +
+                      parseInt(item.homes_de_65_anys_i_m_s),
+                    &#x27;1.0-0&#x27;,
+                    &#x27;es-ES&#x27;
+                  ) ?? &#x27;&#x27;,
+                  true,
+                  false
+                ),
+                this._getListItemObject(
+                  this.decimalPipe.transform(
+                    parseInt(item.dones_de_0_a_14_anys) +
+                      parseInt(item.dones_de_15_a_64_anys) +
+                      parseInt(item.dones_de_65_anys_i_m_s),
+                    &#x27;1.0-0&#x27;,
+                    &#x27;es-ES&#x27;
+                  ) ?? &#x27;&#x27;,
+                  true,
+                  false
+                ),
+                this._getListItemObject(
+                  this.decimalPipe.transform(
+                    parseInt(item.total_de_0_a_14_anys) +
+                      parseInt(item.total_de_15_a_64_anys) +
+                      parseInt(item.total_de_65_anys_i_m_s),
+                    &#x27;1.0-0&#x27;,
+                    &#x27;es-ES&#x27;
+                  ) ?? &#x27;&#x27;,
+                  true,
+                  false
+                ),
+              ],
+            ],
+          }
+        }
+      )
+      return data || []
+    })
+
+    this.populationData &#x3D; toSignal(
+      toObservable&lt;string&gt;(this.citySearchCode, {
+        injector: this.injector,
+      }).pipe(
+        filter((code) &#x3D;&gt; !!code),
+        takeUntilDestroyed(this.destroyRef),
+        switchMap((code) &#x3D;&gt; this.catPopulationService.getPopulationData(code))
+      ),
+      {
+        initialValue: undefined,
+        injector: this.injector,
+      }
+    )
+  }
+
+  _getListItemObject(
+    value: string,
+    number: boolean,
+    titleLeft: boolean
+  ): ListItemObject {
+    return {
+      id: window.crypto.randomUUID(),
+      borderBottom: !!value,
+      isNumber: number,
+      isTitle: !number,
+      isTitleLeft: titleLeft,
+      value,
+    }
+  }
+
+  filterByProvinceCode(): ZipCodeListItem[] {
+    const codes &#x3D; [this.provinceForm.controls[&#x27;province&#x27;].value]
+
+    if (this.provinceForm.controls[&#x27;province&#x27;].value &#x3D;&#x3D;&#x3D; ZIP_CODES.LLEIDA) {
+      codes.push(ZIP_CODES.TREMP)
+    }
+
+    return (
+      this.zipCodes()?.filter((item: ZipCodeListItem) &#x3D;&gt; {
+        return codes.includes(item.codi_postal[0].slice(0, 2))
+      }) || []
+    )
+  }
+
+  displayFn &#x3D; (option: string): string &#x3D;&gt; {
+    const value &#x3D; this.zipCodesFiltered?.find(
+      (item: ZipCodeListItem) &#x3D;&gt; item.codi_municipi &#x3D;&#x3D;&#x3D; option
+    )
+    return value
+      ? &#x60;(${this.joinPostalCodesPipe.transform(value.codi_postal, 3)}) ${
+          value.nom_municipi
+        }&#x60;
+      : &#x27;&#x27;
+  }
+
+  private _filter(value: string): ZipCodeListItem[] {
+    return this.zipCodesFiltered.filter(
+      (item) &#x3D;&gt;
+        item.nom_municipi.toLocaleLowerCase().includes(value.toLowerCase()) ||
+        item.codi_municipi.includes(value)
+    )
+  }
+
+  handleCitySelected(item: MatAutocompleteSelectedEvent): void {
+    const selected &#x3D; this.zipCodesFiltered.find(
+      (code: ZipCodeListItem) &#x3D;&gt; code.codi_municipi &#x3D;&#x3D;&#x3D; item.option.value
+    )
+    if (selected) {
+      this.citySelected &#x3D; selected
+      this.citySearchCode.set(this.citySelected.codi_municipi)
+    }
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;page__layout&quot;&gt;
+  &lt;app-page-title&gt;&lt;/app-page-title&gt;
+  @if(breakpointService.isHandsetPortrait() | async) {
+  &lt;mat-vertical-stepper #stepper linear&gt;
+    &lt;mat-step [stepControl]&#x3D;&quot;provinceForm&quot;&gt;
+      &lt;ng-template matStepLabel&gt;Seleccione una provincia&lt;/ng-template&gt;
+      &lt;ng-container *ngTemplateOutlet&#x3D;&quot;stepOne&quot; matStepContent&gt;&lt;/ng-container&gt;
+    &lt;/mat-step&gt;
+    &lt;mat-step [stepControl]&#x3D;&quot;cityForm&quot;&gt;
+      &lt;ng-template matStepLabel&gt;Seleccione una ciudad&lt;/ng-template&gt;
+      &lt;ng-container *ngTemplateOutlet&#x3D;&quot;stepTwo&quot; matStepContent&gt;&lt;/ng-container&gt;
+    &lt;/mat-step&gt;
+    &lt;mat-step&gt;
+      &lt;ng-template matStepLabel&gt;Información de la población&lt;/ng-template&gt;
+      &lt;ng-container *ngTemplateOutlet&#x3D;&quot;stepThree&quot; matStepContent&gt;&lt;/ng-container&gt;
+    &lt;/mat-step&gt;
+  &lt;/mat-vertical-stepper&gt;
+  } @else {
+  &lt;mat-stepper #stepper linear&gt;
+    &lt;mat-step [stepControl]&#x3D;&quot;provinceForm&quot;&gt;
+      &lt;ng-template matStepLabel&gt;Seleccione una provincia&lt;/ng-template&gt;
+      &lt;ng-container *ngTemplateOutlet&#x3D;&quot;stepOne&quot; matStepContent&gt;&lt;/ng-container&gt;
+    &lt;/mat-step&gt;
+    &lt;mat-step [stepControl]&#x3D;&quot;cityForm&quot;&gt;
+      &lt;ng-template matStepLabel&gt;Seleccione una ciudad&lt;/ng-template&gt;
+      &lt;ng-container *ngTemplateOutlet&#x3D;&quot;stepTwo&quot; matStepContent&gt;&lt;/ng-container&gt;
+    &lt;/mat-step&gt;
+    &lt;mat-step&gt;
+      &lt;ng-template matStepLabel&gt;Información de la población&lt;/ng-template&gt;
+      &lt;ng-container *ngTemplateOutlet&#x3D;&quot;stepThree&quot; matStepContent&gt;&lt;/ng-container&gt;
+    &lt;/mat-step&gt;
+  &lt;/mat-stepper&gt;
+  }
+&lt;/div&gt;
+
+&lt;ng-template #stepOne&gt;
+  &lt;form [formGroup]&#x3D;&quot;provinceForm&quot;&gt;
+    &lt;div
+      class&#x3D;&quot;step-form__wrapper&quot;
+      [class.step-form__wrapper--mobile]&#x3D;&quot;
+        breakpointService.isHandsetPortrait() | async
+      &quot;
+    &gt;
+      &lt;mat-form-field&gt;
+        &lt;mat-label&gt;Provincia&lt;/mat-label&gt;
+        &lt;mat-select [formControlName]&#x3D;&quot;&#x27;province&#x27;&quot;&gt;
+          @for (option of provinces; track option) {
+          &lt;mat-option [value]&#x3D;&quot;option.code&quot;&gt;{{ option.name }}&lt;/mat-option&gt;
+          }
+        &lt;/mat-select&gt;
+      &lt;/mat-form-field&gt;
+      &lt;button
+        type&#x3D;&quot;button&quot;
+        mat-flat-button
+        [disabled]&#x3D;&quot;!this.provinceForm.valid&quot;
+        (click)&#x3D;&quot;stepper.next()&quot;
+      &gt;
+        Siguiente
+      &lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/form&gt;
+&lt;/ng-template&gt;
+
+&lt;ng-template #stepTwo&gt;
+  &lt;form [formGroup]&#x3D;&quot;cityForm&quot;&gt;
+    &lt;ng-template matStepLabel&gt;Seleccione una ciudad&lt;/ng-template&gt;
+    &lt;div
+      class&#x3D;&quot;step-form__wrapper&quot;
+      [class.step-form__wrapper--mobile]&#x3D;&quot;
+        breakpointService.isHandsetPortrait() | async
+      &quot;
+    &gt;
+      &lt;mat-form-field&gt;
+        &lt;mat-label&gt;Ciudad&lt;/mat-label&gt;
+        &lt;input
+          type&#x3D;&quot;text&quot;
+          matInput
+          [formControlName]&#x3D;&quot;&#x27;city&#x27;&quot;
+          [matAutocomplete]&#x3D;&quot;auto&quot;
+          placeholder&#x3D;&quot;Ciudad&quot;
+        /&gt;
+        &lt;mat-autocomplete
+          #auto&#x3D;&quot;matAutocomplete&quot;
+          [displayWith]&#x3D;&quot;displayFn&quot;
+          (optionSelected)&#x3D;&quot;handleCitySelected($event)&quot;
+        &gt;
+          @for (option of zipCodesFiltered; track option.codi_municipi) {
+          &lt;mat-option [value]&#x3D;&quot;option.codi_municipi&quot;&gt;{{
+            option.nom_municipi
+          }}&lt;/mat-option&gt;
+          }
+        &lt;/mat-autocomplete&gt;
+      &lt;/mat-form-field&gt;
+      &lt;div class&#x3D;&quot;step-form__buttons&quot;&gt;
+        &lt;button type&#x3D;&quot;button&quot; mat-flat-button (click)&#x3D;&quot;stepper.previous()&quot;&gt;
+          Volver
+        &lt;/button&gt;
+        &lt;button
+          type&#x3D;&quot;button&quot;
+          mat-flat-button
+          [disabled]&#x3D;&quot;!this.cityForm.valid&quot;
+          (click)&#x3D;&quot;stepper.next()&quot;
+        &gt;
+          Siguiente
+        &lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/form&gt;
+&lt;/ng-template&gt;
+
+&lt;ng-template #stepThree&gt;
+  &lt;div
+    class&#x3D;&quot;data-tabs__wrapper&quot;
+    [class.step-form__wrapper--mobile]&#x3D;&quot;
+      breakpointService.isHandsetPortrait() | async
+    &quot;
+  &gt;
+    @if(citySelected) {
+    &lt;h4&gt;
+      {{ citySelected.nom_municipi }} ({{
+        citySelected.codi_postal | joinPostalCodes
+      }})
+    &lt;/h4&gt;
+    }
+    &lt;mat-tab-group mat-stretch-tabs&#x3D;&quot;false&quot; mat-align-tabs&#x3D;&quot;start&quot;&gt;
+      @if(formatedPopulationData()) { @for (data of formatedPopulationData();
+      track data.id) {
+      &lt;mat-tab [label]&#x3D;&quot;data.year&quot;&gt;
+        &lt;mat-grid-list cols&#x3D;&quot;4&quot; rowHeight&#x3D;&quot;2rem&quot; gutterSize&#x3D;&quot;0&quot;&gt;
+          @for(row of data.rows; track row) { @for(column of row; track
+          column.id) {
+          &lt;mat-grid-tile [class.border-bottom]&#x3D;&quot;column.borderBottom&quot;&gt;
+            @if(column.value) {
+            &lt;span
+              [class.data-tabs__grid-title]&#x3D;&quot;column.isTitle&quot;
+              [class.data-tabs__grid-title--left]&#x3D;&quot;column.isTitleLeft&quot;
+              [class.data-tabs__grid-number]&#x3D;&quot;column.isNumber&quot;
+              &gt;{{ column.value }}&lt;/span
+            &gt;}&lt;/mat-grid-tile
+          &gt;
+          } }
+        &lt;/mat-grid-list&gt;
+      &lt;/mat-tab&gt;
+      } }
+    &lt;/mat-tab-group&gt;
+  &lt;/div&gt;
+  &lt;div class&#x3D;&quot;step-form__buttons step-form__buttons--inline&quot;&gt;
+    &lt;button type&#x3D;&quot;button&quot; mat-flat-button (click)&#x3D;&quot;stepper.previous()&quot;&gt;
+      Volver
+    &lt;/button&gt;
+    &lt;button type&#x3D;&quot;button&quot; mat-flat-button (click)&#x3D;&quot;stepper.reset()&quot;&gt;
+      Reiniciar
+    &lt;/button&gt;
+  &lt;/div&gt;
+&lt;/ng-template&gt;
+</code></pre>
+    </div>
+
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div class="page__layout">  <app-page-title></app-page-title>  @if(breakpointService.isHandsetPortrait() | async) {  <mat-vertical-stepper #stepper linear>    <mat-step [stepControl]="provinceForm">      <ng-template matStepLabel>Seleccione una provincia</ng-template>      <ng-container *ngTemplateOutlet="stepOne" matStepContent></ng-container>    </mat-step>    <mat-step [stepControl]="cityForm">      <ng-template matStepLabel>Seleccione una ciudad</ng-template>      <ng-container *ngTemplateOutlet="stepTwo" matStepContent></ng-container>    </mat-step>    <mat-step>      <ng-template matStepLabel>Información de la población</ng-template>      <ng-container *ngTemplateOutlet="stepThree" matStepContent></ng-container>    </mat-step>  </mat-vertical-stepper>  } @else {  <mat-stepper #stepper linear>    <mat-step [stepControl]="provinceForm">      <ng-template matStepLabel>Seleccione una provincia</ng-template>      <ng-container *ngTemplateOutlet="stepOne" matStepContent></ng-container>    </mat-step>    <mat-step [stepControl]="cityForm">      <ng-template matStepLabel>Seleccione una ciudad</ng-template>      <ng-container *ngTemplateOutlet="stepTwo" matStepContent></ng-container>    </mat-step>    <mat-step>      <ng-template matStepLabel>Información de la población</ng-template>      <ng-container *ngTemplateOutlet="stepThree" matStepContent></ng-container>    </mat-step>  </mat-stepper>  }</div><ng-template #stepOne>  <form [formGroup]="provinceForm">    <div      class="step-form__wrapper"      [class.step-form__wrapper--mobile]="        breakpointService.isHandsetPortrait() | async      "    >      <mat-form-field>        <mat-label>Provincia</mat-label>        <mat-select [formControlName]="\'province\'">          @for (option of provinces; track option) {          <mat-option [value]="option.code">{{ option.name }}</mat-option>          }        </mat-select>      </mat-form-field>      <button        type="button"        mat-flat-button        [disabled]="!this.provinceForm.valid"        (click)="stepper.next()"      >        Siguiente      </button>    </div>  </form></ng-template><ng-template #stepTwo>  <form [formGroup]="cityForm">    <ng-template matStepLabel>Seleccione una ciudad</ng-template>    <div      class="step-form__wrapper"      [class.step-form__wrapper--mobile]="        breakpointService.isHandsetPortrait() | async      "    >      <mat-form-field>        <mat-label>Ciudad</mat-label>        <input          type="text"          matInput          [formControlName]="\'city\'"          [matAutocomplete]="auto"          placeholder="Ciudad"        />        <mat-autocomplete          #auto="matAutocomplete"          [displayWith]="displayFn"          (optionSelected)="handleCitySelected($event)"        >          @for (option of zipCodesFiltered; track option.codi_municipi) {          <mat-option [value]="option.codi_municipi">{{            option.nom_municipi          }}</mat-option>          }        </mat-autocomplete>      </mat-form-field>      <div class="step-form__buttons">        <button type="button" mat-flat-button (click)="stepper.previous()">          Volver        </button>        <button          type="button"          mat-flat-button          [disabled]="!this.cityForm.valid"          (click)="stepper.next()"        >          Siguiente        </button>      </div>    </div>  </form></ng-template><ng-template #stepThree>  <div    class="data-tabs__wrapper"    [class.step-form__wrapper--mobile]="      breakpointService.isHandsetPortrait() | async    "  >    @if(citySelected) {    <h4>      {{ citySelected.nom_municipi }} ({{        citySelected.codi_postal | joinPostalCodes      }})    </h4>    }    <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">      @if(formatedPopulationData()) { @for (data of formatedPopulationData();      track data.id) {      <mat-tab [label]="data.year">        <mat-grid-list cols="4" rowHeight="2rem" gutterSize="0">          @for(row of data.rows; track row) { @for(column of row; track          column.id) {          <mat-grid-tile [class.border-bottom]="column.borderBottom">            @if(column.value) {            <span              [class.data-tabs__grid-title]="column.isTitle"              [class.data-tabs__grid-title--left]="column.isTitleLeft"              [class.data-tabs__grid-number]="column.isNumber"              >{{ column.value }}</span            >}</mat-grid-tile          >          } }        </mat-grid-list>      </mat-tab>      } }    </mat-tab-group>  </div>  <div class="step-form__buttons step-form__buttons--inline">    <button type="button" mat-flat-button (click)="stepper.previous()">      Volver    </button>    <button type="button" mat-flat-button (click)="stepper.reset()">      Reiniciar    </button>  </div></ng-template></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ArtistAlbumDataComponent', 'selector': 'app-artist-album-data'},{'name': 'CatDammingsComponent', 'selector': 'app-cat-dammings'},{'name': 'CatDammingsHistoricChartComponent', 'selector': 'app-dammings-historic-chart'},{'name': 'CatPopulationComponent', 'selector': 'app-cat-population'},{'name': 'DataNotFoundComponent', 'selector': 'app-data-not-found'},{'name': 'DisneyAPIComponent', 'selector': 'app-disney-api'},{'name': 'DrawerMenuComponent', 'selector': 'app-drawer-menu'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'LoadingSpinnerComponent', 'selector': 'app-loading-spinner'},{'name': 'ModalImageViewerComponent', 'selector': 'app-modal-image-viewer'},{'name': 'ModalWrapperComponent', 'selector': 'app-modal-wrapper'},{'name': 'PageTitleComponent', 'selector': 'app-page-title'},{'name': 'SearchFilterComponent', 'selector': 'app-search-filter'},{'name': 'SimplePaginatorComponent', 'selector': 'app-simple-paginator'},{'name': 'SpotifyAPIComponent', 'selector': 'app-spotify-api'},{'name': 'SpotifySearchFormComponent', 'selector': 'app-spotify-search-form'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'CatPopulationComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'CatPopulationComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

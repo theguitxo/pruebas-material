@@ -1,3 +1,6 @@
+/**
+ * Códigos postales de Cataluña
+ */
 export enum ZIP_CODES {
   BARCELONA = '08',
   TARRAGONA = '43',
@@ -6,11 +9,17 @@ export enum ZIP_CODES {
   TREMP = '22',
 }
 
+/**
+ * Códigos para casos especiales
+ */
 export enum SPECIAL_ZIP_CODES {
   NO_CONSTA = '99999',
   OTROS_DIVERSOS = '99998',
 }
 
+/**
+ * Nombres de las provincias
+ */
 export enum PROVINCE_NAMES {
   BARCELONA = 'Barcelona',
   TARRAGONA = 'Tarragona',
@@ -18,6 +27,9 @@ export enum PROVINCE_NAMES {
   GIRONA = 'Girona',
 }
 
+/**
+ * Opciones para el selector de provincia
+ */
 export const FILTER_PROVINCE_OPTIONS: {
   code: ZIP_CODES;
   name: PROVINCE_NAMES;

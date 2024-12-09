@@ -1,0 +1,2531 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>pruebas-material documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">pruebas-material documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  CatDammingsComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/pages/cat-dammings/cat-dammings.component.ts</code>
+</p>
+
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code>OnInit</code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+            <tr>
+                <td class="col-md-3">changeDetection</td>
+                <td class="col-md-9"><code>ChangeDetectionStrategy.OnPush</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">providers</td>
+                <td class="col-md-9">
+                            <code>{
+    provide: MAT_DATE_LOCALE, useValue: ,
+}</code>
+                            <code>provideNativeDateAdapter()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-cat-dammings</code></td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>DecimalPipe</code>
+                            <code>AsyncPipe</code>
+                                <code><a href="../components/PageTitleComponent.html" target="_self" >PageTitleComponent</a></code>
+                            <code>MatInputModule</code>
+                            <code>MatDatepickerModule</code>
+                            <code>FormsModule</code>
+                            <code>ReactiveFormsModule</code>
+                            <code>MatFormFieldModule</code>
+                            <code>MatButtonModule</code>
+                            <code>MatCheckboxModule</code>
+                            <code>MatSelectModule</code>
+                            <code>MatTableModule</code>
+                            <code>MatSortModule</code>
+                            <code>MatSort</code>
+                            <code>MatIconModule</code>
+                            <code>MatTooltipModule</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./cat-dammings.component.html</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./cat-dammings.component.scss</code></td>
+            </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#allSelected" >allSelected</a>
+                            </li>
+                            <li>
+                                <a href="#amountSelected" >amountSelected</a>
+                            </li>
+                            <li>
+                                <a href="#breakpointService" >breakpointService</a>
+                            </li>
+                            <li>
+                                <a href="#checkedStations" >checkedStations</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#dammingsService" >dammingsService</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#destroyRef" >destroyRef</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#dialog" >dialog</a>
+                            </li>
+                            <li>
+                                <a href="#filteredStations" >filteredStations</a>
+                            </li>
+                            <li>
+                                <a href="#form" >form</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#injector" >injector</a>
+                            </li>
+                            <li>
+                                <a href="#list" >list</a>
+                            </li>
+                            <li>
+                                <a href="#maxDate" >maxDate</a>
+                            </li>
+                            <li>
+                                <a href="#minDate" >minDate</a>
+                            </li>
+                            <li>
+                                <a href="#moreInfoData" >moreInfoData</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#snackBar" >snackBar</a>
+                            </li>
+                            <li>
+                                <a href="#stations" >stations</a>
+                            </li>
+                            <li>
+                                <a href="#stationsDisplayedColumns" >stationsDisplayedColumns</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_filterStationByDate" >_filterStationByDate</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_getDatesList" >_getDatesList</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_getMoreInfo" >_getMoreInfo</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_getSelectedStations" >_getSelectedStations</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_initForm" >_initForm</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_initSignals" >_initSignals</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_mapStationInfo" >_mapStationInfo</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_optionSelectAll" >_optionSelectAll</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_optionSelectValue" >_optionSelectValue</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_setCheckedStations" >_setCheckedStations</a>
+                            </li>
+                            <li>
+                                <a href="#changeStation" >changeStation</a>
+                            </li>
+                            <li>
+                                <a href="#compareFn" >compareFn</a>
+                            </li>
+                            <li>
+                                <a href="#filterData" >filterData</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#optionSelectClick" >optionSelectClick</a>
+                            </li>
+                            <li>
+                                <a href="#selectAll" >selectAll</a>
+                            </li>
+                            <li>
+                                <a href="#unselectAll" >unselectAll</a>
+                            </li>
+                            <li>
+                                <a href="#viewMore" >viewMore</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Accessors</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                    <a href="#sort" >sort</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor()</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="115" class="link-to-prism">src/app/pages/cat-dammings/cat-dammings.component.ts:115</a></div>
+                            </td>
+                        </tr>
+
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_filterStationByDate"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_filterStationByDate</b></span>
+                        <a href="#_filterStationByDate"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_filterStationByDate(station: <a href="../interfaces/DammingsInfoItem.html" target="_self">DammingsInfoItem</a>, stations: string[], date?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date" target="_blank">Date</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="249"
+                                    class="link-to-prism">src/app/pages/cat-dammings/cat-dammings.component.ts:249</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>station</td>
+                                            <td>
+                                                            <code><a href="../interfaces/DammingsInfoItem.html" target="_self" >DammingsInfoItem</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>stations</td>
+                                            <td>
+                                                        <code>string[]</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>date</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date" target="_blank" >Date</a></code>
+                                            </td>
+
+                                            <td>
+                                                    Yes
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>boolean | undefined</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_getDatesList"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_getDatesList</b></span>
+                        <a href="#_getDatesList"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_getDatesList()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="314"
+                                    class="link-to-prism">src/app/pages/cat-dammings/cat-dammings.component.ts:314</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Date[]</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_getMoreInfo"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_getMoreInfo</b></span>
+                        <a href="#_getMoreInfo"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_getMoreInfo(stationId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, date: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date" target="_blank">Date</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="301"
+                                    class="link-to-prism">src/app/pages/cat-dammings/cat-dammings.component.ts:301</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>stationId</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>date</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date" target="_blank" >Date</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>FilteredInfoItemDate[]</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_getSelectedStations"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_getSelectedStations</b></span>
+                        <a href="#_getSelectedStations"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_getSelectedStations()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="230"
+                                    class="link-to-prism">src/app/pages/cat-dammings/cat-dammings.component.ts:230</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>string[]</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_initForm"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_initForm</b></span>
+                        <a href="#_initForm"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_initForm()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="130"
+                                    class="link-to-prism">src/app/pages/cat-dammings/cat-dammings.component.ts:130</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_initSignals"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_initSignals</b></span>
+                        <a href="#_initSignals"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_initSignals()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="149"
+                                    class="link-to-prism">src/app/pages/cat-dammings/cat-dammings.component.ts:149</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_mapStationInfo"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_mapStationInfo</b></span>
+                        <a href="#_mapStationInfo"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_mapStationInfo(station: <a href="../interfaces/DammingsInfoItem.html" target="_self">DammingsInfoItem</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="261"
+                                    class="link-to-prism">src/app/pages/cat-dammings/cat-dammings.component.ts:261</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>station</td>
+                                            <td>
+                                                            <code><a href="../interfaces/DammingsInfoItem.html" target="_self" >DammingsInfoItem</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../interfaces/FilteredInfoItem.html" target="_self" >FilteredInfoItem</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_optionSelectAll"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_optionSelectAll</b></span>
+                        <a href="#_optionSelectAll"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_optionSelectAll()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="206"
+                                    class="link-to-prism">src/app/pages/cat-dammings/cat-dammings.component.ts:206</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_optionSelectValue"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_optionSelectValue</b></span>
+                        <a href="#_optionSelectValue"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_optionSelectValue()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="216"
+                                    class="link-to-prism">src/app/pages/cat-dammings/cat-dammings.component.ts:216</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_setCheckedStations"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_setCheckedStations</b></span>
+                        <a href="#_setCheckedStations"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_setCheckedStations()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="226"
+                                    class="link-to-prism">src/app/pages/cat-dammings/cat-dammings.component.ts:226</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="changeStation"></a>
+                    <span class="name">
+                        <span ><b>changeStation</b></span>
+                        <a href="#changeStation"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>changeStation(event: MatCheckboxChange, station: <a href="../interfaces/StationItem.html" target="_self">StationItem</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="171"
+                                    class="link-to-prism">src/app/pages/cat-dammings/cat-dammings.component.ts:171</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+                                            <td>
+                                                        <code>MatCheckboxChange</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>station</td>
+                                            <td>
+                                                            <code><a href="../interfaces/StationItem.html" target="_self" >StationItem</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="compareFn"></a>
+                    <span class="name">
+                        <span ><b>compareFn</b></span>
+                        <a href="#compareFn"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>compareFn(option: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, selected: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="187"
+                                    class="link-to-prism">src/app/pages/cat-dammings/cat-dammings.component.ts:187</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>option</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>selected</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="filterData"></a>
+                    <span class="name">
+                        <span ><b>filterData</b></span>
+                        <a href="#filterData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>filterData()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="234"
+                                    class="link-to-prism">src/app/pages/cat-dammings/cat-dammings.component.ts:234</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="124"
+                                    class="link-to-prism">src/app/pages/cat-dammings/cat-dammings.component.ts:124</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="optionSelectClick"></a>
+                    <span class="name">
+                        <span ><b>optionSelectClick</b></span>
+                        <a href="#optionSelectClick"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>optionSelectClick(all: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="181"
+                                    class="link-to-prism">src/app/pages/cat-dammings/cat-dammings.component.ts:181</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>all</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectAll"></a>
+                    <span class="name">
+                        <span ><b>selectAll</b></span>
+                        <a href="#selectAll"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>selectAll()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="191"
+                                    class="link-to-prism">src/app/pages/cat-dammings/cat-dammings.component.ts:191</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="unselectAll"></a>
+                    <span class="name">
+                        <span ><b>unselectAll</b></span>
+                        <a href="#unselectAll"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>unselectAll()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="200"
+                                    class="link-to-prism">src/app/pages/cat-dammings/cat-dammings.component.ts:200</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="viewMore"></a>
+                    <span class="name">
+                        <span ><b>viewMore</b></span>
+                        <a href="#viewMore"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>viewMore(stationId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="274"
+                                    class="link-to-prism">src/app/pages/cat-dammings/cat-dammings.component.ts:274</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>stationId</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="allSelected"></a>
+                    <span class="name">
+                        <span ><b>allSelected</b></span>
+                        <a href="#allSelected"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="103" class="link-to-prism">src/app/pages/cat-dammings/cat-dammings.component.ts:103</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="amountSelected"></a>
+                    <span class="name">
+                        <span ><b>amountSelected</b></span>
+                        <a href="#amountSelected"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>0</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="104" class="link-to-prism">src/app/pages/cat-dammings/cat-dammings.component.ts:104</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="breakpointService"></a>
+                    <span class="name">
+                        <span ><b>breakpointService</b></span>
+                        <a href="#breakpointService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../injectables/BreakpointService.html" target="_self" >BreakpointService</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="91" class="link-to-prism">src/app/pages/cat-dammings/cat-dammings.component.ts:91</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="checkedStations"></a>
+                    <span class="name">
+                        <span ><b>checkedStations</b></span>
+                        <a href="#checkedStations"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Set&lt;string&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new Set&lt;string&gt;()</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="106" class="link-to-prism">src/app/pages/cat-dammings/cat-dammings.component.ts:106</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="dammingsService"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>dammingsService</b></span>
+                        <a href="#dammingsService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../injectables/CatDammingsService.html" target="_self" >CatDammingsService</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="85" class="link-to-prism">src/app/pages/cat-dammings/cat-dammings.component.ts:85</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="destroyRef"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>destroyRef</b></span>
+                        <a href="#destroyRef"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(DestroyRef)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="89" class="link-to-prism">src/app/pages/cat-dammings/cat-dammings.component.ts:89</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="dialog"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>dialog</b></span>
+                        <a href="#dialog"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>MatDialog</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="87" class="link-to-prism">src/app/pages/cat-dammings/cat-dammings.component.ts:87</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="filteredStations"></a>
+                    <span class="name">
+                        <span ><b>filteredStations</b></span>
+                        <a href="#filteredStations"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/FilteredInfoItem.html" target="_self" >MatTableDataSource&lt;FilteredInfoItem&gt;</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="107" class="link-to-prism">src/app/pages/cat-dammings/cat-dammings.component.ts:107</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="form"></a>
+                    <span class="name">
+                        <span ><b>form</b></span>
+                        <a href="#form"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/FilterForm.html" target="_self" >FormGroup&lt;FilterForm&gt;</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="105" class="link-to-prism">src/app/pages/cat-dammings/cat-dammings.component.ts:105</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="injector"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>injector</b></span>
+                        <a href="#injector"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(Injector)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="88" class="link-to-prism">src/app/pages/cat-dammings/cat-dammings.component.ts:88</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="list"></a>
+                    <span class="name">
+                        <span ><b>list</b></span>
+                        <a href="#list"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Signal&lt;[] | undefined&gt;</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="102" class="link-to-prism">src/app/pages/cat-dammings/cat-dammings.component.ts:102</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="maxDate"></a>
+                    <span class="name">
+                        <span ><b>maxDate</b></span>
+                        <a href="#maxDate"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Signal&lt;Date | undefined&gt;</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="99" class="link-to-prism">src/app/pages/cat-dammings/cat-dammings.component.ts:99</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="minDate"></a>
+                    <span class="name">
+                        <span ><b>minDate</b></span>
+                        <a href="#minDate"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Signal&lt;Date | undefined&gt;</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="100" class="link-to-prism">src/app/pages/cat-dammings/cat-dammings.component.ts:100</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="moreInfoData"></a>
+                    <span class="name">
+                        <span ><b>moreInfoData</b></span>
+                        <a href="#moreInfoData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>FilteredInfoItemDate[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="115" class="link-to-prism">src/app/pages/cat-dammings/cat-dammings.component.ts:115</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="snackBar"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>snackBar</b></span>
+                        <a href="#snackBar"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>MatSnackBar</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="86" class="link-to-prism">src/app/pages/cat-dammings/cat-dammings.component.ts:86</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="stations"></a>
+                    <span class="name">
+                        <span ><b>stations</b></span>
+                        <a href="#stations"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Signal&lt;[] | undefined&gt;</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="101" class="link-to-prism">src/app/pages/cat-dammings/cat-dammings.component.ts:101</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="stationsDisplayedColumns"></a>
+                    <span class="name">
+                        <span ><b>stationsDisplayedColumns</b></span>
+                        <a href="#stationsDisplayedColumns"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+    &#x27;estaci&#x27;,
+    &#x27;nivell_absolut&#x27;,
+    &#x27;percentatge_volum_embassat&#x27;,
+    &#x27;volum_embassat&#x27;,
+    &#x27;actions&#x27;,
+  ]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="108" class="link-to-prism">src/app/pages/cat-dammings/cat-dammings.component.ts:108</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-accessors">
+    <h3 id="accessors">
+        Accessors
+    </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="sort"></a>
+                        <span class="name"><b>sort</b><a href="#sort"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>set</b><code>sort(sort: MatSort)</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="93" class="link-to-prism">src/app/pages/cat-dammings/cat-dammings.component.ts:93</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+
+                                <div class="io-description">
+                                        <b>Parameters :</b>
+                                        <table class="params">
+                                            <thead>
+                                                <tr>
+                                                    <td>Name</td>
+                                                        <td>Type</td>
+                                                    <td>Optional</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                    <tr>
+                                                            <td>sort</td>
+                                                    
+                                                            <td>
+                                                                        <code>MatSort</code>
+                                                            </td>
+                                                    
+                                                        <td>
+                                                                No
+                                                        </td>
+                                                        
+                                                    </tr>
+                                            </tbody>
+                                        </table>
+                                </div>
+                                <div>
+                                </div>
+                                <div class="io-description">
+                                    <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                                </div>
+                        </td>
+                    </tr>
+            </tbody>
+        </table>
+</section>
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { AsyncPipe, DecimalPipe } from &#x27;@angular/common&#x27;;
+import {
+  ChangeDetectionStrategy,
+  Component,
+  DestroyRef,
+  inject,
+  Injector,
+  OnInit,
+  Signal,
+  ViewChild,
+} from &#x27;@angular/core&#x27;;
+import { takeUntilDestroyed, toSignal } from &#x27;@angular/core/rxjs-interop&#x27;;
+import {
+  FormControl,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from &#x27;@angular/forms&#x27;;
+import { MatButtonModule } from &#x27;@angular/material/button&#x27;;
+import {
+  MatCheckboxChange,
+  MatCheckboxModule,
+} from &#x27;@angular/material/checkbox&#x27;;
+import {
+  MAT_DATE_LOCALE,
+  provideNativeDateAdapter,
+} from &#x27;@angular/material/core&#x27;;
+import { MatDatepickerModule } from &#x27;@angular/material/datepicker&#x27;;
+import { MatDialog } from &#x27;@angular/material/dialog&#x27;;
+import { MatFormFieldModule } from &#x27;@angular/material/form-field&#x27;;
+import { MatIconModule } from &#x27;@angular/material/icon&#x27;;
+import { MatInputModule } from &#x27;@angular/material/input&#x27;;
+import { MatSelectModule } from &#x27;@angular/material/select&#x27;;
+import { MatSnackBar } from &#x27;@angular/material/snack-bar&#x27;;
+import { MatSort, MatSortModule } from &#x27;@angular/material/sort&#x27;;
+import { MatTableDataSource, MatTableModule } from &#x27;@angular/material/table&#x27;;
+import { MatTooltipModule } from &#x27;@angular/material/tooltip&#x27;;
+import { PageTitleComponent } from &#x27;../../components/page-title/page-title.component&#x27;;
+import { ONE_DAY_MILISECONDS } from &#x27;../../constants/common.constants&#x27;;
+import {
+  DammingsInfoItem,
+  FilteredInfoItem,
+  FilteredInfoItemDate,
+  FilterForm,
+  StationItem,
+} from &#x27;../../models/cat-dammings/cat-dammings.model&#x27;;
+import { BreakpointService } from &#x27;../../services/breakpoint.service&#x27;;
+import { CatDammingsService } from &#x27;../../services/cat-dammings.service&#x27;;
+import { CatDammingsHistoricChartComponent } from &#x27;./components/historic-chart/historic-chart.component&#x27;;
+
+export const TODOS &#x3D; &#x27;todos&#x27;;
+@Component({
+  selector: &#x27;app-cat-dammings&#x27;,
+  templateUrl: &#x27;./cat-dammings.component.html&#x27;,
+  styleUrl: &#x27;./cat-dammings.component.scss&#x27;,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [
+    {
+      provide: MAT_DATE_LOCALE,
+      useValue: &#x27;es-ES&#x27;,
+    },
+    provideNativeDateAdapter(),
+  ],
+  imports: [
+    DecimalPipe,
+    AsyncPipe,
+    PageTitleComponent,
+    MatInputModule,
+    MatDatepickerModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatButtonModule,
+    MatCheckboxModule,
+    MatSelectModule,
+    MatTableModule,
+    MatSortModule,
+    MatSort,
+    MatIconModule,
+    MatTooltipModule,
+  ],
+})
+export class CatDammingsComponent implements OnInit {
+  private readonly dammingsService!: CatDammingsService;
+  private readonly snackBar!: MatSnackBar;
+  private readonly dialog!: MatDialog;
+  private readonly injector &#x3D; inject(Injector);
+  private readonly destroyRef &#x3D; inject(DestroyRef);
+
+  breakpointService!: BreakpointService;
+
+  @ViewChild(MatSort, { static: false }) set sort(sort: MatSort) {
+    if (this.filteredStations) {
+      this.filteredStations.sort &#x3D; sort;
+    }
+  }
+
+  maxDate!: Signal&lt;Date | undefined&gt;;
+  minDate!: Signal&lt;Date | undefined&gt;;
+  stations!: Signal&lt;StationItem[] | undefined&gt;;
+  list!: Signal&lt;DammingsInfoItem[] | undefined&gt;;
+  allSelected &#x3D; false;
+  amountSelected &#x3D; 0;
+  form!: FormGroup&lt;FilterForm&gt;;
+  checkedStations: Set&lt;string&gt; &#x3D; new Set&lt;string&gt;();
+  filteredStations!: MatTableDataSource&lt;FilteredInfoItem&gt;;
+  stationsDisplayedColumns: string[] &#x3D; [
+    &#x27;estaci&#x27;,
+    &#x27;nivell_absolut&#x27;,
+    &#x27;percentatge_volum_embassat&#x27;,
+    &#x27;volum_embassat&#x27;,
+    &#x27;actions&#x27;,
+  ];
+  moreInfoData: FilteredInfoItemDate[] &#x3D; [];
+
+  constructor() {
+    this.dammingsService &#x3D; inject(CatDammingsService);
+    this.snackBar &#x3D; inject(MatSnackBar);
+    this.dialog &#x3D; inject(MatDialog);
+    this.breakpointService &#x3D; inject(BreakpointService);
+  }
+
+  ngOnInit(): void {
+    this._initForm();
+    this._initSignals();
+    this.dammingsService.loadData();
+  }
+
+  private _initForm() {
+    this.form &#x3D; new FormGroup&lt;FilterForm&gt;({
+      date: new FormControl(undefined, {
+        nonNullable: true,
+        validators: Validators.required,
+      }),
+      stations: new FormControl(undefined, {
+        nonNullable: true,
+        validators: Validators.required,
+      }),
+    });
+
+    this.form.controls.stations.valueChanges
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((value: string[] | undefined) &#x3D;&gt; {
+        this.amountSelected &#x3D; value?.length ?? 0;
+      });
+  }
+
+  private _initSignals(): void {
+    this.maxDate &#x3D; toSignal(this.dammingsService.maxDate, {
+      requireSync: true,
+      injector: this.injector,
+    });
+
+    this.minDate &#x3D; toSignal(this.dammingsService.minDate, {
+      requireSync: true,
+      injector: this.injector,
+    });
+
+    this.stations &#x3D; toSignal(this.dammingsService.stations, {
+      requireSync: true,
+      injector: this.injector,
+    });
+
+    this.list &#x3D; toSignal(this.dammingsService.list, {
+      requireSync: true,
+      injector: this.injector,
+    });
+  }
+
+  changeStation(event: MatCheckboxChange, station: StationItem): void {
+    this.form.controls.stations.setValue(
+      event.checked
+        ? [...(this.form.controls.stations.value ?? []), station.key]
+        : this.form.controls.stations.value?.filter((i) &#x3D;&gt; i !&#x3D;&#x3D; station.key)
+    );
+
+    this._setCheckedStations();
+  }
+
+  optionSelectClick(all: boolean): void {
+    all ? this._optionSelectAll() : this._optionSelectValue();
+
+    this._setCheckedStations();
+  }
+
+  compareFn(option: string, selected: string): boolean {
+    return option &#x3D;&#x3D;&#x3D; selected;
+  }
+
+  selectAll(): void {
+    this.form.controls.stations.setValue([
+      TODOS,
+      ...(this.stations()?.map((i) &#x3D;&gt; i.key) ?? []),
+    ]);
+    this.allSelected &#x3D; true;
+    this._setCheckedStations();
+  }
+
+  unselectAll(): void {
+    this.form.controls.stations.reset();
+    this.allSelected &#x3D; false;
+    this._setCheckedStations();
+  }
+
+  private _optionSelectAll(): void {
+    this.allSelected &#x3D; !!this._getSelectedStations().length;
+
+    this.form.controls.stations.setValue(
+      this.allSelected
+        ? [TODOS, ...(this.stations()?.map((i) &#x3D;&gt; i.key) ?? [])]
+        : []
+    );
+  }
+
+  private _optionSelectValue(): void {
+    const stationsSelected &#x3D; this._getSelectedStations();
+
+    this.allSelected &#x3D; stationsSelected?.length &#x3D;&#x3D;&#x3D; this.stations()?.length;
+
+    this.form.controls.stations.setValue(
+      this.allSelected ? [TODOS, ...(stationsSelected ?? [])] : stationsSelected
+    );
+  }
+
+  private _setCheckedStations(): void {
+    this.checkedStations &#x3D; new Set(this._getSelectedStations());
+  }
+
+  private _getSelectedStations(): string[] {
+    return this.form.controls.stations.value?.filter((i) &#x3D;&gt; i !&#x3D;&#x3D; TODOS) ?? [];
+  }
+
+  filterData(): void {
+    this.filteredStations &#x3D; new MatTableDataSource(
+      this.list()
+        ?.filter((station: DammingsInfoItem) &#x3D;&gt;
+          this._filterStationByDate(
+            station,
+            this.form.controls.stations.value ?? []
+          )
+        )
+        ?.map((stationFiltered: DammingsInfoItem) &#x3D;&gt;
+          this._mapStationInfo(stationFiltered)
+        ) ?? []
+    );
+  }
+
+  private _filterStationByDate(
+    station: DammingsInfoItem,
+    stations: string[],
+    date?: Date
+  ): boolean | undefined {
+    const formDate &#x3D; date ?? new Date(this.form.controls.date.value ?? &#x27;&#x27;);
+    return (
+      station.date.getTime() &#x3D;&#x3D;&#x3D; formDate.getTime() &amp;&amp;
+      stations.includes(station.id_estaci)
+    );
+  }
+
+  private _mapStationInfo(station: DammingsInfoItem): FilteredInfoItem {
+    return {
+      id_estaci: station.id_estaci,
+      estaci: station.estaci,
+      nivell_absolut: station.nivell_absolut,
+      volum_embassat: station.volum_embassat,
+      percentatge_volum_embassat:
+        +station.percentatge_volum_embassat &gt; 100
+          ? &#x60;100&#x60;
+          : station.percentatge_volum_embassat,
+    };
+  }
+
+  viewMore(stationId: string): void {
+    const dates &#x3D; this._getDatesList();
+    this.moreInfoData &#x3D; [];
+
+    if (dates.length) {
+      dates.forEach((date: Date) &#x3D;&gt; {
+        this.moreInfoData &#x3D; [
+          ...this.moreInfoData,
+          ...this._getMoreInfo(stationId, date),
+        ];
+      });
+    }
+
+    if (this.moreInfoData.length) {
+      this.dialog.open(CatDammingsHistoricChartComponent, {
+        data: this.moreInfoData,
+        width: &#x27;80%&#x27;,
+      });
+    } else {
+      this.snackBar.open(&#x27;No hay datos para mostrar&#x27;, &#x27;Cerrar&#x27;, {
+        duration: 3000,
+        horizontalPosition: &#x27;center&#x27;,
+        verticalPosition: &#x27;top&#x27;,
+      });
+    }
+  }
+
+  private _getMoreInfo(stationId: string, date: Date): FilteredInfoItemDate[] {
+    return (
+      this.list()
+        ?.filter((station: DammingsInfoItem) &#x3D;&gt;
+          this._filterStationByDate(station, [stationId], date)
+        )
+        ?.map((stationFiltered: DammingsInfoItem) &#x3D;&gt; ({
+          ...this._mapStationInfo(stationFiltered),
+          dia: date,
+        })) ?? []
+    );
+  }
+
+  private _getDatesList(): Date[] {
+    if (this.form.controls.date.value) {
+      const minDate &#x3D; this.minDate()?.getTime();
+      let selectedDate &#x3D; this.form.controls.date.value.getTime();
+      let endDate &#x3D; selectedDate - ONE_DAY_MILISECONDS * 7;
+
+      if (minDate &amp;&amp; endDate &lt; minDate) {
+        selectedDate &#x3D; minDate + ONE_DAY_MILISECONDS * 7;
+      }
+
+      let dates &#x3D; Array&lt;Date&gt;(7)
+        .fill(new Date())
+        .map((_v: Date, i: number) &#x3D;&gt; {
+          return new Date(selectedDate - ONE_DAY_MILISECONDS * i);
+        });
+
+      return dates;
+    }
+
+    return [];
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;page__layout&quot;&gt;
+  &lt;app-page-title&gt;&lt;/app-page-title&gt;
+  @if (form) {
+  &lt;form class&#x3D;&quot;form__wrapper&quot; [formGroup]&#x3D;&quot;form&quot; (ngSubmit)&#x3D;&quot;filterData()&quot;&gt;
+    @if (breakpointService.isHandsetPortrait() | async) {
+    &lt;mat-form-field&gt;
+      &lt;mat-label&gt;Embalse&lt;/mat-label&gt;
+      &lt;mat-select [compareWith]&#x3D;&quot;compareFn&quot; formControlName&#x3D;&quot;stations&quot; multiple&gt;
+        &lt;mat-select-trigger&gt;
+          @if (allSelected) { Todos } @else {
+          {{ amountSelected }} embalse{{
+            amountSelected &gt; 1 ? &#x27;s&#x27; : &#x27;&#x27;
+          }}
+          seleccionado{{ amountSelected &gt; 1 ? &#x27;s&#x27; : &#x27;&#x27; }}
+          }
+        &lt;/mat-select-trigger&gt;
+        &lt;mat-option
+          value&#x3D;&quot;todos&quot;
+          (click)&#x3D;&quot;optionSelectClick(true)&quot;
+          (keypress)&#x3D;&quot;optionSelectClick(true)&quot;
+          &gt;Todos&lt;/mat-option
+        &gt;
+        @for (station of stations(); track station) {
+        &lt;mat-option
+          [value]&#x3D;&quot;station.key&quot;
+          (click)&#x3D;&quot;optionSelectClick(false)&quot;
+          (keypress)&#x3D;&quot;optionSelectClick(false)&quot;
+          &gt;{{ station.name }}&lt;/mat-option
+        &gt;
+        }
+      &lt;/mat-select&gt;
+    &lt;/mat-form-field&gt;
+    } @else {
+    &lt;div class&#x3D;&quot;form__stations-list&quot;&gt;
+      &lt;div&gt;
+        @for (station of stations(); track station) {
+        &lt;mat-checkbox
+          [checked]&#x3D;&quot;checkedStations.has(station.key)&quot;
+          (change)&#x3D;&quot;changeStation($event, station)&quot;
+          &gt;{{ station.name }}&lt;/mat-checkbox
+        &gt;
+        }
+      &lt;/div&gt;
+      &lt;div class&#x3D;&quot;form__all-none-buttons&quot;&gt;
+        &lt;button
+          type&#x3D;&quot;button&quot;
+          mat-flat-button
+          [disabled]&#x3D;&quot;
+            form.controls.stations.value?.length &#x3D;&#x3D;&#x3D; stations()?.length
+          &quot;
+          (click)&#x3D;&quot;selectAll()&quot;
+        &gt;
+          Todos
+        &lt;/button&gt;
+        &lt;button
+          type&#x3D;&quot;button&quot;
+          mat-flat-button
+          [disabled]&#x3D;&quot;!amountSelected&quot;
+          (click)&#x3D;&quot;unselectAll()&quot;
+        &gt;
+          Ninguno
+        &lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    }
+    &lt;div&gt;
+      &lt;mat-form-field&gt;
+        &lt;mat-label&gt;Elija una fecha&lt;/mat-label&gt;
+        &lt;input
+          matInput
+          [min]&#x3D;&quot;minDate()&quot;
+          [max]&#x3D;&quot;maxDate()&quot;
+          [matDatepicker]&#x3D;&quot;picker&quot;
+          [formControlName]&#x3D;&quot;&#x27;date&#x27;&quot;
+        /&gt;
+        &lt;mat-datepicker-toggle
+          matIconSuffix
+          [for]&#x3D;&quot;picker&quot;
+        &gt;&lt;/mat-datepicker-toggle&gt;
+        &lt;mat-datepicker #picker&gt;&lt;/mat-datepicker&gt;
+      &lt;/mat-form-field&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+      &lt;button type&#x3D;&quot;submit&quot; mat-flat-button [disabled]&#x3D;&quot;!form.valid&quot;&gt;
+        Buscar
+      &lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/form&gt;
+  } @if (filteredStations) {
+  &lt;div class&#x3D;&quot;table__wrapper&quot;&gt;
+    &lt;table mat-table [dataSource]&#x3D;&quot;filteredStations&quot; matSort&gt;
+      &lt;ng-container matColumnDef&#x3D;&quot;estaci&quot;&gt;
+        &lt;th
+          mat-header-cell
+          *matHeaderCellDef
+          mat-sort-header
+          sortActionDescription&#x3D;&quot;Sort by estaci&quot;
+        &gt;
+          Embalse
+        &lt;/th&gt;
+        &lt;td mat-cell *matCellDef&#x3D;&quot;let station&quot;&gt;{{ station.estaci }}&lt;/td&gt;
+      &lt;/ng-container&gt;
+      &lt;ng-container matColumnDef&#x3D;&quot;nivell_absolut&quot;&gt;
+        &lt;th mat-header-cell *matHeaderCellDef mat-sort-header&gt;
+          Nivel absoluto (msnm)
+        &lt;/th&gt;
+        &lt;td class&#x3D;&quot;number&quot; mat-cell *matCellDef&#x3D;&quot;let station&quot;&gt;
+          {{ station.nivell_absolut | number : &#x27;1.2-2&#x27; : &#x27;es-ES&#x27; }}
+        &lt;/td&gt;
+      &lt;/ng-container&gt;
+      &lt;ng-container matColumnDef&#x3D;&quot;percentatge_volum_embassat&quot;&gt;
+        &lt;th mat-header-cell *matHeaderCellDef mat-sort-header&gt;
+          Porcentage volumen embalsado (%)
+        &lt;/th&gt;
+        &lt;td class&#x3D;&quot;number&quot; mat-cell *matCellDef&#x3D;&quot;let station&quot;&gt;
+          {{ station.percentatge_volum_embassat | number : &#x27;1.2-2&#x27; : &#x27;es-ES&#x27; }}
+        &lt;/td&gt;
+      &lt;/ng-container&gt;
+      &lt;ng-container matColumnDef&#x3D;&quot;volum_embassat&quot;&gt;
+        &lt;th mat-header-cell *matHeaderCellDef mat-sort-header&gt;
+          Volumen embasado (hm&lt;sup&gt;3&lt;/sup&gt;)
+        &lt;/th&gt;
+        &lt;td class&#x3D;&quot;number&quot; mat-cell *matCellDef&#x3D;&quot;let station&quot;&gt;
+          {{ station.volum_embassat | number : &#x27;1.2-2&#x27; : &#x27;es-ES&#x27; }}
+        &lt;/td&gt;
+      &lt;/ng-container&gt;
+      &lt;ng-container matColumnDef&#x3D;&quot;actions&quot; stickyEnd&gt;
+        &lt;th mat-header-cell *matHeaderCellDef aria-label&#x3D;&quot;row actions&quot;&gt;
+          &amp;nbsp;
+        &lt;/th&gt;
+        &lt;td mat-cell *matCellDef&#x3D;&quot;let station&quot;&gt;
+          &lt;mat-icon
+            class&#x3D;&quot;table__more-icon&quot;
+            matTooltip&#x3D;&quot;Ver más&quot;
+            matTooltipPosition&#x3D;&quot;above&quot;
+            (click)&#x3D;&quot;viewMore(station.id_estaci)&quot;
+            (keypress)&#x3D;&quot;viewMore(station.id_estaci)&quot;
+            &gt;add_circle&lt;/mat-icon
+          &gt;
+        &lt;/td&gt;
+      &lt;/ng-container&gt;
+      &lt;tr mat-header-row *matHeaderRowDef&#x3D;&quot;stationsDisplayedColumns&quot;&gt;&lt;/tr&gt;
+      &lt;tr mat-row *matRowDef&#x3D;&quot;let row; columns: stationsDisplayedColumns&quot;&gt;&lt;/tr&gt;
+    &lt;/table&gt;
+  &lt;/div&gt;
+  }
+&lt;/div&gt;
+</code></pre>
+    </div>
+
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div class="page__layout">  <app-page-title></app-page-title>  @if (form) {  <form class="form__wrapper" [formGroup]="form" (ngSubmit)="filterData()">    @if (breakpointService.isHandsetPortrait() | async) {    <mat-form-field>      <mat-label>Embalse</mat-label>      <mat-select [compareWith]="compareFn" formControlName="stations" multiple>        <mat-select-trigger>          @if (allSelected) { Todos } @else {          {{ amountSelected }} embalse{{            amountSelected > 1 ? \'s\' : \'\'          }}          seleccionado{{ amountSelected > 1 ? \'s\' : \'\' }}          }        </mat-select-trigger>        <mat-option          value="todos"          (click)="optionSelectClick(true)"          (keypress)="optionSelectClick(true)"          >Todos</mat-option        >        @for (station of stations(); track station) {        <mat-option          [value]="station.key"          (click)="optionSelectClick(false)"          (keypress)="optionSelectClick(false)"          >{{ station.name }}</mat-option        >        }      </mat-select>    </mat-form-field>    } @else {    <div class="form__stations-list">      <div>        @for (station of stations(); track station) {        <mat-checkbox          [checked]="checkedStations.has(station.key)"          (change)="changeStation($event, station)"          >{{ station.name }}</mat-checkbox        >        }      </div>      <div class="form__all-none-buttons">        <button          type="button"          mat-flat-button          [disabled]="            form.controls.stations.value?.length === stations()?.length          "          (click)="selectAll()"        >          Todos        </button>        <button          type="button"          mat-flat-button          [disabled]="!amountSelected"          (click)="unselectAll()"        >          Ninguno        </button>      </div>    </div>    }    <div>      <mat-form-field>        <mat-label>Elija una fecha</mat-label>        <input          matInput          [min]="minDate()"          [max]="maxDate()"          [matDatepicker]="picker"          [formControlName]="\'date\'"        />        <mat-datepicker-toggle          matIconSuffix          [for]="picker"        ></mat-datepicker-toggle>        <mat-datepicker #picker></mat-datepicker>      </mat-form-field>    </div>    <div>      <button type="submit" mat-flat-button [disabled]="!form.valid">        Buscar      </button>    </div>  </form>  } @if (filteredStations) {  <div class="table__wrapper">    <table mat-table [dataSource]="filteredStations" matSort>      <ng-container matColumnDef="estaci">        <th          mat-header-cell          *matHeaderCellDef          mat-sort-header          sortActionDescription="Sort by estaci"        >          Embalse        </th>        <td mat-cell *matCellDef="let station">{{ station.estaci }}</td>      </ng-container>      <ng-container matColumnDef="nivell_absolut">        <th mat-header-cell *matHeaderCellDef mat-sort-header>          Nivel absoluto (msnm)        </th>        <td class="number" mat-cell *matCellDef="let station">          {{ station.nivell_absolut | number : \'1.2-2\' : \'es-ES\' }}        </td>      </ng-container>      <ng-container matColumnDef="percentatge_volum_embassat">        <th mat-header-cell *matHeaderCellDef mat-sort-header>          Porcentage volumen embalsado (%)        </th>        <td class="number" mat-cell *matCellDef="let station">          {{ station.percentatge_volum_embassat | number : \'1.2-2\' : \'es-ES\' }}        </td>      </ng-container>      <ng-container matColumnDef="volum_embassat">        <th mat-header-cell *matHeaderCellDef mat-sort-header>          Volumen embasado (hm<sup>3</sup>)        </th>        <td class="number" mat-cell *matCellDef="let station">          {{ station.volum_embassat | number : \'1.2-2\' : \'es-ES\' }}        </td>      </ng-container>      <ng-container matColumnDef="actions" stickyEnd>        <th mat-header-cell *matHeaderCellDef aria-label="row actions">          &nbsp;        </th>        <td mat-cell *matCellDef="let station">          <mat-icon            class="table__more-icon"            matTooltip="Ver más"            matTooltipPosition="above"            (click)="viewMore(station.id_estaci)"            (keypress)="viewMore(station.id_estaci)"            >add_circle</mat-icon          >        </td>      </ng-container>      <tr mat-header-row *matHeaderRowDef="stationsDisplayedColumns"></tr>      <tr mat-row *matRowDef="let row; columns: stationsDisplayedColumns"></tr>    </table>  </div>  }</div></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ArtistAlbumDataComponent', 'selector': 'app-artist-album-data'},{'name': 'CatDammingsComponent', 'selector': 'app-cat-dammings'},{'name': 'CatDammingsHistoricChartComponent', 'selector': 'app-dammings-historic-chart'},{'name': 'CatPopulationComponent', 'selector': 'app-cat-population'},{'name': 'DataNotFoundComponent', 'selector': 'app-data-not-found'},{'name': 'DisneyAPIComponent', 'selector': 'app-disney-api'},{'name': 'DrawerMenuComponent', 'selector': 'app-drawer-menu'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'LoadingSpinnerComponent', 'selector': 'app-loading-spinner'},{'name': 'ModalImageViewerComponent', 'selector': 'app-modal-image-viewer'},{'name': 'ModalWrapperComponent', 'selector': 'app-modal-wrapper'},{'name': 'PageTitleComponent', 'selector': 'app-page-title'},{'name': 'SearchFilterComponent', 'selector': 'app-search-filter'},{'name': 'SimplePaginatorComponent', 'selector': 'app-simple-paginator'},{'name': 'SpotifyAPIComponent', 'selector': 'app-spotify-api'},{'name': 'SpotifySearchFormComponent', 'selector': 'app-spotify-search-form'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'CatDammingsComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'CatDammingsComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

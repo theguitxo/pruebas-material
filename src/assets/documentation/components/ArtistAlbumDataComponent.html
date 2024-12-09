@@ -1,0 +1,1067 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>pruebas-material documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">pruebas-material documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  ArtistAlbumDataComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/pages/spotify-api/components/artist-album-data/artist-album-data.ts</code>
+</p>
+
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code>OnInit</code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-artist-album-data</code></td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>DecimalPipe</code>
+                            <code>DatePipe</code>
+                            <code>MatChipsModule</code>
+                            <code>MatButtonModule</code>
+                            <code>MatCardModule</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./artist-album-data.html</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./artist-album-data.scss</code></td>
+            </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#artistsList" >artistsList</a>
+                            </li>
+                            <li>
+                                <a href="#followers" >followers</a>
+                            </li>
+                            <li>
+                                <a href="#genres" >genres</a>
+                            </li>
+                            <li>
+                                <a href="#image" >image</a>
+                            </li>
+                            <li>
+                                <a href="#panelOpened" >panelOpened</a>
+                            </li>
+                            <li>
+                                <a href="#popularity" >popularity</a>
+                            </li>
+                            <li>
+                                <a href="#releaseDate" >releaseDate</a>
+                            </li>
+                            <li>
+                                <a href="#spotifyUrl" >spotifyUrl</a>
+                            </li>
+                            <li>
+                                <a href="#totalTracks" >totalTracks</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#openUrl" >openUrl</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#setArtistAlbumInfo" >setArtistAlbumInfo</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#setImageInfo" >setImageInfo</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#info" >info</a>
+                            </li>
+                            <li>
+                                <a href="#isArtist" >isArtist</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+
+    <section data-compodoc="block-inputs">
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="info"></a>
+                        <b>info</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>ArtistResultItem | AlbumResultItem</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Required : </i>&nbsp;<b>true</b>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/pages/spotify-api/components/artist-album-data/artist-album-data.ts:28</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="isArtist"></a>
+                        <b>isArtist</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Required : </i>&nbsp;<b>true</b>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/pages/spotify-api/components/artist-album-data/artist-album-data.ts:27</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="41"
+                                    class="link-to-prism">src/app/pages/spotify-api/components/artist-album-data/artist-album-data.ts:41</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="openUrl"></a>
+                    <span class="name">
+                        <span ><b>openUrl</b></span>
+                        <a href="#openUrl"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>openUrl(url: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="88"
+                                    class="link-to-prism">src/app/pages/spotify-api/components/artist-album-data/artist-album-data.ts:88</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>url</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="setArtistAlbumInfo"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>setArtistAlbumInfo</b></span>
+                        <a href="#setArtistAlbumInfo"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>setArtistAlbumInfo()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="49"
+                                    class="link-to-prism">src/app/pages/spotify-api/components/artist-album-data/artist-album-data.ts:49</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="setImageInfo"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>setImageInfo</b></span>
+                        <a href="#setImageInfo"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>setImageInfo()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="71"
+                                    class="link-to-prism">src/app/pages/spotify-api/components/artist-album-data/artist-album-data.ts:71</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="artistsList"></a>
+                    <span class="name">
+                        <span ><b>artistsList</b></span>
+                        <a href="#artistsList"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>literal type[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/pages/spotify-api/components/artist-album-data/artist-album-data.ts:37</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="followers"></a>
+                    <span class="name">
+                        <span ><b>followers</b></span>
+                        <a href="#followers"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>WritableSignal&lt;number | undefined&gt;</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/pages/spotify-api/components/artist-album-data/artist-album-data.ts:31</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="genres"></a>
+                    <span class="name">
+                        <span ><b>genres</b></span>
+                        <a href="#genres"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/pages/spotify-api/components/artist-album-data/artist-album-data.ts:30</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="image"></a>
+                    <span class="name">
+                        <span ><b>image</b></span>
+                        <a href="#image"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/ImageItemInfo.html" target="_self" >WritableSignal&lt;ImageItemInfo | undefined&gt;</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/pages/spotify-api/components/artist-album-data/artist-album-data.ts:33</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="panelOpened"></a>
+                    <span class="name">
+                        <span ><b>panelOpened</b></span>
+                        <a href="#panelOpened"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/pages/spotify-api/components/artist-album-data/artist-album-data.ts:39</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="popularity"></a>
+                    <span class="name">
+                        <span ><b>popularity</b></span>
+                        <a href="#popularity"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>WritableSignal&lt;number | undefined&gt;</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/pages/spotify-api/components/artist-album-data/artist-album-data.ts:32</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="releaseDate"></a>
+                    <span class="name">
+                        <span ><b>releaseDate</b></span>
+                        <a href="#releaseDate"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/pages/spotify-api/components/artist-album-data/artist-album-data.ts:35</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="spotifyUrl"></a>
+                    <span class="name">
+                        <span ><b>spotifyUrl</b></span>
+                        <a href="#spotifyUrl"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/pages/spotify-api/components/artist-album-data/artist-album-data.ts:34</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="totalTracks"></a>
+                    <span class="name">
+                        <span ><b>totalTracks</b></span>
+                        <a href="#totalTracks"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/pages/spotify-api/components/artist-album-data/artist-album-data.ts:36</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { DatePipe, DecimalPipe } from &#x27;@angular/common&#x27;;
+import { Component, Input, OnInit, signal, WritableSignal } from &#x27;@angular/core&#x27;;
+import { MatButtonModule } from &#x27;@angular/material/button&#x27;;
+import { MatCardModule } from &#x27;@angular/material/card&#x27;;
+import { MatChipsModule } from &#x27;@angular/material/chips&#x27;;
+import { EXTERNAL_URL_SPOTIFY_KEY } from &#x27;../../../../constants/spotify-api/spotify-api.constants&#x27;;
+import {
+  AlbumResultItem,
+  ArtistResultItem,
+  ArtistResultItemBase,
+  ImageItemInfo,
+} from &#x27;../../../../models/spotify-api/spotify-api.model&#x27;;
+
+@Component({
+    selector: &#x27;app-artist-album-data&#x27;,
+    templateUrl: &#x27;./artist-album-data.html&#x27;,
+    styleUrl: &#x27;./artist-album-data.scss&#x27;,
+    imports: [
+        DecimalPipe,
+        DatePipe,
+        MatChipsModule,
+        MatButtonModule,
+        MatCardModule,
+    ]
+})
+export class ArtistAlbumDataComponent implements OnInit {
+  @Input({ required: true }) isArtist!: boolean;
+  @Input({ required: true }) info!: ArtistResultItem | AlbumResultItem;
+
+  genres: string[] &#x3D; [];
+  followers!: WritableSignal&lt;number | undefined&gt;;
+  popularity!: WritableSignal&lt;number | undefined&gt;;
+  image!: WritableSignal&lt;ImageItemInfo | undefined&gt;;
+  spotifyUrl!: string;
+  releaseDate!: string;
+  totalTracks!: number;
+  artistsList: { name: string; url: string }[] &#x3D; [];
+
+  panelOpened &#x3D; false;
+
+  ngOnInit(): void {
+    this.followers &#x3D; signal(undefined);
+    this.popularity &#x3D; signal(undefined);
+    this.image &#x3D; signal(undefined);
+    this.setArtistAlbumInfo();
+    this.setImageInfo();
+  }
+
+  private setArtistAlbumInfo(): void {
+    if (this.isArtist) {
+      this.genres &#x3D; (this.info as ArtistResultItem).genres;
+      this.followers.set((this.info as ArtistResultItem).followers?.total);
+      this.popularity.set((this.info as ArtistResultItem).popularity);
+    } else {
+      this.releaseDate &#x3D; (this.info as AlbumResultItem).release_date;
+      this.totalTracks &#x3D; (this.info as AlbumResultItem).total_tracks;
+
+      this.artistsList &#x3D; (this.info as AlbumResultItem).artists?.map(
+        (item: ArtistResultItemBase) &#x3D;&gt; ({
+          name: item.name,
+          url: item.external_urls[EXTERNAL_URL_SPOTIFY_KEY],
+        })
+      );
+    }
+
+    if (this.info.external_urls) {
+      this.spotifyUrl &#x3D; this.info.external_urls[EXTERNAL_URL_SPOTIFY_KEY];
+    }
+  }
+
+  private setImageInfo(): void {
+    let bigger!: ImageItemInfo;
+    let current!: ImageItemInfo;
+
+    this.info.images?.forEach((image: ImageItemInfo) &#x3D;&gt; {
+      let isBigger &#x3D; false;
+      if (!bigger || image.width &gt; bigger?.width) {
+        bigger &#x3D; image;
+        isBigger &#x3D; true;
+      }
+      if ((!current || image.width &gt; current?.width) &amp;&amp; !isBigger) {
+        current &#x3D; image;
+      }
+      this.image.set(current);
+    });
+  }
+
+  openUrl(url: string): void {
+    window.open(url, &#x27;_blank&#x27;);
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;mat-card class&#x3D;&quot;artist-album-card&quot; appearance&#x3D;&quot;outlined&quot;&gt;
+  &lt;mat-card-header&gt;
+    &lt;mat-card-title&gt;{{ info.name }}&lt;/mat-card-title&gt;
+  &lt;/mat-card-header&gt;
+  @if(image()) {
+  &lt;div class&#x3D;&quot;artist-image__wrapper&quot;&gt;
+    &lt;img
+      [src]&#x3D;&quot;image()?.url&quot;
+      [width]&#x3D;&quot;image()?.width&quot;
+      [height]&#x3D;&quot;image()?.height&quot;
+      alt&#x3D;&quot;{{ info.name }}&quot;
+    /&gt;
+  &lt;/div&gt;
+  }
+  &lt;mat-card-content&gt;
+    @if(genres.length) {
+    &lt;div class&#x3D;&quot;genres__wrapper&quot;&gt;
+      &lt;div class&#x3D;&quot;genres__title&quot;&gt;Generos&lt;/div&gt;
+      &lt;div class&#x3D;&quot;genres__list&quot;&gt;
+        @for(genre of genres; track genre) {
+        &lt;mat-chip&gt;{{ genre }}&lt;/mat-chip&gt;
+        }
+      &lt;/div&gt;
+    &lt;/div&gt;
+    } @if(isArtist) {
+    &lt;div class&#x3D;&quot;item-info__wrapper&quot;&gt;
+      &lt;div class&#x3D;&quot;item-info__item&quot;&gt;Popularidad:&lt;/div&gt;
+      &lt;div class&#x3D;&quot;item-info__value&quot;&gt;
+        {{ popularity() | number : &quot;1.0-0&quot; : &quot;es-ES&quot; }}
+      &lt;/div&gt;
+      &lt;div class&#x3D;&quot;item-info__item&quot;&gt;Seguidores:&lt;/div&gt;
+      &lt;div class&#x3D;&quot;item-info__value&quot;&gt;
+        {{ followers() | number : &quot;1.0-0&quot; : &quot;es-ES&quot; }}
+      &lt;/div&gt;
+    &lt;/div&gt;
+    } @else {
+    &lt;div class&#x3D;&quot;item-info__wrapper&quot;&gt;
+      &lt;div class&#x3D;&quot;item-info__item&quot;&gt;Fecha de lanzamiento:&lt;/div&gt;
+      &lt;div class&#x3D;&quot;item-info__value&quot;&gt;
+        {{ releaseDate | date : &quot;mediumDate&quot; : &quot;&quot; : &quot;es-ES&quot; }}
+      &lt;/div&gt;
+      &lt;div class&#x3D;&quot;item-info__item&quot;&gt;Número de pistas:&lt;/div&gt;
+      &lt;div class&#x3D;&quot;item-info__value&quot;&gt;
+        {{ totalTracks | number : &quot;1.0-0&quot; : &quot;es-ES&quot; }}
+      &lt;/div&gt;
+    &lt;/div&gt;
+    @if(artistsList.length) {
+    &lt;div class&#x3D;&quot;item-info__wrapper&quot;&gt;
+      &lt;div class&#x3D;&quot;item-info__title&quot;&gt;Artistas&lt;/div&gt;
+      @for(artist of artistsList; track artist) {
+      &lt;div class&#x3D;&quot;item-info__item item-info__item--align-center&quot;&gt;
+        {{ artist.name }}
+      &lt;/div&gt;
+      &lt;div class&#x3D;&quot;item-info__value&quot;&gt;
+        &lt;button mat-button (click)&#x3D;&quot;openUrl(artist.url)&quot;&gt;Ver en Spotify&lt;/button&gt;
+      &lt;/div&gt;
+      }
+    &lt;/div&gt;
+    } }
+  &lt;/mat-card-content&gt;
+  &lt;mat-card-actions class&#x3D;&quot;view-spotify__wrapper&quot;&gt;
+    @if(spotifyUrl) {
+    &lt;button mat-button (click)&#x3D;&quot;openUrl(spotifyUrl)&quot;&gt;Ver en Spotify&lt;/button&gt;
+    }
+  &lt;/mat-card-actions&gt;
+&lt;/mat-card&gt;
+</code></pre>
+    </div>
+
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><mat-card class="artist-album-card" appearance="outlined">  <mat-card-header>    <mat-card-title>{{ info.name }}</mat-card-title>  </mat-card-header>  @if(image()) {  <div class="artist-image__wrapper">    <img      [src]="image()?.url"      [width]="image()?.width"      [height]="image()?.height"      alt="{{ info.name }}"    />  </div>  }  <mat-card-content>    @if(genres.length) {    <div class="genres__wrapper">      <div class="genres__title">Generos</div>      <div class="genres__list">        @for(genre of genres; track genre) {        <mat-chip>{{ genre }}</mat-chip>        }      </div>    </div>    } @if(isArtist) {    <div class="item-info__wrapper">      <div class="item-info__item">Popularidad:</div>      <div class="item-info__value">        {{ popularity() | number : "1.0-0" : "es-ES" }}      </div>      <div class="item-info__item">Seguidores:</div>      <div class="item-info__value">        {{ followers() | number : "1.0-0" : "es-ES" }}      </div>    </div>    } @else {    <div class="item-info__wrapper">      <div class="item-info__item">Fecha de lanzamiento:</div>      <div class="item-info__value">        {{ releaseDate | date : "mediumDate" : "" : "es-ES" }}      </div>      <div class="item-info__item">Número de pistas:</div>      <div class="item-info__value">        {{ totalTracks | number : "1.0-0" : "es-ES" }}      </div>    </div>    @if(artistsList.length) {    <div class="item-info__wrapper">      <div class="item-info__title">Artistas</div>      @for(artist of artistsList; track artist) {      <div class="item-info__item item-info__item--align-center">        {{ artist.name }}      </div>      <div class="item-info__value">        <button mat-button (click)="openUrl(artist.url)">Ver en Spotify</button>      </div>      }    </div>    } }  </mat-card-content>  <mat-card-actions class="view-spotify__wrapper">    @if(spotifyUrl) {    <button mat-button (click)="openUrl(spotifyUrl)">Ver en Spotify</button>    }  </mat-card-actions></mat-card></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ArtistAlbumDataComponent', 'selector': 'app-artist-album-data'},{'name': 'CatDammingsComponent', 'selector': 'app-cat-dammings'},{'name': 'CatDammingsHistoricChartComponent', 'selector': 'app-dammings-historic-chart'},{'name': 'CatPopulationComponent', 'selector': 'app-cat-population'},{'name': 'DataNotFoundComponent', 'selector': 'app-data-not-found'},{'name': 'DisneyAPIComponent', 'selector': 'app-disney-api'},{'name': 'DrawerMenuComponent', 'selector': 'app-drawer-menu'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'LoadingSpinnerComponent', 'selector': 'app-loading-spinner'},{'name': 'ModalImageViewerComponent', 'selector': 'app-modal-image-viewer'},{'name': 'ModalWrapperComponent', 'selector': 'app-modal-wrapper'},{'name': 'PageTitleComponent', 'selector': 'app-page-title'},{'name': 'SearchFilterComponent', 'selector': 'app-search-filter'},{'name': 'SimplePaginatorComponent', 'selector': 'app-simple-paginator'},{'name': 'SpotifyAPIComponent', 'selector': 'app-spotify-api'},{'name': 'SpotifySearchFormComponent', 'selector': 'app-spotify-search-form'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'ArtistAlbumDataComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'ArtistAlbumDataComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
