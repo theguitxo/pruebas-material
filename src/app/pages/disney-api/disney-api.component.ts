@@ -1,5 +1,11 @@
-import { animate, state, style, transition, trigger } from '@angular/animations'
-import { AsyncPipe } from '@angular/common'
+import {
+  animate,
+  state,
+  style,
+  transition,
+  trigger,
+} from '@angular/animations';
+import { AsyncPipe } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -9,30 +15,30 @@ import {
   Injector,
   OnInit,
   Signal,
-} from '@angular/core'
-import { toSignal } from '@angular/core/rxjs-interop'
-import { MatButtonModule } from '@angular/material/button'
-import { MatCardModule } from '@angular/material/card'
-import { MatChipsModule } from '@angular/material/chips'
-import { MatDialog } from '@angular/material/dialog'
-import { MatIconModule } from '@angular/material/icon'
-import { MatTableModule } from '@angular/material/table'
-import { DataNotFoundComponent } from '../../components/data-not-found/data-not-found.component'
+} from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatDialog } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTableModule } from '@angular/material/table';
+import { DataNotFoundComponent } from '../../components/data-not-found/data-not-found.component';
 import {
   ModalImageViewerComponent,
   ModalImageViewerData,
-} from '../../components/modal-image-viewer/modal-image-viewer.component'
-import { PageTitleComponent } from '../../components/page-title/page-title.component'
-import { SimplePaginatorComponent } from '../../components/simple-paginator/simple-paginator.component'
-import { BreakpointService } from '../../services/breakpoint.service'
+} from '../../components/modal-image-viewer/modal-image-viewer.component';
+import { PageTitleComponent } from '../../components/page-title/page-title.component';
+import { SimplePaginatorComponent } from '../../components/simple-paginator/simple-paginator.component';
 import {
-  DisneyAPIService,
   ResponseCharacterList,
   ResponseData,
-} from '../../services/disney-api.service'
-import { LoadingService } from '../../services/loading.service'
-import { goToExternalLink } from '../../utils/external-link.util'
-import { SearchFilterComponent } from './components/search-filter/search-filter.component'
+} from '../../models/disney-api/disney-api.model';
+import { BreakpointService } from '../../services/breakpoint.service';
+import { DisneyAPIService } from '../../services/disney-api.service';
+import { LoadingService } from '../../services/loading.service';
+import { goToExternalLink } from '../../utils/external-link.util';
+import { SearchFilterComponent } from './components/search-filter/search-filter.component';
 
 @Component({
   selector: 'app-disney-api',
@@ -63,23 +69,23 @@ import { SearchFilterComponent } from './components/search-filter/search-filter.
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DisneyAPIComponent implements OnInit {
-  private readonly disneyAPIService!: DisneyAPIService
-  private readonly dialog!: MatDialog
-  public readonly loadingService!: LoadingService
-  private readonly cdr!: ChangeDetectorRef
+  private readonly disneyAPIService!: DisneyAPIService;
+  private readonly dialog!: MatDialog;
+  public readonly loadingService!: LoadingService;
+  private readonly cdr!: ChangeDetectorRef;
 
-  breakpointService!: BreakpointService
+  breakpointService!: BreakpointService;
 
-  private readonly injector = inject(Injector)
+  private readonly injector = inject(Injector);
 
-  characters!: Signal<ResponseCharacterList | undefined>
+  characters!: Signal<ResponseCharacterList | undefined>;
 
   constructor() {
-    this.disneyAPIService = inject(DisneyAPIService)
-    this.breakpointService = inject(BreakpointService)
-    this.dialog = inject(MatDialog)
-    this.loadingService = inject(LoadingService)
-    this.cdr = inject(ChangeDetectorRef)
+    this.disneyAPIService = inject(DisneyAPIService);
+    this.breakpointService = inject(BreakpointService);
+    this.dialog = inject(MatDialog);
+    this.loadingService = inject(LoadingService);
+    this.cdr = inject(ChangeDetectorRef);
   }
 
   columnsTitles: { [key: string]: string } = {
@@ -87,23 +93,23 @@ export class DisneyAPIComponent implements OnInit {
     name: 'Nombre',
     sourceUrl: 'Fuende de información',
     imageUrl: 'Imagen',
-  }
-  dataSource: ResponseData[] = []
-  displayedColumns = ['_id', 'name']
+  };
+  dataSource: ResponseData[] = [];
+  displayedColumns = ['_id', 'name'];
   displayedColumnsWithExpand = [
     ...this.displayedColumns,
     'sourceUrl',
     'imageUrl',
     'expand',
-  ]
-  expandedElement: unknown
+  ];
+  expandedElement: unknown;
 
-  currentPage = 1
-  pageSize = 5
-  disablePreviousPage!: boolean
-  disableNextPage!: boolean
-  lastPage!: number
-  filterSearch!: string | undefined
+  currentPage = 1;
+  pageSize = 5;
+  disablePreviousPage!: boolean;
+  disableNextPage!: boolean;
+  lastPage!: number;
+  filterSearch!: string | undefined;
 
   itemsExpandedInfo: { title: string; field: string }[] = [
     {
@@ -130,86 +136,86 @@ export class DisneyAPIComponent implements OnInit {
       title: 'Videojuegos',
       field: 'videoGames',
     },
-  ]
+  ];
 
   ngOnInit(): void {
-    this.initEffects()
-    this.initSignals()
-    this.loadData()
+    this.initEffects();
+    this.initSignals();
+    this.loadData();
   }
 
   private initSignals(): void {
     this.characters = toSignal(this.disneyAPIService.charactersList, {
       requireSync: true,
       injector: this.injector,
-    })
+    });
   }
 
   private initEffects(): void {
     effect(
       () => {
-        this.dataSource = this.characters()?.data || []
+        this.dataSource = this.characters()?.data || [];
 
-        this.lastPage = this.characters()?.info.totalPages ?? 1
-        this.disableNextPage = !this.characters()?.info.nextPage
-        this.disablePreviousPage = !this.characters()?.info.previousPage
+        this.lastPage = this.characters()?.info.totalPages ?? 1;
+        this.disableNextPage = !this.characters()?.info.nextPage;
+        this.disablePreviousPage = !this.characters()?.info.previousPage;
 
-        this.cdr.detectChanges()
+        this.cdr.detectChanges();
       },
       { injector: this.injector }
-    )
+    );
   }
 
   private loadData(): void {
-    this.disneyAPIService.currentPage = this.currentPage
-    this.disneyAPIService.pageSize = this.pageSize
+    this.disneyAPIService.currentPage = this.currentPage;
+    this.disneyAPIService.pageSize = this.pageSize;
 
     if (this.filterSearch) {
-      this.disneyAPIService.filterCharacters(this.filterSearch)
+      this.disneyAPIService.filterCharacters(this.filterSearch);
     } else {
-      this.disneyAPIService.getAllCharacters()
+      this.disneyAPIService.getAllCharacters();
     }
   }
 
   search(name: string): void {
-    this.currentPage = 1
-    this.filterSearch = name
-    this.loadData()
+    this.currentPage = 1;
+    this.filterSearch = name;
+    this.loadData();
   }
 
   resetSearch(): void {
-    this.currentPage = 1
-    this.filterSearch = undefined
-    this.loadData()
+    this.currentPage = 1;
+    this.filterSearch = undefined;
+    this.loadData();
   }
 
   goPage(value: number): void {
-    this.currentPage = value
-    this.loadData()
+    this.currentPage = value;
+    this.loadData();
   }
 
   changePageSize(value: number): void {
-    this.pageSize = value
-    this.currentPage = 1
-    this.loadData()
+    this.pageSize = value;
+    this.currentPage = 1;
+    this.loadData();
   }
 
   openSourceUrl(event: MouseEvent, link: string): void {
-    event.stopPropagation()
-    goToExternalLink(link)
+    event.stopPropagation();
+    goToExternalLink(link);
   }
 
   openImage(event: MouseEvent, url: string, name: string): void {
-    event.stopPropagation()
+    event.stopPropagation();
 
     const data: ModalImageViewerData = {
       url,
       altImage: name,
       title: name,
-    }
+    };
 
     this.dialog.open(ModalImageViewerComponent, {
       data,
-    })
+    });
   }
 }
