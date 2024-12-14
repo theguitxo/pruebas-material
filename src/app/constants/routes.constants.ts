@@ -1,3 +1,6 @@
+/**
+ * Listado de rutas de la aplicación
+ */
 export enum ROUTES_PATHS {
   HOME = 'home',
   DISNEY_API = 'disney-api',
@@ -6,6 +9,9 @@ export enum ROUTES_PATHS {
   CAT_DAMMINGS = 'cat-dammings',
 }
 
+/**
+ * Listado de titulos de las secciones según la ruta
+ */
 export const TITLES = {
   [ROUTES_PATHS.HOME]: 'Inicio',
   [ROUTES_PATHS.DISNEY_API]: 'Personajes de Disney',

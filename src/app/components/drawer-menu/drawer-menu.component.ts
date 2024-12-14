@@ -5,28 +5,31 @@ import { MatListModule } from '@angular/material/list';
 import { MatDrawer } from '@angular/material/sidenav';
 import { Router } from '@angular/router';
 import { ROUTES_PATHS, TITLES } from '../../constants/routes.constants';
+import { MenuItem } from '../../models/drawer-menu/drawer-menu.model';
 
-export interface MenuItem {
-  title: string;
-  path: string;
-  icon: string;
-}
-
+/**
+ * Componente para el menú lateral de la aplicación
+ */
 @Component({
-    selector: 'app-drawer-menu',
-    templateUrl: './drawer-menu.component.html',
-    styleUrl: './drawer-menu.component.scss',
-    imports: [MatListModule, MatButtonModule, MatIconModule]
+  selector: 'app-drawer-menu',
+  templateUrl: './drawer-menu.component.html',
+  styleUrl: './drawer-menu.component.scss',
+  imports: [MatListModule, MatButtonModule, MatIconModule],
 })
 export class DrawerMenuComponent {
+  /**
+   * Referencia al MatDrawer que contiene el menú
+   */
   @Input() drawerRef!: MatDrawer;
 
+  /**
+   * Servicio Router de Angular
+   */
   private readonly router!: Router;
 
-  constructor() {
-    this.router = inject(Router);
-  }
-
+  /**
+   * Lista de opciones del menú
+   */
   menuItems: MenuItem[] = [
     {
       title: TITLES[ROUTES_PATHS.HOME],
@@ -55,6 +58,17 @@ export class DrawerMenuComponent {
     },
   ];
 
+  /**
+   * Método contructor
+   */
+  constructor() {
+    this.router = inject(Router);
+  }
+
+  /**
+   * Navega a una de la opciones del menú
+   * @param {string} path Ruta a la que ha de navegar
+   */
   navigate(path: string): void {
     this.drawerRef.toggle();
     this.router.navigate([path]);

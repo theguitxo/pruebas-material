@@ -24,16 +24,14 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
 import { DataNotFoundComponent } from '../../components/data-not-found/data-not-found.component';
-import {
-  ModalImageViewerComponent,
-  ModalImageViewerData,
-} from '../../components/modal-image-viewer/modal-image-viewer.component';
+import { ModalImageViewerComponent } from '../../components/modal-image-viewer/modal-image-viewer.component';
 import { PageTitleComponent } from '../../components/page-title/page-title.component';
 import { SimplePaginatorComponent } from '../../components/simple-paginator/simple-paginator.component';
 import {
   ResponseCharacterList,
   ResponseData,
 } from '../../models/disney-api/disney-api.model';
+import { ModalImageViewerData } from '../../models/modal-image-viewer/modal-image-viewer.model';
 import { BreakpointService } from '../../services/breakpoint.service';
 import { DisneyAPIService } from '../../services/disney-api.service';
 import { LoadingService } from '../../services/loading.service';
