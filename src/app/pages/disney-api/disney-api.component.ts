@@ -68,16 +68,31 @@ import { SearchFilterComponent } from './components/search-filter/search-filter.
 })
 export class DisneyAPIComponent implements OnInit {
   private readonly disneyAPIService!: DisneyAPIService;
+  /**
+   * Servicio para manejar modales
+   */
   private readonly dialog!: MatDialog;
+  /**
+   * Servicio para mostrar y ocultar el loading spinner
+   */
   public readonly loadingService!: LoadingService;
   private readonly cdr!: ChangeDetectorRef;
 
+  /**
+   * Servicio de Angular para monitorizar los cambios entre diferentes resoluciones de dispositivos
+   */
   breakpointService!: BreakpointService;
 
+  /**
+   * Servicio para inyectar otros servicios
+   */
   private readonly injector = inject(Injector);
 
   characters!: Signal<ResponseCharacterList | undefined>;
 
+  /**
+   * Método constructor
+   */
   constructor() {
     this.disneyAPIService = inject(DisneyAPIService);
     this.breakpointService = inject(BreakpointService);

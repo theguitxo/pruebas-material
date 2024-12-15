@@ -40,6 +40,9 @@ export class CatDammingsService {
     return this._list.asObservable();
   }
 
+  /**
+   * Método constructor
+   */
   constructor() {
     this.http = inject(HttpClient);
   }
