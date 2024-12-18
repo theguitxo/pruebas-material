@@ -35,3 +35,10 @@ export interface FilteredInfoItem {
 export interface FilteredInfoItemDate extends FilteredInfoItem {
   dia: Date;
 }
+
+export interface DammingsInfo {
+  maxDate: Date;
+  minDate: Date;
+  stations: StationItem[];
+  list: DammingsInfoItem[];
+}

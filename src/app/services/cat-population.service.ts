@@ -12,10 +12,19 @@ import { NO_CACHE } from '../utils/http-context.util';
   providedIn: 'any',
 })
 export class CatPopulationService {
+  /**
+   * Servicio de Angular para realizar llamadas HTTP
+   */
   private readonly httpClient!: HttpClient;
 
+  /**
+   * Url con los datos de códigos postales
+   */
   private readonly zipCodesApiURL =
     'https://analisi.transparenciacatalunya.cat/resource/tp8v-a58g.json';
+  /**
+   * Url con los datos de población
+   */
   private readonly populationDataApiURL =
     'https://analisi.transparenciacatalunya.cat/resource/b4rr-d25b.json';
 
@@ -26,6 +35,10 @@ export class CatPopulationService {
     this.httpClient = inject(HttpClient);
   }
 
+  /**
+   * Obtiene la lista de códigos postales de la Generalitat
+   * @returns {Observable<ZipCodeListItem[]>} Observable con un array de códigos postales
+   */
   getZipCodes(): Observable<ZipCodeListItem[]> {
     const params = new HttpParams().append('$limit', 9999);
 
@@ -39,6 +52,11 @@ export class CatPopulationService {
       .pipe(map((list: ZipCodeItem[]) => this._mapZipCodeListItem(list)));
   }
 
+  /**
+   * Modifica la respuesta de la lista de códigos postales recibida del servicio para usarla en la aplicación
+   * @param {ZipCodeItem} list Lista de códigos postales recibidos del servicio
+   * @returns {ZipCodeListItem} Lista de códigos postales para usar en la aplicación
+   */
   private _mapZipCodeListItem(list: ZipCodeItem[]): ZipCodeListItem[] {
     const codesMap: Map<string, ZipCodeListItem> = new Map<
       string,
@@ -68,6 +86,11 @@ export class CatPopulationService {
     return Array.from(codesMap.values()) || [];
   }
 
+  /**
+   * Obtiene datos de una población
+   * @param {string} code Código de la población a consultar sus datos
+   * @returns {Observable<PopulationDataResponse[]>} Lista con los datos de la población
+   */
   getPopulationData(code: string): Observable<PopulationDataResponse[]> {
     const params = new HttpParams().append('codi', code);
 
