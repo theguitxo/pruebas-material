@@ -2,7 +2,7 @@
 
 Diferentes utilidades para probar componentes y servicios de Angular Material (v.19)
 
-## Servidor de desarollo
+## Servidor de desarrollo
 
 Ejecutar el script `npm start` y navegar a `http://localhost:4200/`.
 
